@@ -11,9 +11,9 @@ QA AI-ассистент для команды на базе Claude Code: пла
 Токены — только в личных env-переменных, в репозиторий не коммитить:
 
 ```sh
-export ALLURE_ENDPOINT="https://<allure-host>"
+export ALLURE_ENDPOINT="https://astbroker.qatools.cloud"
 export ALLURE_TOKEN="<user token>"      # Allure TestOps → профиль → API tokens
-export REDMINE_URL="https://<redmine-host>"
+export REDMINE_URL="https://redmine.fast-system.ru"
 export REDMINE_API_KEY="<личный ключ>"  # Redmine → Моя учётная запись → Ключ API
 export KAITEN_URL="https://<kaiten-host>"
 export KAITEN_TOKEN="<api key>"         # Kaiten → профиль → API-ключ
@@ -33,8 +33,8 @@ curl -s -H "Authorization: Bearer $KAITEN_TOKEN" "$KAITEN_URL/api/latest/users/c
 
 | Система | Проект | ID |
 |---------|--------|----|
-| Allure TestOps | _TBD_ | _TBD_ |
-| Redmine | _TBD_ | _TBD_ |
+| Allure TestOps | https://astbroker.qatools.cloud/project/35 | 35 |
+| Redmine | https://redmine.fast-system.ru/projects/pfpa (Fast-system) | 1 (`pfpa`) |
 
 ## Пилотная группа
 
