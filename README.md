@@ -27,14 +27,14 @@ curl -s -H "X-Redmine-API-Key: $REDMINE_API_KEY" "$REDMINE_URL/users/current.jso
 curl -s -H "Authorization: Bearer $KAITEN_TOKEN" "$KAITEN_URL/api/latest/users/current"
 ```
 
-## Тестовые проекты (фаза 0)
+## Проекты для обкатки (фаза 0)
 
-Обкатка только на тестовых проектах, боевые данные не трогаем:
+| Система | Проект | ID | Режим |
+|---------|--------|----|-------|
+| Allure TestOps | https://astbroker.qatools.cloud/project/35 | 35 | тестовый, запись разрешена |
+| Redmine | https://redmine.fast-system.ru/projects/pfpa (Fast-system) | 1 (`pfpa`) | **боевой**, строго read-only |
 
-| Система | Проект | ID |
-|---------|--------|----|
-| Allure TestOps | https://astbroker.qatools.cloud/project/35 | 35 |
-| Redmine | https://redmine.fast-system.ru/projects/pfpa (Fast-system) | 1 (`pfpa`) |
+Redmine — боевой проект: из него только читаем задачи, никакой записи (комментарии, статусы, вложения) до отдельного решения. Read-only обеспечивается deny-правилами в `settings.local.json` (фаза 1.3).
 
 ## Пилотная группа
 
