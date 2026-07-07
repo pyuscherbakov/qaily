@@ -1,5 +1,15 @@
 {
   "mcpServers": {
+    "allure-testops": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "github:pyuscherbakov/allure-testops-mcp#5ff190e567bba4db689995bd578fd58ca9eeec43"],
+      "env": {
+        "ALLURE_TESTOPS_URL": "${ALLURE_ENDPOINT}",
+        "ALLURE_TOKEN": "${ALLURE_TOKEN}",
+        "ALLURE_PROJECT_ID": "35"
+      }
+    },
     "redmine": {
       "type": "stdio",
       "command": "uvx",
