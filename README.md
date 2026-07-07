@@ -27,6 +27,41 @@ curl -s -H "X-Redmine-API-Key: $REDMINE_API_KEY" "$REDMINE_URL/users/current.jso
 curl -s -H "Authorization: Bearer $KAITEN_TOKEN" "$KAITEN_URL/api/latest/users/current"
 ```
 
+## Установка Redmine MCP
+
+Конфигурация уже в репозитории — [.mcp.json](.mcp.json) подхватывается Claude Code автоматически. Сервер [mcp-redmine](https://github.com/runekaagaard/mcp-redmine) ставится с PyPI при первом запуске, отдельная установка не нужна.
+
+Шаги для пользователя:
+
+1. Установить [uv](https://docs.astral.sh/uv/getting-started/installation/) (сервер запускается через `uvx`):
+
+   ```sh
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+
+2. Получить личный API-ключ: Redmine → Моя учётная запись → Ключ API. Ключ должен быть от аккаунта/роли **строго на просмотр** (см. раздел про read-only ниже).
+
+3. Прописать env-переменные в shell-профиле (`~/.zshrc`):
+
+   ```sh
+   export REDMINE_URL="https://redmine.fast-system.ru"
+   export REDMINE_API_KEY="<read-only ключ>"
+   ```
+
+4. Проверить ключ:
+
+   ```sh
+   curl -s -H "X-Redmine-API-Key: $REDMINE_API_KEY" "$REDMINE_URL/users/current.json"
+   ```
+
+   Ответ — JSON с вашим пользователем. `401` — ключ неверный.
+
+5. Запустить Claude Code в каталоге проекта. На вопрос про MCP-серверы из `.mcp.json` ответить «approve».
+
+Проверка: в сессии спросить «покажи задачу №<id> из Redmine» — Claude должен прочитать её через инструмент `redmine_request`.
+
+Если сервер не появился: `claude mcp list` покажет статус; типовые причины — не установлен `uv`, не экспортированы переменные, не выдан approve (сбросить: `claude mcp reset-project-choices`).
+
 ## Проекты для обкатки (фаза 0)
 
 | Система | Проект | ID | Режим |
