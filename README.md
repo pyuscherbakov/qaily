@@ -60,7 +60,7 @@ curl -s -H "Authorization: Bearer $KAITEN_TOKEN" "$KAITEN_URL/api/latest/users/c
 
 Если сервер не появился: `claude mcp list` покажет статус; типовые причины — нет Node.js, не экспортированы переменные, не выдан approve (сбросить: `claude mcp reset-project-choices`).
 
-Запись в Allure ограничивается deny-масками из [settings.local.json.example](settings.local.json.example). Кому нужна жёсткая гарантия только чтения — добавить в env сервера `ALLURE_READ_ONLY=true`: мутирующие инструменты (`create_*`, `update_*`, `delete_*`, `set_*`, `add_*`, `remove_*`, `bulk_*` и пр.) исчезают из реестра целиком.
+Запись в Allure ограничивается deny-масками из [settings.local.json.example](settings.local.json.example) — они покрывают все мутирующие инструменты текущей версии сервера: `create_*`, `update_*`, `delete_*`, `set_*`, `add_*`, `remove_*`, `bulk_*` плюс поимённые (`restore_test_case`, `rename_custom_field_value`, `merge_custom_field_values`, `close_launch`, `reopen_launch`, `run_test_plan`, `resolve_test_result`, `assign_test_result`). Маски привязаны к именам инструментов, поэтому при обновлении сервера новый мутирующий инструмент может пройти мимо списка. Жёсткая гарантия только чтения — `ALLURE_READ_ONLY=true` в env сервера: мутирующие инструменты исчезают из реестра целиком. Для сценария тест-дизайна (генерация кейсов в тестовый проект 35) read-only не включаем — запись нужна; соответствующие deny-строки тогда убираются из локального `settings.local.json`.
 
 ## Установка Redmine MCP
 
@@ -110,7 +110,7 @@ Read-only для Redmine держится **правами токена на с�
 
 > При смене Redmine-ключа на пишущий эта защита пропадает — держим read-only роль осознанно.
 
-Deny-правила в `settings.local.json` (фаза 1.3) остаются для **Allure и Kaiten** — у них по-инструментные тулы `create_*`/`update_*`/`delete_*`, маски работают. Шаблон — [settings.local.json.example](settings.local.json.example).
+Deny-правила в `settings.local.json` (фаза 1.3) остаются для **Allure и Kaiten** — у них по-инструментные тулы, маски по именам работают (полный список мутирующих инструментов Allure — в разделе про установку Allure MCP). Шаблон — [settings.local.json.example](settings.local.json.example).
 
 ## Пилотная группа
 
