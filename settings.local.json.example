@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "deny": [
+      "mcp__allure-testops__create_*",
+      "mcp__allure-testops__update_*",
+      "mcp__allure-testops__delete_*",
+
+      "mcp__kaiten__kaiten_create_*",
+      "mcp__kaiten__kaiten_update_*",
+      "mcp__kaiten__kaiten_delete_*"
+    ]
+  }
+}
