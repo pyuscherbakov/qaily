@@ -5,7 +5,7 @@
       "command": "node",
       "args": ["vendor/allure-testops-mcp.mjs"],
       "env": {
-        "ALLURE_TESTOPS_URL": "${ALLURE_ENDPOINT}",
+        "ALLURE_TESTOPS_URL": "${ALLURE_ENDPOINT:-https://astbroker.qatools.cloud}",
         "ALLURE_TOKEN": "${ALLURE_TOKEN}",
         "ALLURE_PROJECT_ID": "35"
       }
@@ -15,7 +15,7 @@
       "command": "uvx",
       "args": ["--from", "mcp-redmine==2026.1.13.152335", "mcp-redmine"],
       "env": {
-        "REDMINE_URL": "${REDMINE_URL}",
+        "REDMINE_URL": "${REDMINE_URL:-https://redmine.fast-system.ru}",
         "REDMINE_API_KEY": "${REDMINE_API_KEY}"
       }
     },
@@ -24,7 +24,7 @@
       "command": "node",
       "args": ["vendor/kaiten-mcp-server.mjs"],
       "env": {
-        "KAITEN_API_URL": "${KAITEN_API_URL}",
+        "KAITEN_API_URL": "${KAITEN_API_URL:-https://lab-company.kaiten.ru/api/latest}",
         "KAITEN_API_TOKEN": "${KAITEN_API_TOKEN}"
       }
     }

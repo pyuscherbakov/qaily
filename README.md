@@ -11,20 +11,19 @@ QA AI-ассистент для команды на базе Claude Code: пла
 Токены — только в личных env-переменных, в репозиторий не коммитить:
 
 ```sh
-export ALLURE_ENDPOINT="https://astbroker.qatools.cloud"
-export ALLURE_TOKEN="<user token>"      # Allure TestOps → профиль → API tokens
-export REDMINE_URL="https://redmine.fast-system.ru"
+export ALLURE_TOKEN="<user token>"        # Allure TestOps → профиль → API tokens
 export REDMINE_API_KEY="<read-only ключ>" # ключ аккаунта/роли строго на просмотр; Redmine → Моя учётная запись → Ключ API
-export KAITEN_API_URL="https://lab-company.kaiten.ru/api/latest" # базовый URL уже с /api/latest
-export KAITEN_API_TOKEN="<api key>"     # Kaiten → профиль → API-ключ
+export KAITEN_API_TOKEN="<api key>"       # Kaiten → профиль → API-ключ
 ```
+
+URL-ы систем зашиты дефолтами в [.mcp.json](.mcp.json) — экспортировать их не нужно. Другой стенд — переопределить через `ALLURE_ENDPOINT`, `REDMINE_URL`, `KAITEN_API_URL` (для Kaiten — базовый URL уже с `/api/latest`).
 
 Проверка токенов:
 
 ```sh
-curl -s -H "Authorization: Api-Token $ALLURE_TOKEN" "$ALLURE_ENDPOINT/api/rs/project" | head -c 200
-curl -s -H "X-Redmine-API-Key: $REDMINE_API_KEY" "$REDMINE_URL/users/current.json"
-curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "$KAITEN_API_URL/users/current"
+curl -s -H "Authorization: Api-Token $ALLURE_TOKEN" "https://astbroker.qatools.cloud/api/rs/project" | head -c 200
+curl -s -H "X-Redmine-API-Key: $REDMINE_API_KEY" "https://redmine.fast-system.ru/users/current.json"
+curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "https://lab-company.kaiten.ru/api/latest/users/current"
 ```
 
 ## Установка Allure TestOps MCP
@@ -37,17 +36,16 @@ curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "$KAITEN_API_URL/users/curr
 
 2. Получить личный API-токен: Allure TestOps → профиль → API tokens.
 
-3. Прописать env-переменные в shell-профиле (`~/.zshrc`):
+3. Прописать env-переменную в shell-профиле (`~/.zshrc`):
 
    ```sh
-   export ALLURE_ENDPOINT="https://astbroker.qatools.cloud"
    export ALLURE_TOKEN="<user token>"
    ```
 
 4. Проверить токен:
 
    ```sh
-   curl -s -H "Authorization: Api-Token $ALLURE_TOKEN" "$ALLURE_ENDPOINT/api/rs/project" | head -c 200
+   curl -s -H "Authorization: Api-Token $ALLURE_TOKEN" "https://astbroker.qatools.cloud/api/rs/project" | head -c 200
    ```
 
    Ответ — JSON со списком проектов. `401` — токен неверный.
@@ -58,7 +56,7 @@ curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "$KAITEN_API_URL/users/curr
 
 Проект по умолчанию — 35 (тестовый, `ALLURE_PROJECT_ID` в `.mcp.json`); другой проект указывается в запросе явно (`projectId`/`projectName`).
 
-Если сервер не появился: `claude mcp list` покажет статус; типовые причины — нет Node.js, не экспортированы переменные, не выдан approve (сбросить: `claude mcp reset-project-choices`).
+Если сервер не появился: `claude mcp list` покажет статус; типовые причины — нет Node.js, не экспортирован токен, не выдан approve (сбросить: `claude mcp reset-project-choices`).
 
 Запись в Allure ограничивается deny-масками из [settings.local.json.example](settings.local.json.example) — они покрывают все мутирующие инструменты текущей версии сервера: `create_*`, `update_*`, `delete_*`, `set_*`, `add_*`, `remove_*`, `bulk_*` плюс поимённые (`restore_test_case`, `rename_custom_field_value`, `merge_custom_field_values`, `close_launch`, `reopen_launch`, `run_test_plan`, `resolve_test_result`, `assign_test_result`). Маски привязаны к именам инструментов, поэтому при обновлении сервера новый мутирующий инструмент может пройти мимо списка. Жёсткая гарантия только чтения — `ALLURE_READ_ONLY=true` в env сервера: мутирующие инструменты исчезают из реестра целиком. Для сценария тест-дизайна (генерация кейсов в тестовый проект 35) read-only не включаем — запись нужна; соответствующие deny-строки тогда убираются из локального `settings.local.json`.
 
@@ -76,17 +74,16 @@ curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "$KAITEN_API_URL/users/curr
 
 2. Получить личный API-ключ: Redmine → Моя учётная запись → Ключ API. Ключ должен быть от аккаунта/роли **строго на просмотр** (см. раздел про read-only ниже).
 
-3. Прописать env-переменные в shell-профиле (`~/.zshrc`):
+3. Прописать env-переменную в shell-профиле (`~/.zshrc`):
 
    ```sh
-   export REDMINE_URL="https://redmine.fast-system.ru"
    export REDMINE_API_KEY="<read-only ключ>"
    ```
 
 4. Проверить ключ:
 
    ```sh
-   curl -s -H "X-Redmine-API-Key: $REDMINE_API_KEY" "$REDMINE_URL/users/current.json"
+   curl -s -H "X-Redmine-API-Key: $REDMINE_API_KEY" "https://redmine.fast-system.ru/users/current.json"
    ```
 
    Ответ — JSON с вашим пользователем. `401` — ключ неверный.
@@ -95,7 +92,7 @@ curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "$KAITEN_API_URL/users/curr
 
 Проверка: в сессии спросить «покажи задачу №<id> из Redmine» — Claude должен прочитать её через инструмент `redmine_request`.
 
-Если сервер не появился: `claude mcp list` покажет статус; типовые причины — не установлен `uv`, не экспортированы переменные, не выдан approve (сбросить: `claude mcp reset-project-choices`).
+Если сервер не появился: `claude mcp list` покажет статус; типовые причины — не установлен `uv`, не экспортирован токен, не выдан approve (сбросить: `claude mcp reset-project-choices`).
 
 ## Установка Kaiten MCP
 
@@ -107,10 +104,9 @@ curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "$KAITEN_API_URL/users/curr
 
 2. Получить личный API-токен: Kaiten → профиль → API-ключ.
 
-3. Прописать env-переменные в shell-профиле (`~/.zshrc`):
+3. Прописать env-переменную в shell-профиле (`~/.zshrc`):
 
    ```sh
-   export KAITEN_API_URL="https://lab-company.kaiten.ru/api/latest"  # базовый URL уже с /api/latest
    export KAITEN_API_TOKEN="<api key>"
    ```
 
@@ -119,7 +115,7 @@ curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "$KAITEN_API_URL/users/curr
 4. Проверить токен:
 
    ```sh
-   curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "$KAITEN_API_URL/users/current"
+   curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "https://lab-company.kaiten.ru/api/latest/users/current"
    ```
 
    Ответ — JSON с вашим пользователем. `401` — токен неверный.
@@ -128,7 +124,7 @@ curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "$KAITEN_API_URL/users/curr
 
 Проверка: в сессии спросить «покажи мои карточки из Kaiten» — Claude должен прочитать их через инструменты `kaiten_*` (например `kaiten_search_cards`).
 
-Если сервер не появился: `claude mcp list` покажет статус; типовые причины — нет Node.js, не экспортированы переменные, не выдан approve (сбросить: `claude mcp reset-project-choices`).
+Если сервер не появился: `claude mcp list` покажет статус; типовые причины — нет Node.js, не экспортирован токен, не выдан approve (сбросить: `claude mcp reset-project-choices`).
 
 Активировать deny-маски (один раз на проект — шаблон в git, локальный файл нет):
 
