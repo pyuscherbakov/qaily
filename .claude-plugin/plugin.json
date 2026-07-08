@@ -9,6 +9,7 @@
   },
   "repository": "https://github.com/pyuscherbakov/qaily",
   "keywords": ["qa", "test-design", "allure", "redmine", "kaiten"],
+  "mcpServers": "./mcp-servers.json",
   "userConfig": {
     "allure_token": {
       "type": "string",
