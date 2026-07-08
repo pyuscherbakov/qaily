@@ -2,8 +2,8 @@
   "mcpServers": {
     "allure-testops": {
       "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "github:pyuscherbakov/allure-testops-mcp#5ff190e567bba4db689995bd578fd58ca9eeec43"],
+      "command": "node",
+      "args": ["vendor/allure-testops-mcp.mjs"],
       "env": {
         "ALLURE_TESTOPS_URL": "${ALLURE_ENDPOINT}",
         "ALLURE_TOKEN": "${ALLURE_TOKEN}",
@@ -21,8 +21,8 @@
     },
     "kaiten": {
       "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "github:pyuscherbakov/kaiten-mcp-server#b6944f8bef8c874519f42ac757608964f2919a99"],
+      "command": "node",
+      "args": ["vendor/kaiten-mcp-server.mjs"],
       "env": {
         "KAITEN_API_URL": "${KAITEN_API_URL}",
         "KAITEN_API_TOKEN": "${KAITEN_API_TOKEN}"
