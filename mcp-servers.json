@@ -22,7 +22,7 @@
     "kaiten": {
       "type": "stdio",
       "command": "uvx",
-      "args": ["--from", "git+https://github.com/ViktorOgnev/kaiten-mcp@086db87", "kaiten-mcp"],
+      "args": ["--from", "git+https://github.com/pyuscherbakov/kaiten-mcp@086db87", "kaiten-mcp"],
       "env": {
         "KAITEN_BASE_URL": "${KAITEN_BASE_URL:-https://lab-company.kaiten.ru}",
         "KAITEN_TOKEN": "${user_config.kaiten_api_token}"
