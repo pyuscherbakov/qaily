@@ -130,7 +130,13 @@ curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "$KAITEN_API_URL/users/curr
 
 Если сервер не появился: `claude mcp list` покажет статус; типовые причины — нет Node.js, не экспортированы переменные, не выдан approve (сбросить: `claude mcp reset-project-choices`).
 
-Запись в Kaiten ограничивается deny-масками из [settings.local.json.example](settings.local.json.example) — они покрывают мутирующие инструменты по префиксам `kaiten_create_*`, `kaiten_update_*`, `kaiten_delete_*`. Маски привязаны к именам инструментов; у kaiten-сервера **нет** отдельного env-флага «только чтение» (в отличие от Allure `ALLURE_READ_ONLY`), поэтому жёсткой гарантии на стороне сервера нет — при обновлении сервера новый мутирующий инструмент может пройти мимо списка. Для физической защиты используйте Kaiten API-токен с правами только на чтение.
+Активировать deny-маски (один раз на проект — шаблон в git, локальный файл нет):
+
+```sh
+mkdir -p .claude && cp settings.local.json.example .claude/settings.local.json
+```
+
+Запись в Kaiten ограничивается этими deny-масками (из [settings.local.json.example](settings.local.json.example)) — они покрывают мутирующие инструменты по префиксам `kaiten_create_*`, `kaiten_update_*`, `kaiten_delete_*`. Маски привязаны к именам инструментов; у kaiten-сервера **нет** отдельного env-флага «только чтение» (в отличие от Allure `ALLURE_READ_ONLY`), поэтому жёсткой гарантии на стороне сервера нет — при обновлении сервера новый мутирующий инструмент может пройти мимо списка. Для физической защиты используйте Kaiten API-токен с правами только на чтение.
 
 ## Проекты для обкатки (фаза 0)
 
