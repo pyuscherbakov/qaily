@@ -1,0 +1,15 @@
+{
+  "name": "qaily",
+  "description": "QA AI-ассистент: тест-дизайн с интеграциями Allure TestOps, Redmine, Kaiten",
+  "owner": {
+    "name": "Pavel Shcherbakov",
+    "email": "pyuscherbakov@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "qaily",
+      "source": "./",
+      "description": "QA AI-ассистент: тест-дизайн с интеграциями Allure TestOps, Redmine, Kaiten"
+    }
+  ]
+}
