@@ -29,11 +29,11 @@ curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "$KAITEN_API_URL/users/curr
 
 ## Установка Allure TestOps MCP
 
-Конфигурация уже в репозитории — [.mcp.json](.mcp.json). Сервер [allure-testops-mcp](https://github.com/pyuscherbakov/allure-testops-mcp) (наш форк [armanayvazyan/allure-testops-mcp](https://github.com/armanayvazyan/allure-testops-mcp) с режимом `ALLURE_READ_ONLY`) собирается из GitHub при первом запуске через `npx`, версия закреплена коммитом в `.mcp.json`.
+Конфигурация уже в репозитории — [.mcp.json](.mcp.json). Сервер [allure-testops-mcp](https://github.com/pyuscherbakov/allure-testops-mcp) (наш форк [armanayvazyan/allure-testops-mcp](https://github.com/armanayvazyan/allure-testops-mcp) с режимом `ALLURE_READ_ONLY`) лежит в репозитории готовым бандлом — [vendor/allure-testops-mcp.mjs](vendor/allure-testops-mcp.mjs); ни git, ни установка пакетов, ни сборка не нужны. Исходный коммит и инструкция пересборки — в [vendor/README.md](vendor/README.md).
 
 Шаги для пользователя:
 
-1. Установить Node.js 18+ (сервер запускается через `npx`): `brew install node` или [nodejs.org](https://nodejs.org).
+1. Установить Node.js 20+: `brew install node` или [nodejs.org](https://nodejs.org).
 
 2. Получить личный API-токен: Allure TestOps → профиль → API tokens.
 
@@ -99,11 +99,11 @@ curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "$KAITEN_API_URL/users/curr
 
 ## Установка Kaiten MCP
 
-Конфигурация уже в репозитории — [.mcp.json](.mcp.json). Сервер [kaiten-mcp-server](https://github.com/pyuscherbakov/kaiten-mcp-server) (наш форк [vsaranyuk/kaiten-mcp-server](https://github.com/vsaranyuk/kaiten-mcp-server) с добавленным `prepare`-скриптом для сборки при установке) собирается из GitHub при первом запуске через `npx`, версия закреплена коммитом в `.mcp.json`.
+Конфигурация уже в репозитории — [.mcp.json](.mcp.json). Сервер [kaiten-mcp-server](https://github.com/pyuscherbakov/kaiten-mcp-server) (наш форк [vsaranyuk/kaiten-mcp-server](https://github.com/vsaranyuk/kaiten-mcp-server)) лежит в репозитории готовым бандлом — [vendor/kaiten-mcp-server.mjs](vendor/kaiten-mcp-server.mjs); ни git, ни установка пакетов, ни сборка не нужны. Исходный коммит и инструкция пересборки — в [vendor/README.md](vendor/README.md).
 
 Шаги для пользователя:
 
-1. Установить Node.js 20+ (сервер запускается через `npx`): `brew install node` или [nodejs.org](https://nodejs.org).
+1. Установить Node.js 20+: `brew install node` или [nodejs.org](https://nodejs.org).
 
 2. Получить личный API-токен: Kaiten → профиль → API-ключ.
 
