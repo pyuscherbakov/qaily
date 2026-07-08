@@ -1,25 +1,25 @@
 {
   "permissions": {
     "deny": [
-      "mcp__allure-testops__create_*",
-      "mcp__allure-testops__update_*",
-      "mcp__allure-testops__delete_*",
-      "mcp__allure-testops__set_*",
-      "mcp__allure-testops__add_*",
-      "mcp__allure-testops__remove_*",
-      "mcp__allure-testops__bulk_*",
-      "mcp__allure-testops__restore_test_case",
-      "mcp__allure-testops__rename_custom_field_value",
-      "mcp__allure-testops__merge_custom_field_values",
-      "mcp__allure-testops__close_launch",
-      "mcp__allure-testops__reopen_launch",
-      "mcp__allure-testops__run_test_plan",
-      "mcp__allure-testops__resolve_test_result",
-      "mcp__allure-testops__assign_test_result",
+      "mcp__plugin_qaily_allure-testops__create_*",
+      "mcp__plugin_qaily_allure-testops__update_*",
+      "mcp__plugin_qaily_allure-testops__delete_*",
+      "mcp__plugin_qaily_allure-testops__set_*",
+      "mcp__plugin_qaily_allure-testops__add_*",
+      "mcp__plugin_qaily_allure-testops__remove_*",
+      "mcp__plugin_qaily_allure-testops__bulk_*",
+      "mcp__plugin_qaily_allure-testops__restore_test_case",
+      "mcp__plugin_qaily_allure-testops__rename_custom_field_value",
+      "mcp__plugin_qaily_allure-testops__merge_custom_field_values",
+      "mcp__plugin_qaily_allure-testops__close_launch",
+      "mcp__plugin_qaily_allure-testops__reopen_launch",
+      "mcp__plugin_qaily_allure-testops__run_test_plan",
+      "mcp__plugin_qaily_allure-testops__resolve_test_result",
+      "mcp__plugin_qaily_allure-testops__assign_test_result",
 
-      "mcp__kaiten__kaiten_create_*",
-      "mcp__kaiten__kaiten_update_*",
-      "mcp__kaiten__kaiten_delete_*"
+      "mcp__plugin_qaily_kaiten__kaiten_create_*",
+      "mcp__plugin_qaily_kaiten__kaiten_update_*",
+      "mcp__plugin_qaily_kaiten__kaiten_delete_*"
     ]
   }
 }
