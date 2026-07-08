@@ -5,7 +5,8 @@
 | Файл | Источник | Коммит |
 |------|----------|--------|
 | `allure-testops-mcp.mjs` | [pyuscherbakov/allure-testops-mcp](https://github.com/pyuscherbakov/allure-testops-mcp) | `5ff190e567bba4db689995bd578fd58ca9eeec43` |
-| `kaiten-mcp-server.mjs` | [pyuscherbakov/kaiten-mcp-server](https://github.com/pyuscherbakov/kaiten-mcp-server) | `b6944f8bef8c874519f42ac757608964f2919a99` |
+
+Kaiten MCP не вендорится: это Python-пакет [ViktorOgnev/kaiten-mcp](https://github.com/ViktorOgnev/kaiten-mcp), ставится через `uvx` напрямую из git (пин по коммиту — в `mcp-servers.json`).
 
 ## Как пересобрать (при обновлении форка)
 

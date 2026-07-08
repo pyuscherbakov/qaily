@@ -19,7 +19,18 @@
 
       "mcp__plugin_qaily_kaiten__kaiten_create_*",
       "mcp__plugin_qaily_kaiten__kaiten_update_*",
-      "mcp__plugin_qaily_kaiten__kaiten_delete_*"
+      "mcp__plugin_qaily_kaiten__kaiten_delete_*",
+      "mcp__plugin_qaily_kaiten__kaiten_add_*",
+      "mcp__plugin_qaily_kaiten__kaiten_remove_*",
+      "mcp__plugin_qaily_kaiten__kaiten_batch_*",
+      "mcp__plugin_qaily_kaiten__kaiten_set_*",
+      "mcp__plugin_qaily_kaiten__kaiten_move_*",
+      "mcp__plugin_qaily_kaiten__kaiten_archive_*",
+      "mcp__plugin_qaily_kaiten__kaiten_attach_*",
+      "mcp__plugin_qaily_kaiten__kaiten_detach_*",
+      "mcp__plugin_qaily_kaiten__kaiten_copy_*",
+      "mcp__plugin_qaily_kaiten__kaiten_cancel_*",
+      "mcp__plugin_qaily_kaiten__kaiten_recalculate_*"
     ]
   }
 }

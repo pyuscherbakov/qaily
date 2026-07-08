@@ -31,13 +31,6 @@
       "description": "Kaiten → профиль → API-ключ",
       "sensitive": true,
       "required": true
-    },
-    "kaiten_default_space_id": {
-      "type": "string",
-      "title": "Kaiten space ID (опционально)",
-      "description": "ID пространства Kaiten по умолчанию; пусто — указывать в запросе",
-      "required": false,
-      "default": ""
     }
   }
 }

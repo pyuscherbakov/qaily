@@ -1,6 +1,6 @@
 # Qaily
 
-QA AI-ассистент для команды на базе Claude Code: плагин со скиллами тест-дизайна и MCP-интеграциями (Allure TestOps, Redmine, Kaiten).
+QA AI-ассистент для команды на базе Claude Code: плагин со скиллами тест-дизайна и MCP-интеграциями (Allure TestOps, Redmine, Kaiten — карточки и документы/wiki).
 
 ## Установка
 
@@ -8,7 +8,8 @@ QA AI-ассистент для команды на базе Claude Code: пла
 
 1. Claude Code ≥ 2.1.154: `claude --version`; обновить — `claude update`.
 2. Node.js 20+: `brew install node` или [nodejs.org](https://nodejs.org).
-3. uv (для Redmine MCP): `curl -LsSf https://astral.sh/uv/install.sh | sh`
+3. uv (для Redmine и Kaiten MCP): `curl -LsSf https://astral.sh/uv/install.sh | sh`
+4. git (Kaiten MCP ставится uvx-ом из git-репозитория)
 
 Установка плагина — две команды в Claude Code:
 
@@ -24,7 +25,6 @@ QA AI-ассистент для команды на базе Claude Code: пла
 | Allure TestOps API token | Allure TestOps → профиль → API tokens |
 | Redmine API key | Redmine → Моя учётная запись → Ключ API. **Строго read-only ключ** |
 | Kaiten API token | Kaiten → профиль → API-ключ |
-| Kaiten space ID | опционально, можно оставить пустым |
 
 Проверка: в сессии спросить «покажи тест-кейсы проекта 35 из Allure».
 
@@ -43,8 +43,8 @@ curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "https://lab-company.kaiten
 ## Если что-то не работает
 
 - `/plugin` → qaily → статус компонентов; `claude mcp list` — статус серверов.
-- Типовые причины: старый Claude Code, нет Node.js / uv, неверный токен (см. curl-проверки выше).
-- Kaiten-сервер не стартует с токеном короче 20 символов — проверьте, что токен вставился целиком.
+- Типовые причины: старый Claude Code, нет Node.js / uv / git, неверный токен (см. curl-проверки выше).
+- Первый старт Kaiten-сервера медленный: uvx клонирует и собирает пакет из git (дальше — из кэша).
 - Обновление плагина: `/plugin marketplace update qaily`.
 
 ## Ограничение записи (deny-маски)
