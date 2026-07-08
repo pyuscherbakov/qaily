@@ -44,6 +44,7 @@ curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "https://lab-company.kaiten
 
 - `/plugin` → qaily → статус компонентов; `claude mcp list` — статус серверов.
 - Типовые причины: старый Claude Code, нет Node.js / uv, неверный токен (см. curl-проверки выше).
+- Kaiten-сервер не стартует с токеном короче 20 символов — проверьте, что токен вставился целиком.
 - Обновление плагина: `/plugin marketplace update qaily`.
 
 ## Ограничение записи (deny-маски)
