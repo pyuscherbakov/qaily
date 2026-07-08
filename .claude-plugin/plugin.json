@@ -1,0 +1,42 @@
+{
+  "name": "qaily",
+  "displayName": "Qaily QA Assistant",
+  "version": "0.1.0",
+  "description": "QA AI-ассистент: тест-дизайн с интеграциями Allure TestOps, Redmine, Kaiten",
+  "author": {
+    "name": "Pavel Shcherbakov",
+    "email": "pyuscherbakov@gmail.com"
+  },
+  "repository": "https://github.com/pyuscherbakov/qaily",
+  "keywords": ["qa", "test-design", "allure", "redmine", "kaiten"],
+  "userConfig": {
+    "allure_token": {
+      "type": "string",
+      "title": "Allure TestOps API token",
+      "description": "Allure TestOps → профиль → API tokens",
+      "sensitive": true,
+      "required": true
+    },
+    "redmine_api_key": {
+      "type": "string",
+      "title": "Redmine API key (read-only)",
+      "description": "Redmine → Моя учётная запись → Ключ API. Строго read-only ключ!",
+      "sensitive": true,
+      "required": true
+    },
+    "kaiten_api_token": {
+      "type": "string",
+      "title": "Kaiten API token",
+      "description": "Kaiten → профиль → API-ключ",
+      "sensitive": true,
+      "required": true
+    },
+    "kaiten_default_space_id": {
+      "type": "string",
+      "title": "Kaiten space ID (опционально)",
+      "description": "ID пространства Kaiten по умолчанию; пусто — указывать в запросе",
+      "required": false,
+      "default": ""
+    }
+  }
+}
