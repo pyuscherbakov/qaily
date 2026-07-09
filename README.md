@@ -1,6 +1,6 @@
 # Qaily
 
-QA AI-ассистент для команды на базе Claude Code: плагин со скиллами тест-дизайна и MCP-интеграциями (Allure TestOps, Redmine, Kaiten — карточки и документы/wiki).
+QA AI-ассистент для команды на базе Claude Code: плагин со скиллами тест-дизайна и MCP-интеграциями (Allure TestOps, Redmine, Kaiten — карточки и документы/wiki) плюс браузерная автоматизация (Playwright, Chrome DevTools) для прогона и отладки UI-сценариев.
 
 ## Установка
 
@@ -10,6 +10,7 @@ QA AI-ассистент для команды на базе Claude Code: пла
 2. Node.js 20+: `brew install node` или [nodejs.org](https://nodejs.org).
 3. uv (для Redmine и Kaiten MCP): `curl -LsSf https://astral.sh/uv/install.sh | sh`
 4. git (Kaiten MCP ставится uvx-ом из git-репозитория)
+5. Chrome/Chromium (для Playwright и Chrome DevTools MCP). Playwright ставит браузер сам: `npx playwright install chromium`. Первый запуск браузерных серверов медленный — npx качает пакеты и браузер.
 
 Установка плагина — две команды в Claude Code:
 
@@ -62,6 +63,10 @@ mkdir -p .claude && cp <путь-к-этому-репо>/settings.local.json.exa
 Маски привязаны к именам инструментов плагина (`mcp__plugin_qaily_...`).
 Если поднимать серверы НЕ через плагин (старый способ, project-scope .mcp.json) —
 эти маски их не покроют.
+
+**Браузерные MCP (Playwright, Chrome DevTools) намеренно НЕ ограничены** — клик, ввод,
+навигация им нужны для прогона E2E, это их работа. Масками не режем. Граница безопасности
+тут не «read-only», а выбор стенда: наводить их только на тестовые окружения, не на боевой UI.
 
 ## Проекты для обкатки (фаза 0)
 
