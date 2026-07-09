@@ -28,6 +28,14 @@
         "KAITEN_TOKEN": "${user_config.kaiten_api_token}",
         "KAITEN_MCP_MODULES": "cards,comments,documents,tree,spaces,boards,columns"
       }
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "env": {
+        "CONTEXT7_API_KEY": "${user_config.context7_api_key}"
+      }
     }
   }
 }
