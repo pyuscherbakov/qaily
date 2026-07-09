@@ -31,6 +31,13 @@
       "description": "Kaiten → профиль → API-ключ",
       "sensitive": true,
       "required": true
+    },
+    "context7_api_key": {
+      "type": "string",
+      "title": "Context7 API key (опционально)",
+      "description": "context7.com → регистрация → API key. Без ключа работает с урезанным лимитом запросов",
+      "sensitive": true,
+      "required": false
     }
   }
 }
