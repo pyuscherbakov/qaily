@@ -1,5 +1,7 @@
 # План: модернизация скилла review-testcase (шаги через API + исправления)
 
+> **Статус: выполнен 2026-07-10.** Все задачи закрыты (см. `.superpowers/sdd/progress.md`); чекбоксы в тексте не проставлялись — план исполнялся через subagent-driven-development с леджером.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Сделать ревью шагов тест-кейса работоспособным (сейчас `get_test_case_scenario` возвращает пусто для ручных кейсов) и устранить найденные при анализе дефекты SKILL.md.
