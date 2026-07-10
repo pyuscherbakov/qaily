@@ -4,7 +4,7 @@
 
 | Файл | Источник | Коммит |
 |------|----------|--------|
-| `allure-testops-mcp.mjs` | [pyuscherbakov/allure-testops-mcp](https://github.com/pyuscherbakov/allure-testops-mcp) | `5ff190e567bba4db689995bd578fd58ca9eeec43` |
+| `allure-testops-mcp.mjs` | [pyuscherbakov/allure-testops-mcp](https://github.com/pyuscherbakov/allure-testops-mcp) | `2854385a1aad5273b781e9e48a1ef683b65b5c2c` |
 
 Kaiten MCP не вендорится: это Python-пакет, ставится через `uvx` напрямую из git (пин по коммиту — в `mcp-servers.json`). Наш форк [pyuscherbakov/kaiten-mcp](https://github.com/pyuscherbakov/kaiten-mcp) от [ViktorOgnev/kaiten-mcp](https://github.com/ViktorOgnev/kaiten-mcp) — форк убирает зависимость от чужого репо и даёт место под свои патчи. Python-бандлинг (аналог esbuild) для single-file не применяется.
 
