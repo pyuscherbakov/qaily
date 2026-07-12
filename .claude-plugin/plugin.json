@@ -18,6 +18,12 @@
       "sensitive": true,
       "required": true
     },
+    "allure_read_only": {
+      "type": "boolean",
+      "title": "Allure TestOps: read-only режим",
+      "description": "Включён по умолчанию и скрывает все инструменты записи. Меняйте на false только на время разрешённой операции, затем сразу верните true.",
+      "default": true
+    },
     "redmine_api_key": {
       "type": "string",
       "title": "Redmine API key (read-only)",
