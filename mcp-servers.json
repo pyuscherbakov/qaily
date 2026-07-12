@@ -7,7 +7,8 @@
       "env": {
         "ALLURE_TESTOPS_URL": "${ALLURE_ENDPOINT:-https://astbroker.qatools.cloud}",
         "ALLURE_TOKEN": "${user_config.allure_token}",
-        "ALLURE_PROJECT_ID": "35"
+        "ALLURE_PROJECT_ID": "35",
+        "ALLURE_READ_ONLY": "${user_config.allure_read_only}"
       }
     },
     "redmine": {
