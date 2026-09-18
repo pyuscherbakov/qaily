@@ -15,6 +15,17 @@
       "mcp__plugin_qaily_kaiten__kaiten_copy_*",
       "mcp__plugin_qaily_kaiten__kaiten_cancel_*",
       "mcp__plugin_qaily_kaiten__kaiten_recalculate_*"
+    ],
+    "ask": [
+      "mcp__plugin_qaily_testops__testops_create_*",
+      "mcp__plugin_qaily_testops__testops_update_*",
+      "mcp__plugin_qaily_testops__testops_delete_*",
+      "mcp__plugin_qaily_testops__testops_restore_*",
+      "mcp__plugin_qaily_testops__testops_add_*",
+      "mcp__plugin_qaily_testops__testops_link_*",
+      "mcp__plugin_qaily_testops__testops_run_*",
+      "mcp__plugin_qaily_testops__testops_mark_*",
+      "mcp__plugin_qaily_testops__testops_unmark_*"
     ]
   }
 }

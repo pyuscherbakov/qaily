@@ -1,7 +1,7 @@
 {
   "name": "qaily",
   "displayName": "Qaily QA Assistant",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "QA AI-ассистент: тест-дизайн с интеграциями Allure TestOps, Redmine, Kaiten",
   "author": {
     "name": "Pavel Shcherbakov",
@@ -17,12 +17,6 @@
       "description": "Allure TestOps → профиль → API tokens",
       "sensitive": true,
       "required": true
-    },
-    "allure_read_only": {
-      "type": "boolean",
-      "title": "Allure TestOps: read-only режим",
-      "description": "Включён по умолчанию и скрывает все инструменты записи. Меняйте на false только на время разрешённой операции, затем сразу верните true.",
-      "default": true
     },
     "redmine_api_key": {
       "type": "string",
