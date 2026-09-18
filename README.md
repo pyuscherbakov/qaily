@@ -1,6 +1,6 @@
 # Qaily
 
-QA AI-ассистент для команды на базе Claude Code: плагин со скиллами тест-дизайна, ревью тест-кейсов и ревью автотестов, MCP-интеграциями (Allure TestOps, Redmine, Kaiten — карточки и документы/wiki) плюс браузерная автоматизация (Playwright, Chrome DevTools) для прогона и отладки UI-сценариев.
+QA AI-ассистент для команды на базе Claude Code: плагин со скиллами тест-дизайна, ревью тест-кейсов и ревью автотестов, MCP-интеграциями (Allure TestOps, Redmine, Kaiten — карточки и документы/wiki, Jam — записи багов с логами и сетью) плюс браузерная автоматизация (Playwright, Chrome DevTools) для прогона и отладки UI-сценариев.
 
 ## Установка
 
@@ -24,9 +24,10 @@ QA AI-ассистент для команды на базе Claude Code: пла
 | Поле | Где взять |
 |------|-----------|
 | Allure TestOps API token | Allure TestOps → профиль → API tokens |
-| Allure TestOps: read-only режим | Оставить включённым (значение по умолчанию) |
 | Redmine API key | Redmine → Моя учётная запись → Ключ API. **Строго read-only ключ** |
 | Kaiten API token | Kaiten → профиль → API-ключ |
+
+Jam токена не просит — авторизация по OAuth: после установки выполнить `/mcp` → `jam` → войти в браузере. Без этого инструменты Jam недоступны.
 
 Проверка: в сессии спросить «покажи тест-кейсы проекта 35 из Allure».
 
@@ -47,13 +48,35 @@ curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "https://lab-company.kaiten
 - `/plugin` → qaily → статус компонентов; `claude mcp list` — статус серверов.
 - Типовые причины: старый Claude Code, нет Node.js / uv / git, неверный токен (см. curl-проверки выше).
 - Первый старт Kaiten-сервера медленный: uvx клонирует и собирает пакет из git (дальше — из кэша).
+- Jam в статусе «needs authentication» — пройти OAuth через `/mcp` (только в интерактивной сессии).
 - Обновление плагина: `/plugin marketplace update qaily`.
 
-## Allure TestOps: read-only и временный write-профиль
+## MCP-сервер ТестОпс (`testops`)
 
-Allure запускается в read-only режиме по умолчанию: сервер публикует только 26 инструментов чтения и не показывает 30 мутирующих инструментов. Это серверное ограничение, поэтому для Allure не нужно копировать deny-маски в каждый проект.
+Официальный MCP ТестОпс — HTTP-эндпоинт `https://astbroker.qatools.cloud/api/mcp`, авторизация
+API-токеном (`Authorization: Api-Token <токен>`). Локально ничего не ставится, Node.js для него
+не нужен. Инструменты с префиксом `testops_` (30 штук): поиск и правка кейсов, папок, общих
+шагов, дефектов, запусков. Поиск — AQL-запросами (`testops_find_testcases` с `aql` и `expand`),
+отдельных ручек вида `get_test_case_overview` / `get_test_case_steps` больше нет: всё, что нужно
+для ревью, отдаёт один вызов с `expand: ["all"]`.
+Документация: https://docs.qatools.ru/ecosystem/mcp/setup
 
-Если нужна разрешённая запись в тестовый проект 35, временно смените настройку плагина `pluginConfigs["qaily@qaily"].options.allure_read_only` на `false` в настройках того scope, где установлен плагин (например, `~/.claude/settings.json` для user scope). Затем перезапустите сессию или выполните `/reload-plugins`. Сразу после операции верните значение `true` и снова перезагрузите плагины.
+Свой форк опенсорсного сервера (`vendor/allure-testops-mcp.mjs`) удалён — скиллы и суб-агент
+`doc-researcher` переведены на `testops_*`.
+
+### Запись разрешена, но с подтверждением
+
+Режима read-only у официального сервера нет: 19 мутирующих инструментов публикуются всегда.
+Контроль записи — ask-правила из шаблона [settings.local.json.example](settings.local.json.example):
+каждое создание, изменение и удаление Claude обязан подтвердить у пользователя. Скопируйте
+шаблон в рабочий проект (см. раздел ниже), иначе гарантии запроса нет.
+
+Под правила попадают `testops_create_*`, `testops_update_*`, `testops_delete_*`,
+`testops_restore_*`, `testops_add_*`, `testops_link_*`, `testops_run_*`, `testops_mark_*`,
+`testops_unmark_*`. Чтение (`testops_find_*`, `testops_get_*`) не спрашивает.
+
+⚠️ `ask` не работает в режиме `bypassPermissions` (`--dangerously-skip-permissions`) — в нём
+запись пойдёт без вопросов.
 
 ## Ограничение записи в Kaiten (deny-маски)
 
@@ -63,7 +86,7 @@ Allure запускается в read-only режиме по умолчанию:
 mkdir -p .claude && cp <путь-к-этому-репо>/settings.local.json.example .claude/settings.local.json
 ```
 
-Маски запрещают мутирующие инструменты Kaiten, установленные плагином.
+Маски запрещают мутирующие инструменты Kaiten и требуют подтверждения на запись в TestOps.
 
 Маски привязаны к именам инструментов плагина (`mcp__plugin_qaily_...`).
 Если поднимать серверы НЕ через плагин (старый способ, project-scope .mcp.json) —
@@ -99,7 +122,7 @@ export GITLAB_TOKEN=<token>   # scope read_api, строго read-only
 
 | Система | Проект | ID | Режим |
 |---------|--------|----|-------|
-| Allure TestOps | https://astbroker.qatools.cloud/project/35 | 35 | read-only по умолчанию; запись — только через временный write-профиль |
+| Allure TestOps | https://astbroker.qatools.cloud/project/35 | 35 | запись разрешена, каждая операция — с подтверждением пользователя (ask-правила) |
 | Redmine | https://redmine.fast-system.ru/projects/pfpa (Fast-system) | 1 (`pfpa`) | **боевой**, строго read-only |
 
 Redmine — боевой проект: только чтение задач, никакой записи.
@@ -108,12 +131,8 @@ Read-only для Redmine держится **правами токена на с�
 
 > При смене Redmine-ключа на пишущий эта защита пропадает — держим read-only роль осознанно.
 
-Deny-правила в `settings.local.json` (фаза 1.3) остаются для **Kaiten** — его мутирующие инструменты ограничиваются масками по именам. Для Allure эта защита реализована на стороне MCP-сервера: read-only режим не публикует инструменты записи. Полный список мутирующих инструментов Kaiten — в шаблоне [settings.local.json.example](settings.local.json.example).
+Deny-правила в `settings.local.json` (фаза 1.3) остаются для **Kaiten** — его мутирующие инструменты ограничиваются масками по именам. Для TestOps запись не запрещена, а поставлена на подтверждение — ask-правила в том же шаблоне. Полный список мутирующих инструментов Kaiten — в шаблоне [settings.local.json.example](settings.local.json.example).
 
 ## Пилотная группа
 
 _TBD: 2–3 QA с установленным Claude Code и подпиской._
-
----
-
-Пересборка vendor-бандлов MCP-серверов — [vendor/README.md](vendor/README.md).
