@@ -2,7 +2,7 @@
   "mcpServers": {
     "testops": {
       "type": "http",
-      "url": "${ALLURE_ENDPOINT:-https://astbroker.qatools.cloud}/api/mcp",
+      "url": "https://astbroker.qatools.cloud/api/mcp",
       "headers": {
         "Authorization": "Api-Token ${user_config.allure_token}"
       }
@@ -12,7 +12,7 @@
       "command": "uvx",
       "args": ["--from", "mcp-redmine==2026.08.01.002543", "mcp-redmine"],
       "env": {
-        "REDMINE_URL": "${REDMINE_URL:-https://redmine.fast-system.ru}",
+        "REDMINE_URL": "https://redmine.fast-system.ru",
         "REDMINE_API_KEY": "${user_config.redmine_api_key}"
       }
     },
@@ -21,7 +21,7 @@
       "command": "uvx",
       "args": ["--from", "git+https://github.com/pyuscherbakov/kaiten-mcp@6961c7c", "kaiten-mcp"],
       "env": {
-        "KAITEN_BASE_URL": "${KAITEN_BASE_URL:-https://lab-company.kaiten.ru}",
+        "KAITEN_BASE_URL": "https://lab-company.kaiten.ru",
         "KAITEN_TOKEN": "${user_config.kaiten_api_token}",
         "KAITEN_MCP_MODULES": "cards,comments,documents,tree,spaces,boards,columns"
       }
