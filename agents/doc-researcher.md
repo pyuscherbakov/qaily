@@ -1,7 +1,7 @@
 ---
 name: doc-researcher
 description: Read-only исследователь требования для тест-дизайна. Читает задачу Redmine/карточку Kaiten и ищет существующее покрытие в Allure TestOps, возвращает сжатую выжимку. Use PROACTIVELY когда скилл test-design начинает разбор требования и нужно собрать контекст без раздувания главной сессии.
-tools: mcp__plugin_qaily_redmine__redmine_request, mcp__plugin_qaily_kaiten__kaiten_get_card, mcp__plugin_qaily_kaiten__kaiten_list_documents, mcp__plugin_qaily_kaiten__kaiten_get_document, mcp__plugin_qaily_allure-testops__search_test_cases, mcp__plugin_qaily_allure-testops__list_test_cases, mcp__plugin_qaily_allure-testops__get_test_case_scenario
+tools: mcp__plugin_qaily_redmine__redmine_request, mcp__plugin_qaily_kaiten__kaiten_get_card, mcp__plugin_qaily_kaiten__kaiten_list_documents, mcp__plugin_qaily_kaiten__kaiten_get_document, mcp__plugin_qaily_testops__testops_find_testcases, mcp__plugin_qaily_testops__testops_find_folders, mcp__plugin_qaily_testops__testops_get_project
 model: sonnet
 ---
 
@@ -18,7 +18,7 @@ model: sonnet
    - Kaiten: `kaiten_get_card` по ID.
    - Документация Kaiten (wiki): `kaiten_list_documents` с query по ключевым словам требования, затем `kaiten_get_document` по uid. Содержимое приходит как ProseMirror JSON — извлекай текст из узлов `text`.
    - Текст в запросе — используй как есть.
-2. **Найди существующее покрытие:** `search_test_cases` по 2–4 ключевым терминам требования в целевом проекте (по умолчанию 35). Для 1–2 самых близких кейсов посмотри `get_test_case_scenario`, чтобы понять глубину покрытия.
+2. **Найди существующее покрытие:** `testops_find_testcases` в целевом проекте (по умолчанию 35), AQL по 2–4 ключевым терминам требования: `name ~= "термин" or scenario ~= "термин"`. Для 1–2 самых близких кейсов повтори вызов с `aql: "id = <id>"` и `expand: ["scenario"]`, чтобы понять глубину покрытия.
 
 ## Формат ответа (строго, без лишней прозы)
 
