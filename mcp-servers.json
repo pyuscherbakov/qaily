@@ -1,20 +1,16 @@
 {
   "mcpServers": {
-    "allure-testops": {
-      "type": "stdio",
-      "command": "node",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/vendor/allure-testops-mcp.mjs"],
-      "env": {
-        "ALLURE_TESTOPS_URL": "${ALLURE_ENDPOINT:-https://astbroker.qatools.cloud}",
-        "ALLURE_TOKEN": "${user_config.allure_token}",
-        "ALLURE_PROJECT_ID": "35",
-        "ALLURE_READ_ONLY": "${user_config.allure_read_only}"
+    "testops": {
+      "type": "http",
+      "url": "${ALLURE_ENDPOINT:-https://astbroker.qatools.cloud}/api/mcp",
+      "headers": {
+        "Authorization": "Api-Token ${user_config.allure_token}"
       }
     },
     "redmine": {
       "type": "stdio",
       "command": "uvx",
-      "args": ["--from", "mcp-redmine==2026.1.13.152335", "mcp-redmine"],
+      "args": ["--from", "mcp-redmine==2026.08.01.002543", "mcp-redmine"],
       "env": {
         "REDMINE_URL": "${REDMINE_URL:-https://redmine.fast-system.ru}",
         "REDMINE_API_KEY": "${user_config.redmine_api_key}"
@@ -47,6 +43,10 @@
       "type": "stdio",
       "command": "npx",
       "args": ["-y", "chrome-devtools-mcp@latest"]
+    },
+    "jam": {
+      "type": "http",
+      "url": "https://mcp.jam.dev/mcp"
     }
   }
 }
