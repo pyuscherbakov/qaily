@@ -28,7 +28,7 @@ model: sonnet
 
 ТЗ часто лежит во вложениях задачи, а не в описании — их читаешь обязательно:
 - картинки png, jpeg, gif, webp до 5 МБ (`content_type`, `filesize`; макеты, скриншоты) → `redmine_attachment_image` по `id`; такие же картинки крупнее 5 МБ → `redmine_download` → Read; svg → `redmine_download` → Read как текст; прочие `image/*` (bmp, tiff) → в неразобранные;
-- PDF, txt, md, csv, json, xml → `redmine_download` (`attachment_id`, `save_path: "/tmp/qaily-redmine/<id задачи>/<attachment_id>-<filename>"`; другие каталоги сервер отклонит, id в имени не даёт одноимённым версиям затереть друг друга) → Read; PDF длиннее 10 страниц Read без `pages` не читает — читай кусками (`pages: "1-20"`, `"21-40"`, …);
+- PDF, txt, log, md, csv, json, xml → `redmine_download` (`attachment_id`, `save_path: "/tmp/qaily-redmine/<id задачи>/<attachment_id>-<filename>"`; другие каталоги сервер отклонит, id в имени не даёт одноимённым версиям затереть друг друга) → Read; PDF длиннее 10 страниц Read без `pages` не читает — читай кусками (`pages: "1-20"`, `"21-40"`, …);
 - docx, xlsx и прочее бинарное → не разбирается.
 
 Неразобранное вложение (формат не читается, ошибка скачивания или Read) → строка `Не проверено: вложения Redmine — не разобраны: <имена>`: ТЗ могло лежать в нём, главная сессия должна это увидеть.
