@@ -1,6 +1,6 @@
 {
   "name": "qaily",
-  "description": "QA AI-ассистент: тест-дизайн с интеграциями Allure TestOps, Redmine, Kaiten",
+  "description": "QA AI-ассистент: тест-дизайн, ревью тест-кейсов и автотестов, разбор прогонов — Allure TestOps, Redmine, Kaiten",
   "owner": {
     "name": "Pavel Shcherbakov",
     "email": "pyuscherbakov@gmail.com"
@@ -9,7 +9,7 @@
     {
       "name": "qaily",
       "source": "./",
-      "description": "QA AI-ассистент: тест-дизайн с интеграциями Allure TestOps, Redmine, Kaiten"
+      "description": "QA AI-ассистент: тест-дизайн, ревью тест-кейсов и автотестов, разбор прогонов — Allure TestOps, Redmine, Kaiten"
     }
   ]
 }
