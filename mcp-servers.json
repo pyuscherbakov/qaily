@@ -10,10 +10,12 @@
     "redmine": {
       "type": "stdio",
       "command": "uvx",
-      "args": ["--from", "mcp-redmine==2026.08.01.002543", "mcp-redmine"],
+      "args": ["--from", "mcp-redmine==2026.09.10.084818", "mcp-redmine"],
       "env": {
         "REDMINE_URL": "https://redmine.fast-system.ru",
-        "REDMINE_API_KEY": "${user_config.redmine_api_key}"
+        "REDMINE_API_KEY": "${user_config.redmine_api_key}",
+        "REDMINE_ALLOWED_DIRECTORIES": "/tmp/qaily-redmine",
+        "REDMINE_READ_ONLY": "1"
       }
     },
     "kaiten": {
