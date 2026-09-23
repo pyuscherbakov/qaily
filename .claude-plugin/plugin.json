@@ -1,7 +1,7 @@
 {
   "name": "qaily",
   "displayName": "Qaily QA Assistant",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "QA AI-ассистент: тест-дизайн с интеграциями Allure TestOps, Redmine, Kaiten",
   "author": {
     "name": "Pavel Shcherbakov",

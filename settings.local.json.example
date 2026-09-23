@@ -1,5 +1,12 @@
 {
   "permissions": {
+    "allow": [
+      "Read(//tmp/qaily-redmine/**)",
+      "Read(//private/tmp/qaily-redmine/**)",
+      "Read(~/.claude/plugins/cache/*/qaily/**)",
+      "mcp__plugin_qaily_redmine__redmine_download",
+      "mcp__plugin_qaily_redmine__redmine_attachment_image"
+    ],
     "deny": [
       "mcp__plugin_qaily_kaiten__kaiten_create_*",
       "mcp__plugin_qaily_kaiten__kaiten_update_*",
