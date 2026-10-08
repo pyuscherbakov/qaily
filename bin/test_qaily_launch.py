@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -15,6 +16,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from qaily_launch import (  # noqa: E402
     MissingSecret,
     build_env,
+    env_name,
     launch,
     main,
     render_headers,
@@ -30,22 +32,22 @@ def clean_qaily_env(monkeypatch):
 
 
 def test_env_wins_over_keyring(monkeypatch):
-    monkeypatch.setenv("QAILY_ALLURE_TOKEN", " from-env \n")
+    monkeypatch.setenv("QAILY_ALLURE", " from-env \n")
     monkeypatch.setattr(keyring, "get_password", lambda s, n: "from-keyring")
-    assert resolve_secret("allure_token") == ("from-env", "env")
+    assert resolve_secret("allure") == ("from-env", "env")
 
 
 def test_empty_env_falls_through_to_keyring(monkeypatch):
-    monkeypatch.setenv("QAILY_ALLURE_TOKEN", "")
+    monkeypatch.setenv("QAILY_ALLURE", "")
     monkeypatch.setattr(keyring, "get_password", lambda s, n: "kr")
-    assert resolve_secret("allure_token") == ("kr", "keyring")
+    assert resolve_secret("allure") == ("kr", "keyring")
 
 
 def test_keyring_called_with_service_qaily(monkeypatch):
     calls = []
     monkeypatch.setattr(keyring, "get_password", lambda s, n: calls.append((s, n)) or None)
-    assert resolve_secret("kaiten_api_token") == (None, "missing")
-    assert calls == [("qaily", "kaiten_api_token")]
+    assert resolve_secret("kaiten") == (None, "missing")
+    assert calls == [("qaily", "kaiten")]
 
 
 @pytest.mark.parametrize(
@@ -56,28 +58,28 @@ def test_keyring_failure_is_miss(monkeypatch, exc):
         raise exc("denied")
 
     monkeypatch.setattr(keyring, "get_password", boom)
-    assert resolve_secret("allure_token") == (None, "missing")
+    assert resolve_secret("allure") == (None, "missing")
 
 
 def test_build_env_sets_secret_and_keeps_base(monkeypatch):
-    monkeypatch.setenv("QAILY_REDMINE_API_KEY", "k")
-    env = build_env(["REDMINE_API_KEY=redmine_api_key"], [], {"PATH": "/bin"})
+    monkeypatch.setenv("QAILY_REDMINE", "k")
+    env = build_env(["REDMINE_API_KEY=redmine"], [], {"PATH": "/bin"})
     assert env == {"PATH": "/bin", "REDMINE_API_KEY": "k"}
 
 
 def test_build_env_missing_required_raises_with_hint(monkeypatch):
     monkeypatch.setattr(keyring, "get_password", lambda s, n: None)
     with pytest.raises(MissingSecret) as e:
-        build_env(["KAITEN_TOKEN=kaiten_api_token"], [], {})
+        build_env(["KAITEN_TOKEN=kaiten"], [], {})
     assert str(e.value) == (
-        "qaily: не найден токен kaiten_api_token. Задайте: uvx keyring set qaily "
-        "kaiten_api_token (или переменную QAILY_KAITEN_API_TOKEN)"
+        "qaily: не найден токен kaiten. Задайте: uvx keyring set qaily "
+        "kaiten (или переменную QAILY_KAITEN)"
     )
 
 
 def test_build_env_optional_missing_is_skipped(monkeypatch):
     monkeypatch.setattr(keyring, "get_password", lambda s, n: None)
-    assert build_env(["CONTEXT7_API_KEY=context7_api_key?"], [], {}) == {}
+    assert build_env(["CONTEXT7_API_KEY=context7?"], [], {}) == {}
 
 
 def test_build_env_dir_expanded_created_absolute(tmp_path, monkeypatch):
@@ -89,8 +91,8 @@ def test_build_env_dir_expanded_created_absolute(tmp_path, monkeypatch):
 
 
 def test_render_headers_passes_braces_verbatim(monkeypatch):
-    monkeypatch.setenv("QAILY_ALLURE_TOKEN", "a{b}c%$")
-    assert render_headers(["Authorization=Api-Token {allure_token}"]) == {
+    monkeypatch.setenv("QAILY_ALLURE", "a{b}c%$")
+    assert render_headers(["Authorization=Api-Token {allure}"]) == {
         "Authorization": "Api-Token a{b}c%$"
     }
 
@@ -118,24 +120,34 @@ def test_launch_unknown_command_is_clear_error(monkeypatch, capsys):
 
 
 def test_main_missing_secret_exit_1_no_value_leak(monkeypatch, capsys):
-    monkeypatch.setenv("QAILY_REDMINE_API_KEY", "SECRET-VALUE")
+    monkeypatch.setenv("QAILY_REDMINE", "SECRET-VALUE")
     monkeypatch.setattr(keyring, "get_password", lambda s, n: None)
     rc = main(
-        ["run", "--secret", "A=redmine_api_key", "--secret", "B=kaiten_api_token", "--", "x"]
+        ["run", "--secret", "A=redmine", "--secret", "B=kaiten", "--", "x"]
     )
     out = capsys.readouterr()
     assert rc == 1
     assert "SECRET-VALUE" not in out.out + out.err
-    assert "kaiten_api_token" in out.err
+    assert "kaiten" in out.err
 
 
 def test_main_headers_prints_json(monkeypatch, capsys):
-    monkeypatch.setenv("QAILY_ALLURE_TOKEN", "t")
-    assert main(["headers", "Authorization=Api-Token {allure_token}"]) == 0
+    monkeypatch.setenv("QAILY_ALLURE", "t")
+    assert main(["headers", "Authorization=Api-Token {allure}"]) == 0
     assert json.loads(capsys.readouterr().out) == {"Authorization": "Api-Token t"}
 
 
 def test_main_headers_missing_prints_nothing_to_stdout(monkeypatch, capsys):
     monkeypatch.setattr(keyring, "get_password", lambda s, n: None)
-    assert main(["headers", "Authorization=Api-Token {allure_token}"]) == 1
+    assert main(["headers", "Authorization=Api-Token {allure}"]) == 1
     assert capsys.readouterr().out == ""
+
+
+def test_secret_env_names_survive_headers_helper_env_filter():
+    config = json.loads((Path(__file__).parent.parent / "mcp-servers.json").read_text())
+    text = json.dumps(config)
+    names = set(re.findall(r"=(\w+)\??\"", text)) | set(re.findall(r"\{(\w+)\}", text))
+    names = {n for n in names if n in {"allure", "redmine", "kaiten", "context7"}}
+    assert names == {"allure", "redmine", "kaiten", "context7"}
+    for name in names:
+        assert not env_name(name).endswith(("_TOKEN", "_KEY", "_SECRET", "_PASSWORD"))

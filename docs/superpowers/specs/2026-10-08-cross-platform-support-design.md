@@ -30,7 +30,7 @@ qaily полностью работает в Claude Desktop (Code tab) и Claude
 | Объём | Полная поддержка Windows, включая прогон всех скиллов |
 | Проверка Windows | Windows-VM на Mac, ручной прогон по чек-листу; CI не делаем |
 | Хранение токенов | Системное хранилище через `keyring`, запасной путь — переменные `QAILY_*` |
-| `userConfig` | Удаляется целиком; `context7_api_key` переезжает на тот же механизм |
+| `userConfig` | Удаляется целиком; `context7` переезжает на тот же механизм |
 | Механизм | Python-лаунчер через `uv run --script` (без shell, `uv` уже в пререквизитах) |
 | Диагностика | Режим `check` + скилл `/qaily:doctor` |
 
@@ -67,17 +67,20 @@ qaily_launch.py check
 `subprocess.run` с унаследованным stdio и проброшенным кодом выхода (`os.exec*` на Windows
 порождает новый процесс и завершает родителя, что рвёт stdio-канал MCP).
 
-Имена секретов: `allure_token`, `redmine_api_key`, `kaiten_api_token` (обязательные),
-`context7_api_key` (необязательный). Сервис в `keyring` — `qaily`.
+Имена секретов: `allure`, `redmine`, `kaiten` (обязательные),
+`context7` (необязательный). Сервис в `keyring` — `qaily`. Имена короткие намеренно:
+Claude Code вырезает из окружения `headersHelper` переменные с суффиксами `_TOKEN`, `_KEY`,
+`_SECRET`, `_PASSWORD` (проверено на 2.1.294), поэтому `QAILY_ALLURE_TOKEN` до хелпера
+`testops` не дошёл бы, а `QAILY_ALLURE` доходит.
 
 ### `mcp-servers.json`
 
 | Сервер | Было | Станет |
 |---|---|---|
-| `testops` | `headers.Authorization` с `${user_config.allure_token}` | `headersHelper`: `uv run --script ${CLAUDE_PLUGIN_ROOT}/bin/qaily_launch.py headers "Authorization=Api-Token {allure_token}"` |
-| `redmine` | `uvx …` + `${user_config.redmine_api_key}`, `/tmp/qaily-redmine` | `uv run --script … run --secret REDMINE_API_KEY=redmine_api_key --dir REDMINE_ALLOWED_DIRECTORIES=~/.qaily/redmine -- uvx --from mcp-redmine==… mcp-redmine` |
-| `kaiten` | `uvx …` + `${user_config.kaiten_api_token}` | `… run --secret KAITEN_TOKEN=kaiten_api_token -- uvx --from git+…@… kaiten-mcp` |
-| `context7` | `npx …` + `${user_config.context7_api_key}` | `… run --secret CONTEXT7_API_KEY=context7_api_key? -- npx -y @upstash/context7-mcp@…` |
+| `testops` | `headers.Authorization` с `${user_config.allure}` | `headersHelper`: `uv run --script ${CLAUDE_PLUGIN_ROOT}/bin/qaily_launch.py headers "Authorization=Api-Token {allure}"` |
+| `redmine` | `uvx …` + `${user_config.redmine}`, `/tmp/qaily-redmine` | `uv run --script … run --secret REDMINE_API_KEY=redmine --dir REDMINE_ALLOWED_DIRECTORIES=~/.qaily/redmine -- uvx --from mcp-redmine==… mcp-redmine` |
+| `kaiten` | `uvx …` + `${user_config.kaiten}` | `… run --secret KAITEN_TOKEN=kaiten -- uvx --from git+…@… kaiten-mcp` |
+| `context7` | `npx …` + `${user_config.context7}` | `… run --secret CONTEXT7_API_KEY=context7? -- npx -y @upstash/context7-mcp@…` |
 | `playwright`, `chrome-devtools`, `jam` | — | без изменений |
 
 Версии и пины серверов (`…` в таблице) — текущие из `mcp-servers.json`, не меняются.
@@ -86,7 +89,7 @@ qaily_launch.py check
 `mcp__plugin_qaily_<server>__*`, агенты и маски разрешений не ломаются.
 
 Запасной путь для `testops`, если `headersHelper` у плагинного сервера в Desktop не работает:
-stdio-прокси `… run --secret QAILY_AUTH=allure_token -- npx -y mcp-remote@<pin> <url> --header "Authorization:Api-Token ${QAILY_AUTH}"`
+stdio-прокси `… run --secret QAILY_AUTH=allure -- npx -y mcp-remote@<pin> <url> --header "Authorization:Api-Token ${QAILY_AUTH}"`
 (точная форма передачи заголовка — по документации `mcp-remote` на этапе 0).
 
 ### Каталог вложений Redmine
@@ -149,10 +152,10 @@ stdio-прокси `… run --secret QAILY_AUTH=allure_token -- npx -y mcp-remot
 Plugins → Add plugin. Токены — одинаково на всех ОС, ввод скрыт:
 
 ```
-uvx keyring set qaily allure_token
-uvx keyring set qaily redmine_api_key
-uvx keyring set qaily kaiten_api_token
-uvx keyring set qaily context7_api_key   # необязательно
+uvx keyring set qaily allure
+uvx keyring set qaily redmine
+uvx keyring set qaily kaiten
+uvx keyring set qaily context7   # необязательно
 ```
 
 Linux без Secret Service (сервер, WSL, контейнер) — переменные `QAILY_*` в `~/.profile`.

@@ -1,43 +1,21 @@
 {
   "name": "qaily",
   "displayName": "Qaily QA Assistant",
-  "version": "0.3.5",
+  "version": "0.4.0",
   "description": "QA AI-ассистент: тест-дизайн, ревью тест-кейсов и автотестов, разбор прогонов — Allure TestOps, Redmine, Kaiten",
   "author": {
     "name": "Pavel Shcherbakov",
     "email": "pyuscherbakov@gmail.com"
   },
   "repository": "https://github.com/pyuscherbakov/qaily",
-  "keywords": ["qa", "test-design", "test-review", "launch-triage", "allure", "redmine", "kaiten"],
-  "mcpServers": "./mcp-servers.json",
-  "userConfig": {
-    "allure_token": {
-      "type": "string",
-      "title": "Allure TestOps API token",
-      "description": "Allure TestOps → профиль → API tokens",
-      "sensitive": true,
-      "required": true
-    },
-    "redmine_api_key": {
-      "type": "string",
-      "title": "Redmine API key (read-only)",
-      "description": "Redmine → Моя учётная запись → Ключ API. Строго read-only ключ!",
-      "sensitive": true,
-      "required": true
-    },
-    "kaiten_api_token": {
-      "type": "string",
-      "title": "Kaiten API token",
-      "description": "Kaiten → профиль → API-ключ",
-      "sensitive": true,
-      "required": true
-    },
-    "context7_api_key": {
-      "type": "string",
-      "title": "Context7 API key (опционально)",
-      "description": "context7.com → регистрация → API key. Без ключа работает с урезанным лимитом запросов",
-      "sensitive": true,
-      "required": false
-    }
-  }
+  "keywords": [
+    "qa",
+    "test-design",
+    "test-review",
+    "launch-triage",
+    "allure",
+    "redmine",
+    "kaiten"
+  ],
+  "mcpServers": "./mcp-servers.json"
 }
