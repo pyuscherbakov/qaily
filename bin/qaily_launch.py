@@ -9,6 +9,8 @@ import re
 import shutil
 import subprocess
 import sys
+import urllib.error
+import urllib.request
 from collections.abc import Mapping
 from pathlib import Path
 
@@ -74,6 +76,46 @@ def render_headers(specs: list[str]) -> dict[str, str]:
     return headers
 
 
+CHECKS = {
+    "allure": ("https://astbroker.qatools.cloud/api/rs/project", "Authorization", "Api-Token {}"),
+    "redmine": ("https://redmine.fast-system.ru/users/current.json", "X-Redmine-API-Key", "{}"),
+    "kaiten": ("https://lab-company.kaiten.ru/api/latest/users/current", "Authorization", "Bearer {}"),
+    "context7": None,
+}
+
+
+def probe(url: str, header: str, value: str) -> tuple[str, bool]:
+    request = urllib.request.Request(url, headers={header: value})
+    try:
+        with urllib.request.urlopen(request, timeout=10) as response:
+            return f"HTTP {response.status}", True
+    except urllib.error.HTTPError as error:
+        return f"HTTP {error.code}", False
+    except Exception as error:
+        return f"сеть: {type(error).__name__}", False
+
+
+def check() -> int:
+    healthy = True
+    for name, endpoint in CHECKS.items():
+        value, source = resolve_secret(name)
+        if value is None:
+            if endpoint is None:
+                print(f"{name}: не найден (необязательный)")
+            else:
+                print(f"{name}: не найден — {MissingSecret(name)}")
+                healthy = False
+            continue
+        if endpoint is None:
+            print(f"{name}: {source}")
+            continue
+        url, header, template = endpoint
+        result, ok = probe(url, header, template.format(value))
+        print(f"{name}: {source} — {result}")
+        healthy = healthy and ok
+    return 0 if healthy else 1
+
+
 def launch(cmd: list[str], env: dict[str, str]) -> int:
     executable = shutil.which(cmd[0], path=env.get("PATH"))
     if executable is None:
@@ -100,8 +142,11 @@ def main(argv: list[str] | None = None) -> int:
     run_mode.add_argument("--dir", action="append", default=[])
     headers_mode = modes.add_parser("headers")
     headers_mode.add_argument("specs", nargs="+")
+    modes.add_parser("check")
     args = parser.parse_args(argv)
 
+    if args.mode == "check":
+        return check()
     try:
         if args.mode == "headers":
             print(json.dumps(render_headers(args.specs)))
