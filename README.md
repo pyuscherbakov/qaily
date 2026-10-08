@@ -4,50 +4,67 @@ QA AI-ассистент для команды на базе Claude Code: пла
 
 ## Установка
 
+Работает в Claude Code CLI на macOS, Windows и Linux и в Claude Desktop (вкладка Code) на macOS и Windows.
+
 Пререквизиты (один раз):
 
-1. Claude Code ≥ 2.1.154: `claude --version`; обновить — `claude update`.
-2. Node.js 20+: `brew install node` или [nodejs.org](https://nodejs.org).
-3. uv (для Redmine и Kaiten MCP): `curl -LsSf https://astral.sh/uv/install.sh | sh`
-4. git (Kaiten MCP ставится uvx-ом из git-репозитория)
-5. Chrome/Chromium (для Playwright и Chrome DevTools MCP). Playwright ставит браузер сам: `npx playwright install chromium`. Первый запуск браузерных серверов медленный — npx качает пакеты и браузер.
+| | macOS | Windows | Linux |
+|---|---|---|---|
+| Claude Code ≥ 2.1.294 | `claude update` | `claude update` | `claude update` |
+| Node.js 20+ | `brew install node` | `winget install OpenJS.NodeJS.LTS` | пакетный менеджер или [nodejs.org](https://nodejs.org) |
+| uv | `brew install uv` | `winget install astral-sh.uv` | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
+| git | `xcode-select --install` | [Git for Windows](https://git-scm.com/download/win) (нужен и самому Claude Code) | пакетный менеджер |
 
-Установка плагина — две команды в Claude Code:
+Плюс Chrome/Chromium для Playwright и Chrome DevTools MCP. Playwright ставит браузер сам: `npx playwright install chromium`. Первый запуск браузерных серверов медленный — npx качает пакеты и браузер.
+
+Установка плагина:
+
+- CLI — две команды в Claude Code:
+  ```
+  /plugin marketplace add <git-url-репозитория>
+  /plugin install qaily@qaily
+  ```
+- Desktop — «+» → Plugins → Add plugin → qaily.
+
+Токены кладутся в системное хранилище (Keychain на macOS, Credential Manager на Windows, Secret Service на Linux) — одна и та же команда на всех ОС, значение спрашивается скрытым вводом:
 
 ```
-/plugin marketplace add <git-url-репозитория>
-/plugin install qaily@qaily
+uvx keyring set qaily allure
+uvx keyring set qaily redmine
+uvx keyring set qaily kaiten
+uvx keyring set qaily context7
 ```
 
-При включении Claude Code сам спросит токены (хранятся в системном keychain):
-
-| Поле | Где взять |
+| Имя | Где взять |
 |------|-----------|
-| Allure TestOps API token | Allure TestOps → профиль → API tokens |
-| Redmine API key | Redmine → Моя учётная запись → Ключ API. **Строго read-only ключ** |
-| Kaiten API token | Kaiten → профиль → API-ключ |
+| `allure` | Allure TestOps → профиль → API tokens |
+| `redmine` | Redmine → Моя учётная запись → Ключ API. **Строго read-only ключ** |
+| `kaiten` | Kaiten → профиль → API-ключ |
+| `context7` | context7.com → API key. Необязательно: без ключа урезанный лимит запросов |
+
+Linux без Secret Service (сервер, WSL, контейнер) и CI — вместо хранилища переменные окружения `QAILY_ALLURE`, `QAILY_REDMINE`, `QAILY_KAITEN`, `QAILY_CONTEXT7` (например, в `~/.profile`). Переменная важнее хранилища.
+
+После этого перезапустить сессию Claude и выполнить `/qaily:doctor` — у каждого токена должно быть `HTTP 200`.
 
 Jam токена не просит — авторизация по OAuth: после установки выполнить `/mcp` → `jam` → войти в браузере. Без этого инструменты Jam недоступны.
 
-Проверка: в сессии спросить «покажи тест-кейсы проекта 35 из Allure».
-
 Доступ к репозиторию — по git (ssh-ключ или токен), как для обычного clone.
 
-## Проверка токенов вручную
+### Обновление с 0.3.x
 
-```sh
-curl -s -H "Authorization: Api-Token $ALLURE_TOKEN" "https://astbroker.qatools.cloud/api/rs/project" | head -c 200
-curl -s -H "X-Redmine-API-Key: $REDMINE_API_KEY" "https://redmine.fast-system.ru/users/current.json"
-curl -s -H "Authorization: Bearer $KAITEN_API_TOKEN" "https://lab-company.kaiten.ru/api/latest/users/current"
-```
+С 0.4.0 токены не спрашиваются при установке — Claude Desktop не передавал их MCP-серверам. После обновления плагина один раз выполнить три команды `uvx keyring set qaily …` из раздела выше, перезапустить сессию и проверить `/qaily:doctor`. Старые значения из настроек плагина больше не используются.
 
-`401` — токен неверный.
+## Проверка токенов
+
+`/qaily:doctor` — показывает, где найден каждый токен (`env` или `keyring`), и проверяет его запросом к сервису: `HTTP 200` — порядок, `401` — токен неверный или отозван.
 
 ## Если что-то не работает
 
-- `/plugin` → qaily → статус компонентов; `claude mcp list` — статус серверов.
-- Типовые причины: старый Claude Code, нет Node.js / uv / git, неверный токен (см. curl-проверки выше).
-- Первый старт Kaiten-сервера медленный: uvx клонирует и собирает пакет из git (дальше — из кэша).
+- Начать с `/qaily:doctor`; статус серверов — `/plugin` → qaily или `claude mcp list`.
+- Типовые причины: старый Claude Code, нет Node.js / uv / git, токен не положен в хранилище или неверный.
+- macOS спрашивает доступ к связке ключей для `python` — «Всегда разрешать». После обновления Python в uv вопрос может повториться.
+- Linux: `uvx keyring set` падает с ошибкой бэкенда — нет Secret Service, использовать переменные `QAILY_*`.
+- Первый старт медленный: uv качает зависимости лаунчера, Kaiten-сервер собирается из git (дальше — из кэша). Если сервер не успел подключиться — перезапустить сессию.
 - Jam в статусе «needs authentication» — пройти OAuth через `/mcp` (только в интерактивной сессии).
 - Обновление плагина: `/plugin marketplace update qaily`.
 
@@ -120,11 +137,19 @@ mkdir -p .claude && cp <путь-к-этому-репо>/settings.local.json.exa
 
 Для MR-режима: если ветка MR уже есть локально, ревью идёт через `git diff` — токен не нужен. Для ревью MR по одной ссылке без локальной ветки нужен доступ к GitLab API:
 
+Токен — scope `read_api`, строго read-only. macOS / Linux — в `~/.zshrc` или `~/.bashrc`:
+
 ```sh
-export GITLAB_TOKEN=<token>   # scope read_api, строго read-only
+export GITLAB_TOKEN=<token>
 ```
 
-Токен намеренно **не** добавлен в `userConfig` плагина: `userConfig` пробрасывается только в MCP-серверы, а GitLab-токен скилл читает из переменной окружения напрямую (curl / `glab mr diff`).
+Windows — один раз в PowerShell, затем перезапустить Claude:
+
+```powershell
+setx GITLAB_TOKEN <token>
+```
+
+Токен намеренно **не** хранится через `uvx keyring` и лаунчер плагина: его читает `curl` / `glab mr diff` в Bash-инструменте (на Windows — Git Bash), а выдача секрета командой попала бы в транскрипт сессии.
 
 ## Разбор упавших прогонов (скилл launch-triage)
 
@@ -159,7 +184,7 @@ Redmine — боевой проект: только чтение задач, н�
 
 Read-only для Redmine держится **правами токена на стороне Redmine** — отдельный аккаунт/роль строго на просмотр. Это физическая защита: MCP-сервер `mcp-redmine` даёт обобщённый инструмент `redmine_request` (path + method), поэтому deny-маски Claude по имени инструмента запись отсечь не могут — GET и DELETE идут через один и тот же тул. С read-only ключом запрос на запись вернёт 403 независимо от конфига Claude. Вторая линия — `REDMINE_READ_ONLY=1` в `mcp-servers.json`: сервер сам отклоняет любой не-GET запрос, включая `redmine_upload`.
 
-Вложения задач скилл и агенты скачивают через `redmine_download` в `/tmp/qaily-redmine` (`REDMINE_ALLOWED_DIRECTORIES` в `mcp-servers.json`), картинки смотрят через `redmine_attachment_image`. Чтение скачанных файлов разрешено `allow`-правилами шаблона [settings.local.json.example](settings.local.json.example) — без них каждый агент спросит доступ к `/tmp`.
+Вложения задач скилл и агенты скачивают через `redmine_download` в `~/.qaily/redmine` (каталог создаёт лаунчер, `--dir REDMINE_ALLOWED_DIRECTORIES` в `mcp-servers.json`), картинки смотрят через `redmine_attachment_image`. Чтение скачанных файлов разрешено `allow`-правилами шаблона [settings.local.json.example](settings.local.json.example) — без них каждый агент спросит доступ к `~/.qaily/redmine`.
 
 > При смене Redmine-ключа на пишущий пропадает первая линия защиты, остаётся только `REDMINE_READ_ONLY` — держим read-only роль осознанно.
 
