@@ -1,8 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Read(//tmp/qaily-redmine/**)",
-      "Read(//private/tmp/qaily-redmine/**)",
+      "Read(~/.qaily/redmine/**)",
       "Read(~/.claude/plugins/cache/*/qaily/**)",
       "mcp__plugin_qaily_redmine__redmine_download",
       "mcp__plugin_qaily_redmine__redmine_attachment_image"
