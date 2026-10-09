@@ -35,6 +35,8 @@ uvx keyring set qaily kaiten
 uvx keyring set qaily context7
 ```
 
+Команда спросит `Password for 'allure' in 'qaily':` — так `keyring` называет любой секрет: вставить токен из таблицы ниже и нажать Enter (символы не отображаются).
+
 | Имя | Где взять |
 |------|-----------|
 | `allure` | Allure TestOps → профиль → API tokens |
