@@ -1,4 +1,5 @@
 import contextlib
+import io
 import json
 import os
 import re
@@ -230,3 +231,26 @@ def test_check_never_prints_values(monkeypatch, capsys):
     main(["check"])
     out = capsys.readouterr()
     assert "value-of-" not in out.out + out.err
+
+
+def legacy_codepage_stream(monkeypatch, name):
+    buffer = io.BytesIO()
+    stream = io.TextIOWrapper(buffer, encoding="cp1252")
+    monkeypatch.setattr(sys, name, stream)
+    return buffer, stream
+
+
+def test_check_output_is_utf8_on_legacy_codepage_stdout(monkeypatch):
+    buffer, stream = legacy_codepage_stream(monkeypatch, "stdout")
+    monkeypatch.setattr(keyring, "get_password", lambda s, n: None)
+    assert main(["check"]) == 1
+    stream.flush()
+    assert "allure: не найден" in buffer.getvalue().decode("utf-8")
+
+
+def test_missing_secret_stderr_is_utf8_on_legacy_codepage(monkeypatch):
+    buffer, stream = legacy_codepage_stream(monkeypatch, "stderr")
+    monkeypatch.setattr(keyring, "get_password", lambda s, n: None)
+    assert main(["run", "--secret", "A=kaiten", "--", "x"]) == 1
+    stream.flush()
+    assert "не найден токен kaiten" in buffer.getvalue().decode("utf-8")

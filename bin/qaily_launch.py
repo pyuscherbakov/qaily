@@ -129,6 +129,8 @@ def launch(cmd: list[str], env: dict[str, str]) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
+    for stream in (sys.stdout, sys.stderr):
+        stream.reconfigure(encoding="utf-8", errors="replace")
     argv = sys.argv[1:] if argv is None else argv
     command = []
     if "--" in argv:

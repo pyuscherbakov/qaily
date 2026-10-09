@@ -17,21 +17,21 @@
 | № | Шаг | Ожидаемое | Факт | ОК |
 |---|---|---|---|---|
 | 2.1 | PowerShell: `uvx keyring set qaily allure`, `… redmine`, `… kaiten` | ввод скрыт, ошибок нет | | |
-| 2.2 | «Диспетчер учётных данных» → «Учётные данные Windows» | есть записи `allure@qaily`, `redmine@qaily`, `kaiten@qaily` | | |
+| 2.2 | «Диспетчер учётных данных» → «Учётные данные Windows» | есть записи `allure@qaily`, `redmine@qaily` и `qaily` (пользователь `kaiten`) — keyring хранит последний секрет под голым именем сервиса | | |
 
 ## 3. Диагностика
 
 | № | Шаг | Ожидаемое | Факт | ОК |
 |---|---|---|---|---|
 | 3.1 | Новая сессия, `/qaily:doctor` | `allure`, `redmine`, `kaiten`: `keyring — HTTP 200`; `context7`: «не найден (необязательный)» | | |
-| 3.2 | `setx QAILY_CONTEXT7 test`, перезапуск Claude, `/qaily:doctor` | `context7: env` | | |
-| 3.3 | `reg delete HKCU\Environment /v QAILY_CONTEXT7 /f`, перезапуск Claude | переменная пропала из `/qaily:doctor` | | |
+| 3.2 | `setx QAILY_CONTEXT7 test`, перезапуск Claude Desktop; для CLI — **новое** окно терминала; `/qaily:doctor` | `context7: env`, вывод без «кракозябр» | | |
+| 3.3 | PowerShell: `[Environment]::SetEnvironmentVariable('QAILY_CONTEXT7',$null,'User')`, перезапуск как в 3.2 | `context7: не найден (необязательный)` | | |
 
 ## 4. MCP-серверы (CLI и Desktop)
 
 | № | Шаг | Ожидаемое | CLI | Desktop |
 |---|---|---|---|---|
-| 4.1 | CLI: `claude mcp list`; Desktop: спросить «перечисли доступные MCP-серверы qaily» | `testops`, `redmine`, `kaiten`, `context7`, `playwright`, `chrome-devtools` — подключены | | |
+| 4.1 | **Самая первая** сессия после установки: CLI — `claude mcp list`; Desktop — «перечисли доступные MCP-серверы qaily» | `testops`, `redmine`, `kaiten`, `context7`, `playwright`, `chrome-devtools` — подключены; если `testops` не подключился (холодный старт uv > 10 с) — записать и повторить в новой сессии | | |
 | 4.2 | «покажи тест-кейсы проекта 35 из Allure» | список кейсов (`testops` + `headersHelper` с путём `C:\Users\…`) | | |
 | 4.3 | «открой example.com в браузере и сделай снимок» | `playwright` открыл страницу | | |
 | 4.4 | «через chrome-devtools открой example.com, покажи заголовок» | заголовок `Example Domain` | | |
@@ -53,4 +53,6 @@
 | № | Шаг | Ожидаемое | CLI | Desktop |
 |---|---|---|---|---|
 | 6.1 | После 5.1: `dir %USERPROFILE%\.qaily\redmine\<id>` | файл вложения на месте | | |
-| 6.2 | Закрыть сессию Claude, «Диспетчер задач» через 10 с | нет оставшихся `node.exe` / `python.exe` / `uv.exe` от qaily | | |
+| 6.2 | Закрыть сессию Claude, «Диспетчер задач» через 10 с | нет оставшихся `node.exe` / `python.exe` / `uv.exe` / `chrome.exe` от qaily | | |
+| 6.3 | Новая сессия, повторить 4.3 | `playwright` открыл страницу (нет «browser already in use») | | |
+| 6.4 | После 5.1 (Read вложения) | Claude не спрашивал разрешение на чтение `~/.qaily/redmine` (при наличии `settings.local.json` из шаблона) | | |
