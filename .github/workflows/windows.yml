@@ -1,0 +1,69 @@
+name: windows
+
+on:
+  push:
+    branches: [main, feat/cross-platform]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  launcher:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    env:
+      QAILY_ALLURE: ${{ secrets.QAILY_ALLURE }}
+      QAILY_REDMINE: ${{ secrets.QAILY_REDMINE }}
+      QAILY_KAITEN: ${{ secrets.QAILY_KAITEN }}
+      HAS_TOKENS: ${{ secrets.QAILY_ALLURE != '' && secrets.QAILY_REDMINE != '' && secrets.QAILY_KAITEN != '' }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Unit-тесты лаунчера
+        run: uv run -q --no-project --with pytest --with keyring==25.6.0 pytest bin -q
+
+      - name: run находит npx.cmd и пробрасывает код выхода
+        run: |
+          uv run -q --script bin/qaily_launch.py run -- npx --version
+          set +e
+          QAILY_CONTEXT7=probe uv run -q --script bin/qaily_launch.py run --secret PROBE=context7 -- node -e "process.exit(process.env.PROBE === 'probe' ? 7 : 1)"
+          test $? -eq 7
+
+      - name: check пишет UTF-8 в кодовой странице Windows
+        run: |
+          set +e
+          QAILY_ALLURE= QAILY_REDMINE= QAILY_KAITEN= uv run -q --script bin/qaily_launch.py check > check.txt
+          test $? -eq 1
+          python -c "t = open('check.txt', encoding='utf-8').read(); print(t); assert 'allure: не найден' in t"
+
+      - name: check с токенами из секретов
+        if: env.HAS_TOKENS == 'true'
+        run: |
+          uv run -q --script bin/qaily_launch.py check | tee check.txt
+          test "$(grep -c 'env — HTTP 200' check.txt)" -eq 3
+
+      - name: Установка Claude Code
+        shell: pwsh
+        run: |
+          irm https://claude.ai/install.ps1 | iex
+          "$env:USERPROFILE\.local\bin" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+
+      - name: MCP-серверы плагина через лаунчер
+        run: |
+          claude --version
+          if [ "$HAS_TOKENS" != "true" ]; then export QAILY_ALLURE=dummy-not-real; fi
+          claude --debug --plugin-dir . mcp list > mcp.txt 2>&1 || true
+          grep 'plugin:qaily' mcp.txt | sed -E 's/^(plugin:qaily:[a-z0-9-]+):.* - /\1 - /' | tee status.txt
+          for s in context7 playwright chrome-devtools testops; do grep -q "qaily:$s - .*Connected" status.txt || { echo "::error::$s не подключился"; exit 1; }; done
+          if [ "$HAS_TOKENS" = "true" ]; then
+            for s in redmine kaiten; do grep -q "qaily:$s - .*Connected" status.txt || { echo "::error::$s не подключился"; exit 1; }; done
+          fi
+          log=$(ls -t "$USERPROFILE/.claude/debug/"*.txt | head -1)
+          grep -q 'qaily:testops": Successfully retrieved 1 headers from headersHelper' "$log" || { grep 'qaily:testops' "$log" | grep -v 'Api-Token' | head -20; echo "::error::headersHelper не отработал"; exit 1; }
