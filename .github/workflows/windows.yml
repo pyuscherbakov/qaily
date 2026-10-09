@@ -59,15 +59,21 @@ jobs:
           irm https://claude.ai/install.ps1 | iex
           "$env:USERPROFILE\.local\bin" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
 
+      - name: Прогрев кэша npx
+        run: |
+          for pkg in @upstash/context7-mcp@4.1.1 @playwright/mcp@0.0.81 chrome-devtools-mcp@1.9.0; do
+            npm exec -y --package="$pkg" -- node -e 0
+          done
+
       - name: MCP-серверы плагина через лаунчер
         run: |
           claude --version
           if [ "$HAS_TOKENS" != "true" ]; then export QAILY_ALLURE=dummy-not-real; fi
           claude --debug --plugin-dir . mcp list > mcp.txt 2>&1 || true
           grep 'plugin:qaily' mcp.txt | sed -E 's/^(plugin:qaily:[a-z0-9-]+):.* - /\1 - /' | tee status.txt
-          for s in context7 playwright chrome-devtools testops; do grep -q "qaily:$s - .*Connected" status.txt || { echo "::error::$s не подключился"; exit 1; }; done
+          log=$(ls -t "$USERPROFILE/.claude/debug/"*.txt | head -1)
+          for s in context7 playwright chrome-devtools testops; do grep -q "qaily:$s - .*Connected" status.txt || { grep "qaily:$s" "$log" | grep -v 'Api-Token' | head -40; echo "::error::$s не подключился"; exit 1; }; done
           if [ "$HAS_TOKENS" = "true" ]; then
             for s in redmine kaiten; do grep -q "qaily:$s - .*Connected" status.txt || { echo "::error::$s не подключился"; exit 1; }; done
           fi
-          log=$(ls -t "$USERPROFILE/.claude/debug/"*.txt | head -1)
           grep -q 'qaily:testops": Successfully retrieved 1 headers from headersHelper' "$log" || { grep 'qaily:testops' "$log" | grep -v 'Api-Token' | head -20; echo "::error::headersHelper не отработал"; exit 1; }
