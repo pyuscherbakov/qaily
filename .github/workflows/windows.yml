@@ -40,7 +40,9 @@ jobs:
         run: |
           set +e
           QAILY_ALLURE= QAILY_REDMINE= QAILY_KAITEN= uv run -q --script bin/qaily_launch.py check > check.txt
-          test $? -eq 1
+          rc=$?
+          set -e
+          test $rc -eq 1
           python -X utf8 -c "t = open('check.txt', encoding='utf-8').read(); print(t); assert 'allure: не найден' in t"
 
       - name: check с токенами из секретов
