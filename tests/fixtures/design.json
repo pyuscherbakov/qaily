@@ -1,0 +1,131 @@
+{
+  "tools": [
+    {
+      "name": "redmine_request",
+      "description": "Read a synthetic Redmine issue",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          },
+          "params": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "path"
+        ]
+      }
+    },
+    {
+      "name": "testops_find_testcases",
+      "description": "Search synthetic TestOps cases",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "integer"
+          },
+          "aql": {
+            "type": "string"
+          },
+          "expand": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "projectId",
+          "aql"
+        ]
+      }
+    },
+    {
+      "name": "testops_create_testcase",
+      "description": "Create a synthetic TestOps case",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "scenario": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "projectId",
+          "name",
+          "scenario",
+          "tags"
+        ]
+      }
+    }
+  ],
+  "responses": {
+    "testops_find_testcases": [
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\":[{\"id\":101,\"name\":\"Группа. Создание с 10 участниками\",\"tags\":[\"redmine-123\"]}],\"totalElements\":1}"
+          }
+        ]
+      },
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\":[{\"id\":101,\"name\":\"Группа. Создание с 10 участниками\",\"scenario\":{\"steps\":[{\"action\":\"Создать группу с 10 участниками\",\"expectedResult\":\"Группа создана\"}]}}],\"totalElements\":1}"
+          }
+        ]
+      },
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\":[{\"id\":101,\"name\":\"Группа. Создание с 10 участниками\"}],\"totalElements\":1}"
+          }
+        ]
+      }
+    ],
+    "testops_create_testcase": [
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"id\":102}"
+          }
+        ]
+      }
+    ],
+    "redmine_request": [
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"issue\": {\"id\": 123, \"subject\": \"Группа участников\", \"description\": \"Группа допускает максимум 10 участников. 9 и 10 допустимы, 11 отклоняется.\", \"attachments\": [], \"journals\": []}}"
+          }
+        ]
+      }
+    ]
+  }
+}
