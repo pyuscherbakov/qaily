@@ -233,3 +233,57 @@ def test_codex_unavailable_toml_parser_is_not_checked(tmp_path, monkeypatch):
     monkeypatch.setattr(builtins, '__import__', no_tomllib)
     result = diagnostics.codex_testops_check(load_settings(tmp_path / 'missing'), tmp_path / 'config.toml', None)
     assert result.status == 'not_checked' and 'parser' in result.detail
+
+
+@pytest.mark.skipif(sys.version_info < (3, 11), reason='tomllib unavailable')
+@pytest.mark.parametrize('other_url', [
+    'https://astbroker.qatools.cloud/api/mcp',
+    'https://ASTBROKER.qatools.cloud:443/api/mcp/',
+])
+def test_codex_other_active_registration_for_same_url_never_probes(tmp_path, monkeypatch, other_url):
+    import json
+    config = tmp_path / 'config.toml'
+    _applied_config(config)
+    with config.open('a') as stream:
+        stream.write('\n[mcp_servers.testops_copy]\nurl = ' + json.dumps(other_url) + '\n')
+    monkeypatch.setattr(diagnostics, 'probe', lambda *args, **kwargs: pytest.fail('must not probe'))
+    result = diagnostics.codex_testops_check(load_settings(tmp_path / 'missing'), config,
+                                              {'QAILY_TESTOPS_AUTHORIZATION': 'Api-Token CANARY'})
+    assert result.status in ('error', 'not_checked')
+    assert 'CANARY' not in result.detail and 'astbroker' not in result.detail
+
+
+@pytest.mark.skipif(sys.version_info < (3, 11), reason='tomllib unavailable')
+def test_codex_other_disabled_registration_does_not_block_probe(tmp_path, monkeypatch):
+    config = tmp_path / 'config.toml'
+    _applied_config(config)
+    with config.open('a') as stream:
+        stream.write('\n[mcp_servers.testops_copy]\nenabled = false\nurl = "https://ASTBROKER.qatools.cloud:443/api/mcp/"\n')
+    seen = []
+    monkeypatch.setattr(diagnostics, 'probe', lambda *args, **kwargs: (seen.append(True) or 'HTTP 200', True))
+    result = diagnostics.codex_testops_check(load_settings(tmp_path / 'missing'), config,
+                                              {'QAILY_TESTOPS_AUTHORIZATION': 'Api-Token CANARY'})
+    assert result.status == 'ok' and len(seen) == 1
+
+
+@pytest.mark.skipif(sys.version_info < (3, 11), reason='tomllib unavailable')
+def test_codex_uninspectable_other_registration_is_not_checked(tmp_path, monkeypatch):
+    config = tmp_path / 'config.toml'
+    _applied_config(config)
+    with config.open('a') as stream:
+        stream.write('\n[mcp_servers.unknown]\ncommand = "unknown-command"\n')
+    monkeypatch.setattr(diagnostics, 'probe', lambda *args, **kwargs: pytest.fail('must not probe'))
+    result = diagnostics.codex_testops_check(load_settings(tmp_path / 'missing'), config,
+                                              {'QAILY_TESTOPS_AUTHORIZATION': 'Api-Token CANARY'})
+    assert result.status == 'not_checked'
+
+
+@pytest.mark.skipif(sys.version_info < (3, 11), reason='tomllib unavailable')
+def test_codex_other_distinct_http_registration_does_not_block_probe(tmp_path, monkeypatch):
+    config = tmp_path / 'config.toml'
+    _applied_config(config)
+    with config.open('a') as stream:
+        stream.write('\n[mcp_servers.other]\nurl = "https://other.invalid/api/mcp"\n')
+    monkeypatch.setattr(diagnostics, 'probe', lambda *args, **kwargs: ('HTTP 200', True))
+    assert diagnostics.codex_testops_check(load_settings(tmp_path / 'missing'), config,
+                                           {'QAILY_TESTOPS_AUTHORIZATION': 'Api-Token CANARY'}).status == 'ok'

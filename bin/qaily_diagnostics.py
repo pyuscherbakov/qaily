@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from pathlib import Path
 import re
 import shlex
+from urllib.parse import urlsplit
 
 from qaily_launch import CHECKS, MissingSecret, probe, resolve_secret
 
@@ -141,6 +142,37 @@ def codex_testops_check(settings: Mapping[str, str], path: Path,
     expected = settings['testops_url'].rstrip('/') + '/api/mcp'
     if top.get('url') != expected:
         return result('not_checked', 'URL применённого подключения отличается от settings или неизвестен')
+    # Other top-level registrations can have their own credentials and policy.
+    # Unknown transports or ambiguous URLs cannot establish uniqueness safely.
+    def endpoint_key(value: object) -> tuple[str, str, int, str] | None:
+        if not isinstance(value, str) or any(c.isspace() or ord(c) < 32 for c in value):
+            return None
+        try:
+            url = urlsplit(value)
+            if (url.scheme not in ('http', 'https') or not url.hostname or url.username is not None
+                    or url.password is not None or url.query or url.fragment or url.port == 0
+                    or '%' in url.path or '\\' in value or any(part in ('.', '..') for part in url.path.split('/'))):
+                return None
+            return (url.scheme, url.hostname.lower(), url.port or (443 if url.scheme == 'https' else 80),
+                    url.path.rstrip('/'))
+        except ValueError:
+            return None
+
+    expected_key = endpoint_key(expected)
+    if expected_key is None:
+        return result('not_checked', 'не удалось сравнить адрес подключения')
+    for identity, other in servers.items():
+        if identity == 'qaily_testops':
+            continue
+        if not isinstance(other, dict) or not isinstance(other.get('enabled', True), bool):
+            return result('not_checked', 'не удалось проверить другие подключения')
+        if other.get('enabled', True) is False:
+            continue
+        other_key = endpoint_key(other.get('url'))
+        if other_key is None or 'command' in other:
+            return result('not_checked', 'не удалось проверить другие подключения')
+        if other_key == expected_key:
+            return result('error', 'возможны два активных подключения TestOps')
     if any(key in top for key in ('bearer_token_env_var', 'http_headers')):
         return result('not_checked', 'дополнительная авторизация не распознана')
     headers = top.get('env_http_headers', {})
