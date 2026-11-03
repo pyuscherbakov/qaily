@@ -8,9 +8,9 @@ import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "bin"))
 
 
-def render_policy(*args):
+def render_policy(*args, **kwargs):
     import qaily_setup
-    return qaily_setup.render_policy(*args)
+    return qaily_setup.render_policy(*args, **kwargs)
 
 
 def parse_fragment(text):
@@ -47,7 +47,7 @@ def test_absent_catalog_never_enables_guessed_reads():
 
 
 def test_policy_uses_actual_server_id():
-    policy = parse_fragment(render_policy({'testops': []}, {}, {'testops': 'actual_testops'}))
+    policy = parse_fragment(render_policy({'testops': []}, {}, {'testops': 'actual_testops'}, connection_kinds={'testops': 'top-level'}))
     assert policy['mcp_servers']['actual_testops']['default_tools_approval_mode'] == 'prompt'
     assert 'plugins' not in policy
 
@@ -64,3 +64,30 @@ def test_bundled_testops_policy_targets_plugin_connection():
     assert server['default_tools_approval_mode'] == 'prompt'
     assert server['tools']['read_item']['approval_mode'] == 'approve'
     assert 'mcp_servers' not in policy
+
+
+def test_explicit_kind_handles_renamed_bundled_testops():
+    policy = parse_fragment(render_policy(
+        {'testops': []}, {}, {'testops': 'renamed'}, connection_kinds={'testops': 'bundled'}))
+    assert policy['plugins']['qaily@qaily-codex']['mcp_servers']['renamed']['default_tools_approval_mode'] == 'prompt'
+
+
+def test_explicit_kind_handles_top_level_named_testops():
+    policy = parse_fragment(render_policy(
+        {'testops': []}, {}, {'testops': 'testops'}, connection_kinds={'testops': 'top-level'}))
+    assert policy['mcp_servers']['testops']['default_tools_approval_mode'] == 'prompt'
+
+
+def test_unknown_testops_identity_requires_explicit_kind():
+    with pytest.raises(ValueError, match='connection kind'):
+        render_policy({}, {}, {'testops': 'renamed'})
+
+
+def test_bundled_servers_start_with_restrictive_policies(package_copy: Path):
+    servers = json.loads((package_copy / '.mcp.json').read_text())['mcpServers']
+    assert servers['testops']['enabled'] is True
+    assert servers['testops']['default_tools_approval_mode'] == 'prompt'
+    assert set(servers['kaiten']['enabled_tools']) == {
+        'kaiten_get_card', 'kaiten_get_document', 'kaiten_list_comments', 'kaiten_list_documents'}
+    assert set(servers['context7']['enabled_tools']) == {'query-docs', 'resolve-library-id'}
+    assert servers['jam']['enabled_tools'] == []

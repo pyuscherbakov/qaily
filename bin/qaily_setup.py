@@ -31,15 +31,23 @@ def render_codex_fragment(package_root: Path, settings: Mapping[str, str]) -> st
 
 
 def render_policy(catalog: Mapping[str, list[str]], approved_reads: Mapping[str, list[str]],
-                  server_ids: Mapping[str, str]) -> str:
+                  server_ids: Mapping[str, str], *,
+                  connection_kinds: Mapping[str, str] | None = None) -> str:
     """Render policies for exactly observed and independently approved tools."""
     quote = lambda value: json.dumps(value, ensure_ascii=False)
     sections = []
     for service in ('testops', 'kaiten', 'context7', 'jam'):
         if service not in server_ids:
             continue
-        server_id = quote(server_ids[service])
-        base = (f'mcp_servers.{server_id}' if service == 'testops' and server_ids[service] != 'testops' else
+        identity = server_ids[service]
+        known = {'testops': {'testops': 'bundled', 'qaily_testops': 'top-level'},
+                 'kaiten': {'kaiten': 'bundled'}, 'context7': {'context7': 'bundled'},
+                 'jam': {'jam': 'bundled'}}
+        kind = (connection_kinds or {}).get(service) or known[service].get(identity)
+        if kind not in ('bundled', 'top-level'):
+            raise ValueError(f'qaily: specify connection kind for {service} ({identity})')
+        server_id = quote(identity)
+        base = (f'mcp_servers.{server_id}' if kind == 'top-level' else
                 f'plugins."qaily@qaily-codex".mcp_servers.{server_id}')
         observed = set(catalog.get(service, []))
         reads = sorted(observed.intersection(approved_reads.get(service, [])))
