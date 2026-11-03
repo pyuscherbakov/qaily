@@ -5,6 +5,9 @@ import shutil
 
 import pytest
 
+# These are source examples read by review-autotest, not tests of this package.
+collect_ignore = ["fixtures/autotests"]
+
 
 @pytest.fixture
 def package_copy(tmp_path: Path) -> Path:
