@@ -17,7 +17,7 @@ def package_copy(tmp_path: Path) -> Path:
     for relative in (
         ".codex-plugin", ".claude-plugin", ".agents/plugins", ".mcp.json",
         "mcp-servers.json", "skills", "agents", "references",
-        "bin/qaily_launch.py", "bin/qaily_config.py", "bin/qaily_setup.py", "README.md", "docs/codex-install.md",
+        "bin/qaily_launch.py", "bin/qaily_diagnostics.py", "bin/qaily_config.py", "bin/qaily_setup.py", "README.md", "docs/codex-install.md",
         "docs/windows-checklist.md", "settings.local.json.example",
     ):
         path = source / relative

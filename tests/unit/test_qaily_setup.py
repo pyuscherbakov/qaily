@@ -13,9 +13,9 @@ def load_settings(*args):
     from qaily_config import load_settings as func
     return func(*args)
 
-def render_codex_fragment(*args):
+def render_codex_fragment(*args, **kwargs):
     from qaily_setup import render_codex_fragment as func
-    return func(*args)
+    return func(*args, **kwargs)
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -51,8 +51,10 @@ def test_unicode_paths(tmp_path):
     root = package_root(tmp_path / 'Пакет с пробелами')
     fragment = render_codex_fragment(root, load_settings(tmp_path / 'absent'))
     config = parse_fragment(fragment)
-    helper = config['mcp_servers.qaily_testops']['http_headers_helper']
-    assert str(root / 'bin' / 'qaily_launch.py') in helper
+    assert config['mcp_servers.qaily_testops.env_http_headers']['authorization'] == 'QAILY_TESTOPS_AUTHORIZATION'
+    assert 'http_headers_helper' not in config['mcp_servers.qaily_testops']
+    helper_config = parse_fragment(render_codex_fragment(root, load_settings(tmp_path / 'absent'), auth_mode='keyring-helper'))
+    assert str(root / 'bin' / 'qaily_launch.py') in helper_config['mcp_servers.qaily_testops']['http_headers_helper']
     assert config['mcp_servers.qaily_testops']['url'] == 'https://astbroker.qatools.cloud/api/mcp'
     assert config['plugins."qaily@qaily-codex".mcp_servers.testops']['enabled'] is False
 
@@ -62,7 +64,7 @@ def test_repeat_render_no_duplicate_registration(tmp_path):
     root = package_root(tmp_path / 'package')
     first = render_codex_fragment(root, settings)
     assert first == render_codex_fragment(root, settings)
-    assert {key for key in parse_fragment(first) if key.startswith('mcp_servers.')} == {'mcp_servers.qaily_testops'}
+    assert {key for key in parse_fragment(first) if key.startswith('mcp_servers.')} == {'mcp_servers.qaily_testops', 'mcp_servers.qaily_testops.env_http_headers'}
 
 
 def test_render_rejects_deleted_installed_helper_without_touching_config(tmp_path):
@@ -72,7 +74,8 @@ def test_render_rejects_deleted_installed_helper_without_touching_config(tmp_pat
     config = tmp_path / 'config.toml'
     config.write_text('existing = true\n', encoding='utf-8')
     with pytest.raises(ValueError, match='qaily_launch.py'):
-        render_codex_fragment(root, settings)
+        render_codex_fragment(root, settings, auth_mode='keyring-helper')
+    assert 'env_http_headers' in render_codex_fragment(root, settings)
     assert config.read_text(encoding='utf-8') == 'existing = true\n'
 
 

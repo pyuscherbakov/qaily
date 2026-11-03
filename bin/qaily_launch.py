@@ -98,30 +98,12 @@ def probe(url: str, header: str, value: str) -> tuple[str, bool]:
 
 
 def check() -> int:
-    settings = load_settings()
-    urls = {
-        "allure": settings["testops_url"] + "/api/rs/project",
-        "redmine": settings["redmine_url"] + "/users/current.json",
-        "kaiten": settings["kaiten_url"] + "/api/latest/users/current",
-    }
-    healthy = True
-    for name, endpoint in CHECKS.items():
-        value, source = resolve_secret(name)
-        if value is None:
-            if endpoint is None:
-                print(f"{name}: не найден (необязательный)")
-            else:
-                print(f"{name}: не найден — {MissingSecret(name)}")
-                healthy = False
-            continue
-        if endpoint is None:
-            print(f"{name}: {source}")
-            continue
-        _, header, template = endpoint
-        result, ok = probe(urls[name], header, template.format(value))
-        print(f"{name}: {source} — {result}")
-        healthy = healthy and ok
-    return 0 if healthy else 1
+    # Lazy import keeps the launcher usable by diagnostics without an import cycle.
+    from qaily_diagnostics import format_checks, token_checks
+
+    results = token_checks(load_settings())
+    print(format_checks(results))
+    return 1 if any(r.status == "error" for r in results) else 0
 
 
 def launch(cmd: list[str], env: dict[str, str]) -> int:
