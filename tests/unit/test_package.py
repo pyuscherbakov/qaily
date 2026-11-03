@@ -80,7 +80,7 @@ def test_manifest_versions_match(package_copy: Path) -> None:
 
 
 def test_seven_servers_keep_pins(package_copy: Path) -> None:
-    # Break caught: packaging drops a connection, changes a dependency or enables unauthenticated TestOps.
+    # Break caught: packaging drops a connection, changes a dependency or disables the official TestOps connection.
     codex = read_json(package_copy, ".mcp.json")["mcpServers"]
     claude = read_json(package_copy, "mcp-servers.json")["mcpServers"]
     assert set(codex) == set(claude) == SERVERS
@@ -99,6 +99,6 @@ def test_seven_servers_keep_pins(package_copy: Path) -> None:
             assert pin in servers[name]["args"], name
         assert servers["testops"]["url"] == "https://astbroker.qatools.cloud/api/mcp"
         assert servers["jam"]["url"] == "https://mcp.jam.dev/mcp"
-    assert codex["testops"]["enabled"] is False
+    assert codex["testops"]["enabled"] is True
     assert "headersHelper" not in codex["testops"]
     assert "http_headers_helper" not in codex["testops"]

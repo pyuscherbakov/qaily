@@ -3,7 +3,7 @@
     "testops": {
       "type": "http",
       "url": "https://astbroker.qatools.cloud/api/mcp",
-      "enabled": false
+      "enabled": true
     },
     "redmine": {
       "type": "stdio",

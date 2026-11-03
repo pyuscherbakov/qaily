@@ -30,15 +30,45 @@ def render_codex_fragment(package_root: Path, settings: Mapping[str, str]) -> st
             'default_tools_approval_mode = "prompt"\n')
 
 
+def render_policy(catalog: Mapping[str, list[str]], approved_reads: Mapping[str, list[str]],
+                  server_ids: Mapping[str, str]) -> str:
+    """Render policies for exactly observed and independently approved tools."""
+    quote = lambda value: json.dumps(value, ensure_ascii=False)
+    sections = []
+    for service in ('testops', 'kaiten', 'context7', 'jam'):
+        if service not in server_ids:
+            continue
+        server_id = quote(server_ids[service])
+        base = (f'mcp_servers.{server_id}' if service == 'testops' else
+                f'plugins."qaily@qaily-codex".mcp_servers.{server_id}')
+        observed = set(catalog.get(service, []))
+        reads = sorted(observed.intersection(approved_reads.get(service, [])))
+        if service == 'testops':
+            sections.append(f'[{base}]\ndefault_tools_approval_mode = "prompt"')
+            for tool in reads:
+                sections.append(f'[{base}.tools.{quote(tool)}]\napproval_mode = "approve"')
+        else:
+            sections.append(f'[{base}]\nenabled_tools = {json.dumps(reads, ensure_ascii=False)}')
+    return '\n\n'.join(sections) + ('\n' if sections else '')
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     sub = parser.add_subparsers(dest='mode', required=True)
     render = sub.add_parser('render')
     render.add_argument('--package-root', type=Path, required=True)
     render.add_argument('--settings', type=Path)
+    policy = sub.add_parser('policy')
+    policy.add_argument('--catalog', type=Path, required=True)
+    policy.add_argument('--approved-reads', type=Path, default=Path(__file__).resolve().parents[1] / 'references/policies/read-tools.json')
     args = parser.parse_args()
     try:
-        print(render_codex_fragment(args.package_root, load_settings(args.settings)), end='')
+        if args.mode == 'policy':
+            catalog = json.loads(args.catalog.read_text(encoding='utf-8'))
+            approved = json.loads(args.approved_reads.read_text(encoding='utf-8'))
+            print(render_policy(catalog, approved, {'testops': 'qaily_testops', 'kaiten': 'kaiten', 'context7': 'context7', 'jam': 'jam'}), end='')
+        else:
+            print(render_codex_fragment(args.package_root, load_settings(args.settings)), end='')
         return 0
     except ValueError as error:
         print(error, file=sys.stderr)
