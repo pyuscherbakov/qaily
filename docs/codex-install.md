@@ -85,7 +85,10 @@ python3 "/absolute/installedPath/bin/qaily_setup.py" render --package-root "/abs
 `default_tools_approval_mode = "prompt"` в одной таблице. Остальные серверы
 остаются в пакете. Не копируйте этот фрагмент повторно целиком: TOML не допускает
 дублирующиеся таблицы. После marketplace update снова возьмите актуальный
-`installedPath` и замените путь helper: старый cache может исчезнуть.
+`installedPath` и замените путь helper: старый cache может исчезнуть. Render
+проверяет наличие `bin/qaily_launch.py` в указанном пакете, но не проверяет
+путь в уже применённом config.toml; до такой проверки не считайте старую
+настройку готовой к записи.
 
 На проверенном Codex CLI 0.166.0-alpha.5.1 изолированный app-server не передал
 `QAILY_ALLURE` из своего окружения в процесс HTTP helper; это ограничение нельзя

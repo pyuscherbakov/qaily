@@ -11,10 +11,16 @@ from collections.abc import Mapping
 from qaily_config import load_settings
 
 
-def render_codex_fragment(package_root: Path, settings: Mapping[str, str]) -> str:
-    script = str(package_root.resolve() / 'bin' / 'qaily_launch.py')
+def format_helper_command(script: str, *, windows: bool) -> str:
     args = ['uv', 'run', '-q', '--script', script, 'headers', 'Authorization=Api-Token {allure}']
-    helper = subprocess.list2cmdline(args) if os.name == 'nt' else shlex.join(args)
+    return subprocess.list2cmdline(args) if windows else shlex.join(args)
+
+
+def render_codex_fragment(package_root: Path, settings: Mapping[str, str]) -> str:
+    script = package_root.resolve() / 'bin' / 'qaily_launch.py'
+    if not script.is_file():
+        raise ValueError('qaily: qaily_launch.py не найден; укажите актуальный installedPath установленного пакета')
+    helper = format_helper_command(str(script), windows=os.name == 'nt')
     quote = lambda value: json.dumps(value, ensure_ascii=False)
     return ('[plugins."qaily@qaily-codex".mcp_servers.testops]\n'
             'enabled = false\n\n'
