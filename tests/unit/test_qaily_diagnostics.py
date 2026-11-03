@@ -61,3 +61,29 @@ def test_applied_config_stale_helper_and_untrusted_error(monkeypatch, tmp_path):
     monkeypatch.setattr(diagnostics, 'resolve_secret', lambda name: ('SECRET_CANARY', 'env'))
     monkeypatch.setattr(diagnostics, 'probe', lambda *args: ('сеть: SECRET_CANARY', False))
     assert 'SECRET_CANARY' not in diagnostics.format_checks(diagnostics.token_checks(load_settings(tmp_path / 'missing')))
+
+
+@pytest.mark.parametrize('script', [r'C:\qaily\bin\qaily_launch.py', r'C:\Users\Test User\qaily\bin\qaily_launch.py'])
+def test_applied_config_preserves_windows_helper_path(monkeypatch, tmp_path, script):
+    import json
+    import subprocess
+    import sys
+    if sys.version_info < (3, 11):
+        pytest.skip('tomllib unavailable')
+    command = subprocess.list2cmdline(['uv', 'run', '--script', script, 'headers', 'Authorization=Api-Token {allure}'])
+    config = tmp_path / 'config.toml'
+    config.write_text('[mcp_servers.qaily_testops]\nhttp_headers_helper = ' + json.dumps(command) + '\n')
+    seen = []
+    monkeypatch.setattr(Path, 'is_file', lambda path: seen.append(str(path)) or str(path) == script)
+    assert diagnostics.applied_config_check(config)[0].status == 'ok'
+    assert seen == [script]
+
+
+@pytest.mark.parametrize('value', ['"SECRET_CANARY"', '[]', '42'])
+def test_applied_config_rejects_non_table_servers_without_leaking(tmp_path, value):
+    import sys
+    config = tmp_path / 'config.toml'
+    config.write_text('mcp_servers = ' + value + '\n')
+    result = diagnostics.applied_config_check(config)[0]
+    assert result.status == ('error' if sys.version_info >= (3, 11) else 'not_checked')
+    assert 'SECRET_CANARY' not in diagnostics.format_checks([result])

@@ -10,3 +10,4 @@
 - Browser MCP недоступен: dependency not_checked/error; review-testcase без browser остаётся доступен.
 - Policy задана в конфигурации: config ok, runtime policy not_checked до наблюдаемой проверки без bypass.
 - Применённый helper указывает на удалённый cache: config error; без TOML parser — not_checked.
+- Отсутствует или недоступен файл установленного плагина: отдельный результат resources error/not_checked, без чтения вне разрешённой области и без обхода sandbox; browser проверяется отдельно.

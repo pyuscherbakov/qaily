@@ -74,14 +74,22 @@ def applied_config_check(path: Path) -> list[CheckResult]:
         return [CheckResult('applied config', 'config', 'not_checked', 'файл отсутствует')]
     except (OSError, UnicodeError, ValueError):
         return [CheckResult('applied config', 'config', 'error', 'не удалось прочитать TOML')]
-    server = data.get('mcp_servers', {}).get('qaily_testops', {})
+    servers = data.get('mcp_servers', {})
+    if not isinstance(servers, dict):
+        return [CheckResult('applied config', 'config', 'error', 'неверная конфигурация серверов')]
+    server = servers.get('qaily_testops', {})
     if not isinstance(server, dict):
         return [CheckResult('applied config', 'config', 'error', 'неверная конфигурация сервера')]
     helper = server.get('http_headers_helper')
     if isinstance(helper, str):
         try:
-            args = shlex.split(helper, posix=True)
+            # list2cmdline emits Windows paths with literal backslashes; POSIX
+            # shlex would consume them, even when the path has no spaces.
+            windows = bool(re.search(r'(?:[A-Za-z]:\\|\\\\)', helper))
+            args = shlex.split(helper, posix=not windows)
             script = args[args.index('--script') + 1]
+            if windows and len(script) >= 2 and script[0] == script[-1] == '"':
+                script = script[1:-1]
             exists = Path(script).is_file()
         except (ValueError, IndexError, OSError):
             exists = False
