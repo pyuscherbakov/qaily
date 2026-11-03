@@ -143,10 +143,11 @@ def main() -> None:
     if args.transport == "http":
         serve_http(fixture, args.host, args.port)
     else:
-        for line in sys.stdin:
+        for line in sys.stdin.buffer:
             response = fixture.handle(json.loads(line))
             if response is not None:
-                print(json.dumps(response), flush=True)
+                sys.stdout.buffer.write(json.dumps(response).encode("utf-8") + b"\n")
+                sys.stdout.buffer.flush()
 
 
 if __name__ == "__main__":

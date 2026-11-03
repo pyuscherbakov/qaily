@@ -58,7 +58,7 @@ and a `write_count` on scripted tool calls. It omits headers and result payloads
 for custom write names. Annotation hints do not enforce client policy.
 
 ```text
-uv run --no-project --with pytest pytest tests/integration/test_fake_mcp.py -q
+uv run --with pytest pytest tests/integration/test_fake_mcp.py -q
 ```
 
 ## Isolated profile and installation

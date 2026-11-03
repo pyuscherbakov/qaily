@@ -2,6 +2,7 @@
 import contextlib
 import importlib.util
 import json
+import os
 from pathlib import Path
 import queue
 import threading
@@ -178,3 +179,28 @@ def test_rejects_non_loopback_bind(tmp_path, host):
                              "--fixture", str(fixture)], capture_output=True, timeout=5)
     assert result.returncode != 0
     assert b"loopback" in result.stderr.lower()
+
+
+def test_stdio_preserves_utf8_under_legacy_process_encoding(tmp_path):
+    # Platform-decoded stdin corrupts UTF-8 arguments; platform-encoded stdout may
+    # corrupt a Unicode result. Check both actual subprocess wire and journal.
+    data = fixture_data()
+    data["responses"]["read_item"] = [text_result("Ответ: снеговик ☃")]
+    fixture = tmp_path / "fixture.json"
+    journal = tmp_path / "journal.jsonl"
+    fixture.write_text(json.dumps(data), encoding="utf-8")
+    message = {"jsonrpc": "2.0", "id": 1, "method": "tools/call",
+               "params": {"name": "read_item", "arguments": {"text": "Привет"}}}
+    result = subprocess.run(
+        [sys.executable, str(SERVER), "--transport", "stdio", "--journal", str(journal),
+         "--fixture", str(fixture)],
+        input=(json.dumps(message, ensure_ascii=False) + "\n").encode("utf-8"),
+        env={**os.environ, "PYTHONIOENCODING": "cp1252"},
+        capture_output=True, timeout=5,
+    )
+    assert result.returncode == 0, result.stderr.decode("utf-8", errors="replace")
+    assert result.stderr == b""
+    response = json.loads(result.stdout.decode("utf-8"))
+    assert response["result"] == text_result("Ответ: снеговик ☃")
+    event = json.loads(journal.read_text(encoding="utf-8"))
+    assert event["arguments"] == {"text": "Привет"}
