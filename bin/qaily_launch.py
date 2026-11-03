@@ -86,10 +86,16 @@ CHECKS = {
 }
 
 
-def probe(url: str, header: str, value: str) -> tuple[str, bool]:
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+def probe(url: str, header: str, value: str, *, follow_redirects: bool = True) -> tuple[str, bool]:
     request = urllib.request.Request(url, headers={header: value})
     try:
-        with urllib.request.urlopen(request, timeout=10) as response:
+        open_request = urllib.request.urlopen if follow_redirects else urllib.request.build_opener(NoRedirect()).open
+        with open_request(request, timeout=10) as response:
             return f"HTTP {response.status}", True
     except urllib.error.HTTPError as error:
         return f"HTTP {error.code}", False
@@ -136,11 +142,22 @@ def main(argv: list[str] | None = None) -> int:
     headers_mode = modes.add_parser("headers")
     headers_mode.add_argument("specs", nargs="+")
     modes.add_parser("check")
+    codex = modes.add_parser("check-codex")
+    codex.add_argument("--config", type=Path, required=True)
+    codex.add_argument("--same-process-env", action="store_true")
     args = parser.parse_args(argv)
 
     try:
         if args.mode == "check":
             return check()
+        if args.mode == "check-codex":
+            from qaily_diagnostics import codex_testops_check, token_checks
+            settings = load_settings()
+            results = token_checks(settings, skip_allure=True)
+            results.append(codex_testops_check(settings, args.config, os.environ if args.same_process_env else None))
+            for result in results:
+                print(f"{result.name}: {result.status} — {result.detail}")
+            return 1 if any(result.status == "error" for result in results) else 0
         if args.mode == "headers":
             print(json.dumps(render_headers(args.specs)))
             return 0

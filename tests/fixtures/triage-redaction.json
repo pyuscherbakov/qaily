@@ -1,0 +1,27 @@
+{
+  "tools": [
+    {
+      "name": "testops_find_testresults",
+      "description": "Read synthetic test results",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "readOnlyHint": true
+      }
+    }
+  ],
+  "responses": {
+    "testops_find_testresults": [
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\": [{\"id\": 1, \"name\": \"test_header\", \"status\": \"failed\", \"message\": \"HTTP 401 Authorization: Bearer MSG_CANARY_9a8\", \"trace\": \"TRACE_ONLY_IN_CHILD\"}, {\"id\": 2, \"name\": \"test_trace\", \"status\": \"broken\", \"message\": \"\", \"trace\": \"HTTP 500 password=TRACE_CANARY_9b8\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 3, \"name\": \"test_url\", \"status\": \"failed\", \"message\": \"HTTP 401 https://USER_CANARY:PASS_CANARY@example.invalid/contracts/8123/?token=QUERY_CANARY\", \"trace\": \"TRACE_ONLY_IN_CHILD\"}, {\"id\": 4, \"name\": \"test_cookie\", \"status\": \"failed\", \"message\": \"Cookie: session=COOKIE_CANARY; token=TOKEN_CANARY\", \"trace\": \"TRACE_ONLY_IN_CHILD\"}, {\"id\": 5, \"name\": \"test_email\", \"status\": \"failed\", \"message\": \"customer EMAIL_CANARY@example.invalid not found\", \"trace\": \"TRACE_ONLY_IN_CHILD\"}, {\"id\": 6, \"name\": \"test_business\", \"status\": \"failed\", \"message\": \"assert 350 == 420 for 'ВЕСТА GFK350'\", \"trace\": \"TRACE_ONLY_IN_CHILD\"}], \"totalElements\": 6, \"totalPages\": 1}"
+          }
+        ]
+      }
+    ]
+  }
+}

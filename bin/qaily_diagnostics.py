@@ -16,12 +16,14 @@ class CheckResult:
     detail: str
 
 
-def token_checks(settings: Mapping[str, str]) -> list[CheckResult]:
+def token_checks(settings: Mapping[str, str], *, skip_allure: bool = False) -> list[CheckResult]:
     paths = {'allure': ('testops_url', '/api/rs/project'),
              'redmine': ('redmine_url', '/users/current.json'),
              'kaiten': ('kaiten_url', '/api/latest/users/current')}
     results = []
     for name, endpoint in CHECKS.items():
+        if skip_allure and name == 'allure':
+            continue
         try:
             value, source = resolve_secret(name)
         except Exception:
@@ -101,3 +103,82 @@ def applied_config_check(path: Path) -> list[CheckResult]:
 
 def format_checks(results: Sequence[CheckResult]) -> str:
     return '\n'.join(f'{result.name}: {result.detail}' for result in results)
+
+
+def codex_testops_check(settings: Mapping[str, str], path: Path,
+                        process_env: Mapping[str, str] | None) -> CheckResult:
+    """Conservative inspection; process_env is supplied only when known to match Codex."""
+    def result(status: str, detail: str) -> CheckResult:
+        return CheckResult('Codex TestOps', 'http', status, detail)
+
+    try:
+        import tomllib
+    except ImportError:
+        return result('not_checked', 'TOML parser недоступен')
+    try:
+        data = tomllib.loads(path.read_text(encoding='utf-8'))
+        servers = data.get('mcp_servers', {})
+        plugins = data.get('plugins', {})
+        plugin = plugins.get('qaily@qaily-codex', {})
+        bundled = plugin.get('mcp_servers', {}).get('testops', {})
+        top = servers.get('qaily_testops', {})
+        if not all(isinstance(x, dict) for x in (servers, plugins, plugin, bundled, top)):
+            raise ValueError
+        if any('enabled' in item and not isinstance(item['enabled'], bool) for item in (top, bundled)):
+            raise ValueError
+        top_enabled = bool(top) and top.get('enabled', True) is not False
+        bundled_enabled = bundled.get('enabled', True) is not False
+    except FileNotFoundError:
+        return result('not_checked', 'применённая конфигурация недоступна')
+    except (OSError, UnicodeError, ValueError, AttributeError, TypeError):
+        return result('error', 'не удалось прочитать конфигурацию')
+    if top_enabled and bundled_enabled:
+        return result('error', 'возможны два активных подключения TestOps')
+    if not top_enabled:
+        if bundled_enabled:
+            return result('not_checked', 'bundled TestOps: активный URL и авторизация требуют проверки в клиенте')
+        return result('not_checked', 'активное подключение TestOps не определено')
+    expected = settings['testops_url'].rstrip('/') + '/api/mcp'
+    if top.get('url') != expected:
+        return result('not_checked', 'URL применённого подключения отличается от settings или неизвестен')
+    if any(key in top for key in ('bearer_token_env_var', 'http_headers')):
+        return result('not_checked', 'дополнительная авторизация не распознана')
+    headers = top.get('env_http_headers', {})
+    helper = top.get('http_headers_helper')
+    if headers == {'Authorization': 'QAILY_TESTOPS_AUTHORIZATION'} and helper is None:
+        mode = 'env-header'
+    elif not headers and isinstance(helper, str):
+        try:
+            windows = bool(re.search(r'(?:[A-Za-z]:\\|\\\\)', helper))
+            args = shlex.split(helper, posix=not windows)
+            if windows:
+                args = [a[1:-1] if len(a) >= 2 and a[0] == a[-1] == '"' else a for a in args]
+            valid = (len(args) == 7 and args[:4] == ['uv', 'run', '-q', '--script']
+                     and Path(args[4]).resolve() == Path(__file__).resolve().parent / 'qaily_launch.py'
+                     and args[5:] == ['headers', 'Authorization=Api-Token {allure}'])
+        except (ValueError, OSError):
+            valid = False
+        if not valid:
+            return result('not_checked', 'helper не распознан')
+        mode = 'keyring-helper'
+    else:
+        return result('not_checked', 'режим авторизации не распознан')
+    if process_env is None:
+        return result('not_checked', f'{mode}: окружение процесса Codex неизвестно')
+    if mode == 'env-header':
+        value = process_env.get('QAILY_TESTOPS_AUTHORIZATION', '').strip()
+    else:
+        try:
+            value, _ = resolve_secret('allure')
+        except Exception:
+            value = None
+        value = f'Api-Token {value}' if value else ''
+    if not value:
+        return result('error', f'{mode}: авторизация отсутствует')
+    try:
+        message, ok = probe(settings['testops_url'].rstrip('/') + '/api/rs/project', 'Authorization', value, follow_redirects=False)
+        if not re.fullmatch(r'HTTP \d{3}', message):
+            message, ok = 'сетевая ошибка или ошибка проверки', False
+    except Exception:
+        message, ok = 'ошибка проверки', False
+    return result('ok' if ok else 'error', f'{mode}: {message}; HTTP не подтверждает MCP')
