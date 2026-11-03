@@ -137,3 +137,14 @@ def test_skill_symlink_resolves_resources_from_installed_copy(package_copy: Path
     real_skill = (link / "SKILL.md").resolve()
     for relative in ("../../references/platforms/claude.md", "../../references/platforms/codex.md", "../../references/project-selection.md"):
         contained_resource(package_copy, real_skill.parent / relative)
+
+
+def test_codex_stdio_credentials_are_forwarded_only_to_their_servers(package_copy: Path) -> None:
+    # Break caught: the native compatibility launcher loses its targeted credential,
+    # or a browser process receives a credential it does not need.
+    servers = read_json(package_copy, '.mcp.json')['mcpServers']
+    assert servers['redmine'].get('env_vars') == ['QAILY_REDMINE']
+    assert servers['kaiten'].get('env_vars') == ['QAILY_KAITEN']
+    assert servers['context7'].get('env_vars') == ['QAILY_CONTEXT7']
+    assert not servers['playwright'].get('env_vars')
+    assert not servers['chrome-devtools'].get('env_vars')
