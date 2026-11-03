@@ -105,18 +105,19 @@ python3 "/absolute/installedPath/bin/qaily_setup.py" render --package-root "/abs
 bundled `testops` только при применении этого варианта, чтобы не создавать два
 подключения. Из коробки активен официальный bundled HTTP endpoint. По словам
 пользователя, он доступен только из России; доступность сети и авторизация —
-разные проверки. Рабочий helper и реальный keyring пока не подтверждены. Политика из
-примера не применяется автоматически к bundled подключению; до проверки
-действующей policy не выполняйте запись.
+разные проверки. Рабочий helper и реальный keyring пока не подтверждены. Политика не применяется автоматически; настройка и проверка policy обязательны
+для безопасной работы до выполнения записи.
 
 `python3 /absolute/installedPath/bin/qaily_setup.py policy --catalog catalog.json`
 печатает отдельный фрагмент. `catalog.json` — объект service → массив точных
 имён из `tools/list`; данные каталога не должны содержать секретов. Генератор
 пересекает каталог с `references/policies/read-tools.json`. У TestOps действует
 prompt по умолчанию, проверенные чтения получают `approve`; Kaiten, Context7 и Jam получают только пересечение списков.
-Таблицу `mcp_servers.qaily_testops` нужно объединить с таблицей из `render`,
-а не добавлять второй раз. Plugin policy относится к `qaily@qaily-codex`,
-а не к top-level TestOps. Проверенные по исходникам pinned Kaiten и Context7
+По умолчанию policy относится к bundled `testops` в `qaily@qaily-codex`.
+Если применён необязательный `render`, добавьте к команде `policy` параметр
+`--testops-connection top-level`: таблицу `mcp_servers.qaily_testops` нужно
+объединить с таблицей из `render`, а не добавлять второй раз. Plugin policy
+не применяется к top-level TestOps. Проверенные по исходникам pinned Kaiten и Context7
 чтения перечислены в реестре; TestOps и Jam ожидают аудита каталога. Отсутствие
 каталога означает пустой allowlist, и чтение этих серверов будет недоступно.
 

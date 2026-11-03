@@ -55,3 +55,12 @@ def test_policy_uses_actual_server_id():
 def test_redmine_readonly_is_retained(package_copy: Path):
     config = json.loads((package_copy / '.mcp.json').read_text())
     assert config['mcpServers']['redmine']['env']['REDMINE_READ_ONLY'] == '1'
+
+
+def test_bundled_testops_policy_targets_plugin_connection():
+    policy = parse_fragment(render_policy(
+        {'testops': ['read_item']}, {'testops': ['read_item']}, {'testops': 'testops'}))
+    server = policy['plugins']['qaily@qaily-codex']['mcp_servers']['testops']
+    assert server['default_tools_approval_mode'] == 'prompt'
+    assert server['tools']['read_item']['approval_mode'] == 'approve'
+    assert 'mcp_servers' not in policy

@@ -39,7 +39,7 @@ def render_policy(catalog: Mapping[str, list[str]], approved_reads: Mapping[str,
         if service not in server_ids:
             continue
         server_id = quote(server_ids[service])
-        base = (f'mcp_servers.{server_id}' if service == 'testops' else
+        base = (f'mcp_servers.{server_id}' if service == 'testops' and server_ids[service] != 'testops' else
                 f'plugins."qaily@qaily-codex".mcp_servers.{server_id}')
         observed = set(catalog.get(service, []))
         reads = sorted(observed.intersection(approved_reads.get(service, [])))
@@ -60,13 +60,14 @@ def main() -> int:
     render.add_argument('--settings', type=Path)
     policy = sub.add_parser('policy')
     policy.add_argument('--catalog', type=Path, required=True)
+    policy.add_argument('--testops-connection', choices=('bundled', 'top-level'), default='bundled')
     policy.add_argument('--approved-reads', type=Path, default=Path(__file__).resolve().parents[1] / 'references/policies/read-tools.json')
     args = parser.parse_args()
     try:
         if args.mode == 'policy':
             catalog = json.loads(args.catalog.read_text(encoding='utf-8'))
             approved = json.loads(args.approved_reads.read_text(encoding='utf-8'))
-            print(render_policy(catalog, approved, {'testops': 'qaily_testops', 'kaiten': 'kaiten', 'context7': 'context7', 'jam': 'jam'}), end='')
+            print(render_policy(catalog, approved, {'testops': 'testops' if args.testops_connection == 'bundled' else 'qaily_testops', 'kaiten': 'kaiten', 'context7': 'context7', 'jam': 'jam'}), end='')
         else:
             print(render_codex_fragment(args.package_root, load_settings(args.settings)), end='')
         return 0
