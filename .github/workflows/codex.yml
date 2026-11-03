@@ -1,0 +1,32 @@
+name: codex
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  automated:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ['3.10', '3.12']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: astral-sh/setup-uv@v6
+      - name: Unit, package and fake MCP protocol
+        run: uv run --no-project --python ${{ matrix.python }} --with pytest --with keyring==25.6.0 pytest -q -p no:cacheprovider
+  native-integration:
+    # Enable only after a safe, isolated authentication fixture is supplied.
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Native Codex integration is not configured"

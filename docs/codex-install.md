@@ -11,12 +11,12 @@
 а не заявленная минимальная. В терминале, где доступен `codex`, выполните:
 
 ```sh
-codex plugin marketplace add /absolute/path/to/qaily --json
+codex plugin marketplace add <путь-к-клону> --json
 codex plugin add qaily@qaily-codex --json
 codex plugin list --json
 ```
 
-Замените `/absolute/path/to/qaily` на путь к клону репозитория; путь с пробелами
+Замените `<путь-к-клону>` на путь к клону репозитория; путь с пробелами
 заключите в кавычки. `source.path` в `.agents/plugins/marketplace.json`
 отсчитывается от корня marketplace. Клиент копирует пакет в свой plugin cache;
 ответ установки содержит `installedPath`. Исходный checkout не должен быть cwd
@@ -25,8 +25,7 @@ codex plugin list --json
 В нативном каталоге клиента они отображаются с префиксом `qaily:`, например
 `qaily:test-design`.
 
-Для приватного Git marketplace локальный клон можно получить обычными средствами
-Git с уже настроенной аутентификацией. Прямая установка и обновление по Git URL,
+Для приватного Git marketplace сначала клонируйте репозиторий обычными средствами Git с уже настроенной аутентификацией, затем используйте локальный путь в командах выше. Обновите клон и marketplace, затем проверьте версию и ресурсы в установленном cache. Прямая установка и обновление по Git URL,
 Windows/Linux и desktop UI пока не проверены. Не передавайте credentials в URL.
 
 ## Ограничения текущего этапа
@@ -51,7 +50,7 @@ Bundled `testops` включён и использует официальный 
 Необязательный альтернативный top-level TestOps создаётся командой:
 
 ```sh
-python3 "/absolute/installedPath/bin/qaily_setup.py" render --package-root "/absolute/installedPath"
+python3 "<installedPath>/bin/qaily_setup.py" render --package-root "<installedPath>"
 ```
 
 Команда печатает несекретный TOML; вручную объедините его с `~/.codex/config.toml` без повторения таблиц. Фрагмент отключает bundled TestOps, чтобы избежать дубликата, и задаёт `env_http_headers.Authorization = "QAILY_TESTOPS_AUTHORIZATION"`. Пользователь отдельно задаёт в окружении процесса Codex **полный** заголовок `Api-Token ...`; не помещайте его в config, чат или логи. `QAILY_ALLURE` и keyring автоматически в него не преобразуются. На Codex CLI 0.166.0-alpha.5.1 этот механизм проверен с синтетическим локальным MCP и фиктивным заголовком; реальные токены, сервис, другие версии и безопасность распространения окружения не проверены.
@@ -69,7 +68,7 @@ bundled `testops` только при применении этого вариа
 но подтверждения bundled TestOps в действии ещё не проверены. Проверка policy
 обязательна до выполнения записи.
 
-`python3 /absolute/installedPath/bin/qaily_setup.py policy --catalog catalog.json`
+`python3 "<installedPath>/bin/qaily_setup.py" policy --catalog catalog.json`
 печатает дополнительный фрагмент для проверенного снимка каталога. `catalog.json` — объект service → массив точных
 имён из `tools/list`; данные каталога не должны содержать секретов. Генератор
 пересекает каталог с `references/policies/read-tools.json`. У TestOps действует
@@ -89,3 +88,5 @@ prompt по умолчанию, проверенные чтения получа
 сохраняется, но общий `redmine_request` может принимать разные HTTP-методы:
 одним именем инструмента нельзя гарантировать запрет записи. Требуются проверка
 ограничений сервера и read-only токен; до неё запрет записи не подтверждён.
+
+Результаты и незакрытые сценарии установки, обновления и работы клиентов приведены в [матрице приёмки](codex-validation.md).
