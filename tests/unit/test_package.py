@@ -47,6 +47,14 @@ def test_package_resource_closure(package_copy: Path, monkeypatch, tmp_path: Pat
     assert {path.stem for path in (package_copy / "agents").glob("*.md")} == {
         "doc-researcher", "autotest-reviewer", "failure-analyst",
     }
+    # Core documents must be present in the copied distribution, independent of cwd.
+    for relative in (
+        "references/platforms/claude.md", "references/platforms/codex.md",
+        "references/project-selection.md", "references/projects.json",
+        *(f"references/agents/{name}.md" for name in (
+            "doc-researcher", "autotest-reviewer", "failure-analyst")),
+    ):
+        contained_resource(package_copy, package_copy / relative)
     # Resource references include root-relative agent paths and skill-relative ../ paths.
     resource_pattern = re.compile(
         r"(?:\$\{(?:CLAUDE_)?PLUGIN_ROOT\}/)?(?:\.\./)*(?:agents|references|bin|skills)/[\w./-]+\.(?:md|py|json)"
@@ -57,6 +65,12 @@ def test_package_resource_closure(package_copy: Path, monkeypatch, tmp_path: Pat
                 relative = re.sub(r"^\$\{(?:CLAUDE_)?PLUGIN_ROOT\}/", "", match[0])
                 base = document.parent if relative.startswith("../") else package_copy
                 contained_resource(package_copy, base / relative)
+    # Backtick paths may be relative directly to a document (e.g. `projects.json`),
+    # which the root-oriented expression above does not cover.
+    local_ref = re.compile(r"`((?:(?:\.\./)+|\./)[\w./-]+\.(?:md|json|py)|projects\.json)`")
+    for document in (package_copy / "references").rglob("*.md"):
+        for relative in local_ref.findall(document.read_text(encoding="utf-8")):
+            contained_resource(package_copy, document.parent / relative)
     for config_path in (".mcp.json", "mcp-servers.json"):
         for server in read_json(package_copy, config_path)["mcpServers"].values():
             arguments = server.get("args", [])
@@ -102,3 +116,24 @@ def test_seven_servers_keep_pins(package_copy: Path) -> None:
     assert codex["testops"]["enabled"] is True
     assert "headersHelper" not in codex["testops"]
     assert "http_headers_helper" not in codex["testops"]
+
+
+def test_project_catalog_is_display_only_and_complete(package_copy: Path) -> None:
+    projects = read_json(package_copy, "references/projects.json")
+    assert projects == {
+        "1": "FAST2 Автострахование", "36": "FAST2 Виджеты",
+        "37": "FAST API Дилеров", "77": "FAST Claims", "34": "FAST Ипотека",
+        "42": "Insurplace", "35": "Демо проект", "43": "Копия Автострахование",
+        "39": "Кредитный модуль; подпись «= Финансовый модуль»",
+        "41": "Лизинг", "76": "Тестирование",
+    }
+
+
+def test_skill_symlink_resolves_resources_from_installed_copy(package_copy: Path, tmp_path: Path) -> None:
+    installed_skill = package_copy / "skills/review-testcase"
+    link = tmp_path / "external project" / ".agents/skills/review-testcase"
+    link.parent.mkdir(parents=True)
+    link.symlink_to(installed_skill, target_is_directory=True)
+    real_skill = (link / "SKILL.md").resolve()
+    for relative in ("../../references/platforms/claude.md", "../../references/platforms/codex.md", "../../references/project-selection.md"):
+        contained_resource(package_copy, real_skill.parent / relative)
