@@ -92,6 +92,9 @@ def test_seven_servers_keep_pins(package_copy: Path) -> None:
         "chrome-devtools": "chrome-devtools-mcp@1.9.0",
     }
     for servers in (codex, claude):
+        for service in ("redmine", "kaiten"):
+            args = servers[service]["args"]
+            assert args[args.index("--service") + 1] == service
         for name, pin in pins.items():
             assert pin in servers[name]["args"], name
         assert servers["testops"]["url"] == "https://astbroker.qatools.cloud/api/mcp"

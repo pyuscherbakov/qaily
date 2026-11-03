@@ -16,6 +16,8 @@ from pathlib import Path
 
 import keyring
 
+from qaily_config import load_settings, service_env
+
 SERVICE = "qaily"
 
 
@@ -96,6 +98,12 @@ def probe(url: str, header: str, value: str) -> tuple[str, bool]:
 
 
 def check() -> int:
+    settings = load_settings()
+    urls = {
+        "allure": settings["testops_url"] + "/api/rs/project",
+        "redmine": settings["redmine_url"] + "/users/current.json",
+        "kaiten": settings["kaiten_url"] + "/api/latest/users/current",
+    }
     healthy = True
     for name, endpoint in CHECKS.items():
         value, source = resolve_secret(name)
@@ -109,8 +117,8 @@ def check() -> int:
         if endpoint is None:
             print(f"{name}: {source}")
             continue
-        url, header, template = endpoint
-        result, ok = probe(url, header, template.format(value))
+        _, header, template = endpoint
+        result, ok = probe(urls[name], header, template.format(value))
         print(f"{name}: {source} — {result}")
         healthy = healthy and ok
     return 0 if healthy else 1
@@ -140,6 +148,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="qaily_launch.py")
     modes = parser.add_subparsers(dest="mode", required=True)
     run_mode = modes.add_parser("run")
+    run_mode.add_argument("--service", choices=("redmine", "kaiten"))
     run_mode.add_argument("--secret", action="append", default=[])
     run_mode.add_argument("--dir", action="append", default=[])
     headers_mode = modes.add_parser("headers")
@@ -147,16 +156,19 @@ def main(argv: list[str] | None = None) -> int:
     modes.add_parser("check")
     args = parser.parse_args(argv)
 
-    if args.mode == "check":
-        return check()
     try:
+        if args.mode == "check":
+            return check()
         if args.mode == "headers":
             print(json.dumps(render_headers(args.specs)))
             return 0
         if not command:
             parser.error("run: после -- нужна команда сервера")
-        return launch(command, build_env(args.secret, args.dir, os.environ))
-    except MissingSecret as error:
+        base = dict(os.environ)
+        if args.service:
+            base.update(service_env(args.service, load_settings()))
+        return launch(command, build_env(args.secret, args.dir, base))
+    except (MissingSecret, ValueError) as error:
         print(error, file=sys.stderr)
         return 1
 
