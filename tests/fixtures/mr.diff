@@ -1,0 +1,32 @@
+diff --git a/tests/fixtures/autotests/test_example.py b/tests/fixtures/autotests/test_example.py
+new file mode 100644
+index 0000000..dbd2314
+--- /dev/null
++++ b/tests/fixtures/autotests/test_example.py
+@@ -0,0 +1,26 @@
++"""Synthetic review input, intentionally includes defects. Never run as a test."""
++
++import allure
++import pytest
++
++
++@allure.id("39979")
++@allure.title("Расчет RESTART БАЗОВЫЙ для ЮЛ")
++def test_calc_restart_legal_entity(authorized_agent):
++    with allure.step("Открыть расчет"):
++        quote = {"role": authorized_agent["role"], "client_type": "ЮЛ"}
++    with allure.step("Получить результат"):
++        assert quote["client_type"] == "ЮЛ", "Тип клиента должен быть ЮЛ"
++
++
++@pytest.mark.parametrize("case_id, client_type", [(39980, "ФЛ"), (39982, "ИП")])
++def test_calc_restart_by_client_type(authorized_agent, case_id, client_type):
++    allure.dynamic.id(str(case_id))
++    with allure.step("Рассчитать продукт"):
++        result = {"client_type": client_type, "brand": authorized_agent["brand"]}
++    assert result["client_type"] == client_type, "Тип клиента должен сохраниться"
++
++
++def test_calc_restart_without_case(authorized_agent):
++    with allure.step("Проверить ответ"):
++        assert authorized_agent["brand"] == "LADA", "Бренд должен быть LADA"

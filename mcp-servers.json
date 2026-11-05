@@ -10,6 +10,7 @@
       "command": "uv",
       "args": [
         "run", "-q", "--script", "${CLAUDE_PLUGIN_ROOT}/bin/qaily_launch.py", "run",
+        "--service", "redmine",
         "--secret", "REDMINE_API_KEY=redmine",
         "--dir", "REDMINE_ALLOWED_DIRECTORIES=~/.qaily/redmine",
         "--", "uvx", "--from", "mcp-redmine==2026.09.10.084818", "mcp-redmine"
@@ -24,6 +25,7 @@
       "command": "uv",
       "args": [
         "run", "-q", "--script", "${CLAUDE_PLUGIN_ROOT}/bin/qaily_launch.py", "run",
+        "--service", "kaiten",
         "--secret", "KAITEN_TOKEN=kaiten",
         "--", "uvx", "--from", "git+https://github.com/pyuscherbakov/kaiten-mcp@8d3c666", "kaiten-mcp"
       ],

@@ -16,6 +16,8 @@ from pathlib import Path
 
 import keyring
 
+from qaily_config import load_settings, service_env
+
 SERVICE = "qaily"
 
 
@@ -84,10 +86,16 @@ CHECKS = {
 }
 
 
-def probe(url: str, header: str, value: str) -> tuple[str, bool]:
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+def probe(url: str, header: str, value: str, *, follow_redirects: bool = True) -> tuple[str, bool]:
     request = urllib.request.Request(url, headers={header: value})
     try:
-        with urllib.request.urlopen(request, timeout=10) as response:
+        open_request = urllib.request.urlopen if follow_redirects else urllib.request.build_opener(NoRedirect()).open
+        with open_request(request, timeout=10) as response:
             return f"HTTP {response.status}", True
     except urllib.error.HTTPError as error:
         return f"HTTP {error.code}", False
@@ -96,24 +104,12 @@ def probe(url: str, header: str, value: str) -> tuple[str, bool]:
 
 
 def check() -> int:
-    healthy = True
-    for name, endpoint in CHECKS.items():
-        value, source = resolve_secret(name)
-        if value is None:
-            if endpoint is None:
-                print(f"{name}: не найден (необязательный)")
-            else:
-                print(f"{name}: не найден — {MissingSecret(name)}")
-                healthy = False
-            continue
-        if endpoint is None:
-            print(f"{name}: {source}")
-            continue
-        url, header, template = endpoint
-        result, ok = probe(url, header, template.format(value))
-        print(f"{name}: {source} — {result}")
-        healthy = healthy and ok
-    return 0 if healthy else 1
+    # Lazy import keeps the launcher usable by diagnostics without an import cycle.
+    from qaily_diagnostics import format_checks, token_checks
+
+    results = token_checks(load_settings())
+    print(format_checks(results))
+    return 1 if any(r.status == "error" for r in results) else 0
 
 
 def launch(cmd: list[str], env: dict[str, str]) -> int:
@@ -140,23 +136,38 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="qaily_launch.py")
     modes = parser.add_subparsers(dest="mode", required=True)
     run_mode = modes.add_parser("run")
+    run_mode.add_argument("--service", choices=("redmine", "kaiten"))
     run_mode.add_argument("--secret", action="append", default=[])
     run_mode.add_argument("--dir", action="append", default=[])
     headers_mode = modes.add_parser("headers")
     headers_mode.add_argument("specs", nargs="+")
     modes.add_parser("check")
+    codex = modes.add_parser("check-codex")
+    codex.add_argument("--config", type=Path, required=True)
+    codex.add_argument("--same-process-env", action="store_true")
     args = parser.parse_args(argv)
 
-    if args.mode == "check":
-        return check()
     try:
+        if args.mode == "check":
+            return check()
+        if args.mode == "check-codex":
+            from qaily_diagnostics import codex_testops_check, token_checks
+            settings = load_settings()
+            results = token_checks(settings, skip_allure=True)
+            results.append(codex_testops_check(settings, args.config, os.environ if args.same_process_env else None))
+            for result in results:
+                print(f"{result.name}: {result.status} — {result.detail}")
+            return 1 if any(result.status == "error" for result in results) else 0
         if args.mode == "headers":
             print(json.dumps(render_headers(args.specs)))
             return 0
         if not command:
             parser.error("run: после -- нужна команда сервера")
-        return launch(command, build_env(args.secret, args.dir, os.environ))
-    except MissingSecret as error:
+        base = dict(os.environ)
+        if args.service:
+            base.update(service_env(args.service, load_settings()))
+        return launch(command, build_env(args.secret, args.dir, base))
+    except (MissingSecret, ValueError) as error:
         print(error, file=sys.stderr)
         return 1
 

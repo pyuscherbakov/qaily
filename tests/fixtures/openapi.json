@@ -1,0 +1,13 @@
+{
+  "openapi": "3.0.3",
+  "info": {"title": "Synthetic cohort API", "version": "1.0.0"},
+  "paths": {"/cohorts": {"post": {
+    "operationId": "createCohort",
+    "parameters": [{"name": "X-Client", "in": "header", "required": true, "schema": {"type": "string"}}],
+    "requestBody": {"required": true, "content": {"application/json": {"schema": {"type": "object", "required": ["name"], "properties": {"name": {"type": "string", "minLength": 1, "maxLength": 10}}}}}},
+    "responses": {
+      "201": {"description": "Created", "content": {"application/json": {"schema": {"type": "object", "required": ["id"], "properties": {"id": {"type": "integer"}}}}}},
+      "400": {"description": "Invalid input", "content": {"application/json": {"schema": {"type": "object", "required": ["error"], "properties": {"error": {"type": "string"}}}}}}
+    }
+  }}}
+}

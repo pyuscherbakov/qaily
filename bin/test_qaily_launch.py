@@ -254,3 +254,21 @@ def test_missing_secret_stderr_is_utf8_on_legacy_codepage(monkeypatch):
     assert main(["run", "--secret", "A=kaiten", "--", "x"]) == 1
     stream.flush()
     assert "не найден токен kaiten" in buffer.getvalue().decode("utf-8")
+
+
+def test_url_override_reaches_launch_and_probe(tmp_path, monkeypatch, capsys):
+    import qaily_launch
+    config = tmp_path / '.qaily' / 'config.json'
+    config.parent.mkdir()
+    config.write_text('{"redmine_url":"http://127.0.0.1:8765/base/"}')
+    monkeypatch.setenv('HOME', str(tmp_path))
+    monkeypatch.setenv('USERPROFILE', str(tmp_path))
+    set_all_secrets(monkeypatch)
+    seen = {}
+    monkeypatch.setattr(qaily_launch, 'launch', lambda cmd, env: seen.update(env) or 0)
+    assert main(['run', '--service', 'redmine', '--', 'server']) == 0
+    assert seen['REDMINE_URL'] == 'http://127.0.0.1:8765/base'
+    statuses = {**ALL_OK, 'http://127.0.0.1:8765/base/users/current.json': 200}
+    monkeypatch.setattr(urllib.request, 'urlopen', fake_urlopen(statuses))
+    assert main(['check']) == 0
+    assert 'redmine: env — HTTP 200' in capsys.readouterr().out

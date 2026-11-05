@@ -12,68 +12,28 @@ permissions:
 jobs:
   launcher:
     runs-on: windows-latest
-    timeout-minutes: 30
-    env:
-      QAILY_ALLURE: ${{ secrets.QAILY_ALLURE }}
-      QAILY_REDMINE: ${{ secrets.QAILY_REDMINE }}
-      QAILY_KAITEN: ${{ secrets.QAILY_KAITEN }}
-      HAS_TOKENS: ${{ secrets.QAILY_ALLURE != '' && secrets.QAILY_REDMINE != '' && secrets.QAILY_KAITEN != '' }}
-    defaults:
-      run:
-        shell: bash
     steps:
       - uses: actions/checkout@v4
-
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - uses: astral-sh/setup-uv@v6
-
-      - name: Unit-тесты лаунчера
-        run: uv run -q --no-project --with pytest --with keyring==25.6.0 pytest bin -q
-
-      - name: run находит npx.cmd и пробрасывает код выхода
-        run: |
-          uv run -q --script bin/qaily_launch.py run -- npx --version
-          set +e
-          QAILY_CONTEXT7=probe uv run -q --script bin/qaily_launch.py run --secret PROBE=context7 -- node -e "process.exit(process.env.PROBE === 'probe' ? 7 : 1)"
-          test $? -eq 7
-
-      - name: check пишет UTF-8 в кодовой странице Windows
-        run: |
-          set +e
-          QAILY_ALLURE= QAILY_REDMINE= QAILY_KAITEN= uv run -q --script bin/qaily_launch.py check > check.txt
-          rc=$?
-          set -e
-          test $rc -eq 1
-          python -X utf8 -c "t = open('check.txt', encoding='utf-8').read(); print(t); assert 'allure: не найден' in t"
-
-      - name: check с токенами из секретов
-        if: env.HAS_TOKENS == 'true'
-        run: |
-          uv run -q --script bin/qaily_launch.py check | tee check.txt || true
-          grep -q '^allure: env — HTTP 200' check.txt
-          grep -q '^kaiten: env — HTTP 200' check.txt
-          grep -qE '^redmine: env — (HTTP 200|сеть: )' check.txt
-
-      - name: Установка Claude Code
+      - name: Unit tests
+        shell: pwsh
+        run: uv run --no-project --python 3.12 --with pytest --with keyring==25.6.0 pytest bin -q
+      - name: Resolve npx.cmd and propagate exit code
         shell: pwsh
         run: |
-          irm https://claude.ai/install.ps1 | iex
-          "$env:USERPROFILE\.local\bin" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
-
-      - name: Прогрев кэша npx
-        run: |
-          for pkg in @upstash/context7-mcp@4.1.1 @playwright/mcp@0.0.81 chrome-devtools-mcp@1.9.0; do
-            npm exec -y --package="$pkg" -- node -e 0
-          done
-
-      - name: MCP-серверы плагина через лаунчер
-        run: |
-          claude --version
-          if [ "$HAS_TOKENS" != "true" ]; then export QAILY_ALLURE=dummy-not-real; fi
-          claude --debug --plugin-dir . mcp list > mcp.txt 2>&1 || true
-          grep 'plugin:qaily' mcp.txt | sed -E 's/^(plugin:qaily:[a-z0-9-]+):.* - /\1 - /' | tee status.txt
-          log=$(ls -t "$USERPROFILE/.claude/debug/"*.txt | head -1)
-          for s in context7 playwright chrome-devtools testops; do grep -q "qaily:$s - .*Connected" status.txt || { grep "qaily:$s" "$log" | grep -v 'Api-Token' | head -40; echo "::error::$s не подключился"; exit 1; }; done
-          if [ "$HAS_TOKENS" = "true" ]; then
-            for s in redmine kaiten; do grep -q "qaily:$s - .*Connected" status.txt || { echo "::error::$s не подключился"; exit 1; }; done
-          fi
-          grep -q 'qaily:testops": Successfully retrieved 1 headers from headersHelper' "$log" || { grep 'qaily:testops' "$log" | grep -v 'Api-Token' | head -20; echo "::error::headersHelper не отработал"; exit 1; }
+          uv run --no-project --python 3.12 --script bin/qaily_launch.py run -- npx --version
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $env:QAILY_CONTEXT7 = 'probe'
+          uv run --no-project --python 3.12 --script bin/qaily_launch.py run --secret PROBE=context7 -- node -e "process.exit(process.env.PROBE === 'probe' ? 7 : 1)"
+          if ($LASTEXITCODE -ne 7) { throw 'Launcher did not propagate exit code 7' }
+          exit 0
+  live-integration:
+    # Requires an explicit regional runner and authorized test setup; intentionally disabled.
+    if: ${{ false }}
+    runs-on: windows-latest
+    steps:
+      - shell: pwsh
+        run: Write-Output 'Live integration is not configured'

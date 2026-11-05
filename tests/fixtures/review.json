@@ -1,0 +1,280 @@
+{
+  "tools": [
+    {
+      "name": "testops_find_testcases",
+      "description": "Read synthetic TestOps cases",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "integer"
+          },
+          "aql": {
+            "type": "string"
+          },
+          "expand": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "projectId",
+          "aql"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true
+      }
+    },
+    {
+      "name": "testops_find_sharedsteps",
+      "description": "Read synthetic shared steps",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "integer"
+          },
+          "aql": {
+            "type": "string"
+          },
+          "expand": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "projectId",
+          "aql"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true
+      }
+    },
+    {
+      "name": "redmine_request",
+      "description": "Read synthetic Redmine issue",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          },
+          "params": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "path"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true
+      }
+    }
+  ],
+  "responses": {
+    "testops_find_testcases": [
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\": [{\"id\": 39979, \"name\": \"Расчет RESTART БАЗОВЫЙ для ЮЛ\", \"precondition\": \"Пользователь авторизован под ролью «Агент» бренда LADA\", \"expectedResult\": \"Расчет произведен, СП по продукту получена\", \"status\": \"Ждет ревью\", \"issues\": [{\"id\": 123, \"url\": \"https://redmine.fast-system.ru/issues/123\"}], \"members\": [{\"name\": \"qa1\", \"role\": \"Ревьювер\"}, {\"name\": \"qa2\", \"role\": \"Назначен\"}], \"customFields\": [{\"customField\": \"Приоритет\", \"name\": \"Средний\"}], \"scenario\": {\"steps\": [{\"body\": \"Открыть форму расчета\", \"expectedResultSteps\": [{\"expected_body\": \"Форма расчета открыта\"}], \"steps\": [{\"sharedStepId\": 801}]}]}}], \"totalElements\": 1}"
+          }
+        ]
+      }
+    ],
+    "testops_find_sharedsteps": [
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\": [{\"id\": 801, \"name\": \"Выбор продукта\", \"scenario\": {\"steps\": [{\"body\": \"Выбрать продукт RESTART БАЗОВЫЙ СК ВСК\", \"steps\": [{\"body\": \"Проверить доступность тарифа для ЮЛ\"}]}]}}], \"totalElements\": 1}"
+          }
+        ]
+      }
+    ],
+    "redmine_request": [
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"issue\": {\"id\": 123, \"subject\": \"Расчет продукта RESTART БАЗОВЫЙ\", \"description\": \"Для ЮЛ и ФЛ расчет RESTART БАЗОВЫЙ должен возвращать СП.\", \"journals\": [], \"attachments\": []}}"
+          }
+        ]
+      }
+    ]
+  },
+  "cases": {
+    "nested_shared": {
+      "id": 39979,
+      "name": "Расчет RESTART БАЗОВЫЙ для ЮЛ",
+      "precondition": "Пользователь авторизован под ролью «Агент» бренда LADA",
+      "expectedResult": "Расчет произведен, СП по продукту получена",
+      "status": "Ждет ревью",
+      "issues": [
+        {
+          "id": 123,
+          "url": "https://redmine.fast-system.ru/issues/123"
+        }
+      ],
+      "members": [
+        {
+          "name": "qa1",
+          "role": "Ревьювер"
+        },
+        {
+          "name": "qa2",
+          "role": "Назначен"
+        }
+      ],
+      "customFields": [
+        {
+          "customField": "Приоритет",
+          "name": "Средний"
+        }
+      ],
+      "scenario": {
+        "steps": [
+          {
+            "body": "Открыть форму расчета",
+            "expectedResultSteps": [
+              {
+                "expected_body": "Форма расчета открыта"
+              }
+            ],
+            "steps": [
+              {
+                "sharedStepId": 801
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "no_scenario": {
+      "id": 39983,
+      "name": "Расчет RESTART БАЗОВЫЙ для ЮЛ",
+      "precondition": "Пользователь авторизован под ролью «Агент»",
+      "issues": [
+        {
+          "id": 123
+        }
+      ]
+    },
+    "empty_scenario": {
+      "id": 39984,
+      "name": "Расчет RESTART БАЗОВЫЙ для ЮЛ",
+      "precondition": "Пользователь авторизован под ролью «Агент» бренда LADA",
+      "expectedResult": "Расчет произведен, СП по продукту получена",
+      "status": "Ждет ревью",
+      "issues": [
+        {
+          "id": 123,
+          "url": "https://redmine.fast-system.ru/issues/123"
+        }
+      ],
+      "members": [
+        {
+          "name": "qa1",
+          "role": "Ревьювер"
+        },
+        {
+          "name": "qa2",
+          "role": "Назначен"
+        }
+      ],
+      "customFields": [
+        {
+          "customField": "Приоритет",
+          "name": "Средний"
+        }
+      ],
+      "scenario": {
+        "steps": []
+      }
+    },
+    "dynamic": {
+      "id": 39980,
+      "name": "Расчет RESTART БАЗОВЫЙ для ФЛ",
+      "precondition": "Пользователь авторизован под ролью «Агент» бренда LADA",
+      "expectedResult": "Расчет произведен, СП по продукту получена",
+      "status": "Ждет ревью",
+      "issues": [
+        {
+          "id": 123,
+          "url": "https://redmine.fast-system.ru/issues/123"
+        }
+      ],
+      "members": [
+        {
+          "name": "qa1",
+          "role": "Ревьювер"
+        },
+        {
+          "name": "qa2",
+          "role": "Назначен"
+        }
+      ],
+      "customFields": [
+        {
+          "customField": "Приоритет",
+          "name": "Средний"
+        }
+      ],
+      "scenario": {
+        "steps": [
+          {
+            "body": "Выбрать тип клиента ФЛ",
+            "expectedResultSteps": [
+              {
+                "expected_body": "Тип клиента ФЛ выбран"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "shared_step": {
+    "id": 801,
+    "name": "Выбор продукта",
+    "scenario": {
+      "steps": [
+        {
+          "body": "Выбрать продукт RESTART БАЗОВЫЙ СК ВСК",
+          "steps": [
+            {
+              "body": "Проверить доступность тарифа для ЮЛ"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "batch_search": {
+    "content": [
+      {
+        "id": 39979,
+        "name": "Расчет RESTART БАЗОВЫЙ для ЮЛ"
+      },
+      {
+        "id": 39980,
+        "name": "Расчет RESTART БАЗОВЫЙ для ФЛ"
+      }
+    ],
+    "totalElements": 2
+  },
+  "missing_case": {
+    "content": [],
+    "totalElements": 0
+  }
+}

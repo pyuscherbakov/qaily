@@ -1,0 +1,3 @@
+{
+  "operations": [{"method": "POST", "path": "/cohorts", "operationId": "createCohort", "status": "partial", "conditions": [{"type": "responseStatus", "value": 201, "covered": true}, {"type": "responseStatus", "value": 400, "covered": false}]}]
+}

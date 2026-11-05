@@ -1,0 +1,3568 @@
+{
+  "tools": [
+    {
+      "name": "testops_find_launches",
+      "description": "Read synthetic data",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "readOnlyHint": true
+      }
+    },
+    {
+      "name": "testops_find_testresults",
+      "description": "Read synthetic data",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "readOnlyHint": true
+      }
+    },
+    {
+      "name": "redmine_request",
+      "description": "Read synthetic data",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "readOnlyHint": true
+      }
+    }
+  ],
+  "responses": {
+    "testops_find_launches": [
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\": [{\"id\": 5034, \"name\": \"synthetic\", \"issues\": [\"123\"], \"statistic\": {\"failed\": 200, \"broken\": 250}}], \"totalElements\": 1}"
+          }
+        ]
+      }
+    ],
+    "testops_find_testresults": [
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\": [{\"id\": 10000, \"name\": \"test_0\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10001, \"name\": \"test_1\", \"status\": \"failed\", \"message\": \"singleton unexpected condition\", \"trace\": \"singleton unexpected condition\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10002, \"name\": \"test_2\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10003, \"name\": \"test_3\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10004, \"name\": \"test_4\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10005, \"name\": \"test_5\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10006, \"name\": \"test_6\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10007, \"name\": \"test_7\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10008, \"name\": \"test_8\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10009, \"name\": \"test_9\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10010, \"name\": \"test_10\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10011, \"name\": \"test_11\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10012, \"name\": \"test_12\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10013, \"name\": \"test_13\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10014, \"name\": \"test_14\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10015, \"name\": \"test_15\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10016, \"name\": \"test_16\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10017, \"name\": \"test_17\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10018, \"name\": \"test_18\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10019, \"name\": \"test_19\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10020, \"name\": \"test_20\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10021, \"name\": \"test_21\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10022, \"name\": \"test_22\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10023, \"name\": \"test_23\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10024, \"name\": \"test_24\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10025, \"name\": \"test_25\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10026, \"name\": \"test_26\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10027, \"name\": \"test_27\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10028, \"name\": \"test_28\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10029, \"name\": \"test_29\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10030, \"name\": \"test_30\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10031, \"name\": \"test_31\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10032, \"name\": \"test_32\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10033, \"name\": \"test_33\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10034, \"name\": \"test_34\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10035, \"name\": \"test_35\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10036, \"name\": \"test_36\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10037, \"name\": \"test_37\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10038, \"name\": \"test_38\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10039, \"name\": \"test_39\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10040, \"name\": \"test_40\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10041, \"name\": \"test_41\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10042, \"name\": \"test_42\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10043, \"name\": \"test_43\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10044, \"name\": \"test_44\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10045, \"name\": \"test_45\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10046, \"name\": \"test_46\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10047, \"name\": \"test_47\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10048, \"name\": \"test_48\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10049, \"name\": \"test_49\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}], \"totalElements\": 450, \"totalPages\": 9, \"number\": 0, \"size\": 50}"
+          }
+        ]
+      },
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\": [{\"id\": 10050, \"name\": \"test_50\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10051, \"name\": \"test_51\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10052, \"name\": \"test_52\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10053, \"name\": \"test_53\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10054, \"name\": \"test_54\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10055, \"name\": \"test_55\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10056, \"name\": \"test_56\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10057, \"name\": \"test_57\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10058, \"name\": \"test_58\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10059, \"name\": \"test_59\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10060, \"name\": \"test_60\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10061, \"name\": \"test_61\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10062, \"name\": \"test_62\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10063, \"name\": \"test_63\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10064, \"name\": \"test_64\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10065, \"name\": \"test_65\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10066, \"name\": \"test_66\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10067, \"name\": \"test_67\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10068, \"name\": \"test_68\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10069, \"name\": \"test_69\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10070, \"name\": \"test_70\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10071, \"name\": \"test_71\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10072, \"name\": \"test_72\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10073, \"name\": \"test_73\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10074, \"name\": \"test_74\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10075, \"name\": \"test_75\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10076, \"name\": \"test_76\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10077, \"name\": \"test_77\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10078, \"name\": \"test_78\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10079, \"name\": \"test_79\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10080, \"name\": \"test_80\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10081, \"name\": \"test_81\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10082, \"name\": \"test_82\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10083, \"name\": \"test_83\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10084, \"name\": \"test_84\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10085, \"name\": \"test_85\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10086, \"name\": \"test_86\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10087, \"name\": \"test_87\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10088, \"name\": \"test_88\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10089, \"name\": \"test_89\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10090, \"name\": \"test_90\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10091, \"name\": \"test_91\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10092, \"name\": \"test_92\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10093, \"name\": \"test_93\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10094, \"name\": \"test_94\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10095, \"name\": \"test_95\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10096, \"name\": \"test_96\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10097, \"name\": \"test_97\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10098, \"name\": \"test_98\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10099, \"name\": \"test_99\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}], \"totalElements\": 450, \"totalPages\": 9, \"number\": 1, \"size\": 50}"
+          }
+        ]
+      },
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\": [{\"id\": 10100, \"name\": \"test_100\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10101, \"name\": \"test_101\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10102, \"name\": \"test_102\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10103, \"name\": \"test_103\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10104, \"name\": \"test_104\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10105, \"name\": \"test_105\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10106, \"name\": \"test_106\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10107, \"name\": \"test_107\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10108, \"name\": \"test_108\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10109, \"name\": \"test_109\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10110, \"name\": \"test_110\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10111, \"name\": \"test_111\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10112, \"name\": \"test_112\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10113, \"name\": \"test_113\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10114, \"name\": \"test_114\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10115, \"name\": \"test_115\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10116, \"name\": \"test_116\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10117, \"name\": \"test_117\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10118, \"name\": \"test_118\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10119, \"name\": \"test_119\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10120, \"name\": \"test_120\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10121, \"name\": \"test_121\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10122, \"name\": \"test_122\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10123, \"name\": \"test_123\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10124, \"name\": \"test_124\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10125, \"name\": \"test_125\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10126, \"name\": \"test_126\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10127, \"name\": \"test_127\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10128, \"name\": \"test_128\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10129, \"name\": \"test_129\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10130, \"name\": \"test_130\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10131, \"name\": \"test_131\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10132, \"name\": \"test_132\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10133, \"name\": \"test_133\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10134, \"name\": \"test_134\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10135, \"name\": \"test_135\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10136, \"name\": \"test_136\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10137, \"name\": \"test_137\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10138, \"name\": \"test_138\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10139, \"name\": \"test_139\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10140, \"name\": \"test_140\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10141, \"name\": \"test_141\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10142, \"name\": \"test_142\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10143, \"name\": \"test_143\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10144, \"name\": \"test_144\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10145, \"name\": \"test_145\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10146, \"name\": \"test_146\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10147, \"name\": \"test_147\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10148, \"name\": \"test_148\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10149, \"name\": \"test_149\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}], \"totalElements\": 450, \"totalPages\": 9, \"number\": 2, \"size\": 50}"
+          }
+        ]
+      },
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\": [{\"id\": 10150, \"name\": \"test_150\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10151, \"name\": \"test_151\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10152, \"name\": \"test_152\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10153, \"name\": \"test_153\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10154, \"name\": \"test_154\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10155, \"name\": \"test_155\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10156, \"name\": \"test_156\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10157, \"name\": \"test_157\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10158, \"name\": \"test_158\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10159, \"name\": \"test_159\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10160, \"name\": \"test_160\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10161, \"name\": \"test_161\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10162, \"name\": \"test_162\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10163, \"name\": \"test_163\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10164, \"name\": \"test_164\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10165, \"name\": \"test_165\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10166, \"name\": \"test_166\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10167, \"name\": \"test_167\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10168, \"name\": \"test_168\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10169, \"name\": \"test_169\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10170, \"name\": \"test_170\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10171, \"name\": \"test_171\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10172, \"name\": \"test_172\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10173, \"name\": \"test_173\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10174, \"name\": \"test_174\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10175, \"name\": \"test_175\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10176, \"name\": \"test_176\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10177, \"name\": \"test_177\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10178, \"name\": \"test_178\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10179, \"name\": \"test_179\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10180, \"name\": \"test_180\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10181, \"name\": \"test_181\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10182, \"name\": \"test_182\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10183, \"name\": \"test_183\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10184, \"name\": \"test_184\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10185, \"name\": \"test_185\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10186, \"name\": \"test_186\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10187, \"name\": \"test_187\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10188, \"name\": \"test_188\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10189, \"name\": \"test_189\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10190, \"name\": \"test_190\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10191, \"name\": \"test_191\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10192, \"name\": \"test_192\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10193, \"name\": \"test_193\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10194, \"name\": \"test_194\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10195, \"name\": \"test_195\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10196, \"name\": \"test_196\", \"status\": \"failed\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10197, \"name\": \"test_197\", \"status\": \"failed\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10198, \"name\": \"test_198\", \"status\": \"failed\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10199, \"name\": \"test_199\", \"status\": \"failed\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}], \"totalElements\": 450, \"totalPages\": 9, \"number\": 3, \"size\": 50}"
+          }
+        ]
+      },
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\": [{\"id\": 10200, \"name\": \"test_200\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10201, \"name\": \"test_201\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10202, \"name\": \"test_202\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10203, \"name\": \"test_203\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10204, \"name\": \"test_204\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10205, \"name\": \"test_205\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10206, \"name\": \"test_206\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10207, \"name\": \"test_207\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10208, \"name\": \"test_208\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10209, \"name\": \"test_209\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10210, \"name\": \"test_210\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10211, \"name\": \"test_211\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10212, \"name\": \"test_212\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10213, \"name\": \"test_213\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10214, \"name\": \"test_214\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10215, \"name\": \"test_215\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10216, \"name\": \"test_216\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10217, \"name\": \"test_217\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10218, \"name\": \"test_218\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10219, \"name\": \"test_219\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10220, \"name\": \"test_220\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10221, \"name\": \"test_221\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10222, \"name\": \"test_222\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10223, \"name\": \"test_223\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10224, \"name\": \"test_224\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10225, \"name\": \"test_225\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10226, \"name\": \"test_226\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10227, \"name\": \"test_227\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10228, \"name\": \"test_228\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10229, \"name\": \"test_229\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10230, \"name\": \"test_230\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10231, \"name\": \"test_231\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10232, \"name\": \"test_232\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10233, \"name\": \"test_233\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10234, \"name\": \"test_234\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10235, \"name\": \"test_235\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10236, \"name\": \"test_236\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10237, \"name\": \"test_237\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10238, \"name\": \"test_238\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10239, \"name\": \"test_239\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10240, \"name\": \"test_240\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10241, \"name\": \"test_241\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10242, \"name\": \"test_242\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10243, \"name\": \"test_243\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10244, \"name\": \"test_244\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10245, \"name\": \"test_245\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10246, \"name\": \"test_246\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10247, \"name\": \"test_247\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10248, \"name\": \"test_248\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10249, \"name\": \"test_249\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}], \"totalElements\": 450, \"totalPages\": 9, \"number\": 4, \"size\": 50}"
+          }
+        ]
+      },
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\": [{\"id\": 10250, \"name\": \"test_250\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10251, \"name\": \"test_251\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10252, \"name\": \"test_252\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10253, \"name\": \"test_253\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10254, \"name\": \"test_254\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10255, \"name\": \"test_255\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10256, \"name\": \"test_256\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10257, \"name\": \"test_257\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10258, \"name\": \"test_258\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10259, \"name\": \"test_259\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10260, \"name\": \"test_260\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10261, \"name\": \"test_261\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10262, \"name\": \"test_262\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10263, \"name\": \"test_263\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10264, \"name\": \"test_264\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10265, \"name\": \"test_265\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10266, \"name\": \"test_266\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10267, \"name\": \"test_267\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10268, \"name\": \"test_268\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10269, \"name\": \"test_269\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10270, \"name\": \"test_270\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10271, \"name\": \"test_271\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10272, \"name\": \"test_272\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10273, \"name\": \"test_273\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10274, \"name\": \"test_274\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10275, \"name\": \"test_275\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10276, \"name\": \"test_276\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10277, \"name\": \"test_277\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10278, \"name\": \"test_278\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10279, \"name\": \"test_279\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10280, \"name\": \"test_280\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10281, \"name\": \"test_281\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10282, \"name\": \"test_282\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10283, \"name\": \"test_283\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10284, \"name\": \"test_284\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10285, \"name\": \"test_285\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10286, \"name\": \"test_286\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10287, \"name\": \"test_287\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10288, \"name\": \"test_288\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10289, \"name\": \"test_289\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10290, \"name\": \"test_290\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10291, \"name\": \"test_291\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10292, \"name\": \"test_292\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10293, \"name\": \"test_293\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10294, \"name\": \"test_294\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10295, \"name\": \"test_295\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10296, \"name\": \"test_296\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10297, \"name\": \"test_297\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10298, \"name\": \"test_298\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10299, \"name\": \"test_299\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}], \"totalElements\": 450, \"totalPages\": 9, \"number\": 5, \"size\": 50}"
+          }
+        ]
+      },
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\": [{\"id\": 10300, \"name\": \"test_300\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10301, \"name\": \"test_301\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10302, \"name\": \"test_302\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10303, \"name\": \"test_303\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10304, \"name\": \"test_304\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10305, \"name\": \"test_305\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10306, \"name\": \"test_306\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10307, \"name\": \"test_307\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10308, \"name\": \"test_308\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10309, \"name\": \"test_309\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10310, \"name\": \"test_310\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10311, \"name\": \"test_311\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10312, \"name\": \"test_312\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10313, \"name\": \"test_313\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10314, \"name\": \"test_314\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10315, \"name\": \"test_315\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10316, \"name\": \"test_316\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10317, \"name\": \"test_317\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10318, \"name\": \"test_318\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10319, \"name\": \"test_319\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10320, \"name\": \"test_320\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10321, \"name\": \"test_321\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10322, \"name\": \"test_322\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10323, \"name\": \"test_323\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10324, \"name\": \"test_324\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10325, \"name\": \"test_325\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10326, \"name\": \"test_326\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10327, \"name\": \"test_327\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10328, \"name\": \"test_328\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10329, \"name\": \"test_329\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10330, \"name\": \"test_330\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10331, \"name\": \"test_331\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10332, \"name\": \"test_332\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10333, \"name\": \"test_333\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10334, \"name\": \"test_334\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10335, \"name\": \"test_335\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10336, \"name\": \"test_336\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10337, \"name\": \"test_337\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10338, \"name\": \"test_338\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10339, \"name\": \"test_339\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10340, \"name\": \"test_340\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10341, \"name\": \"test_341\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10342, \"name\": \"test_342\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10343, \"name\": \"test_343\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10344, \"name\": \"test_344\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10345, \"name\": \"test_345\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10346, \"name\": \"test_346\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10347, \"name\": \"test_347\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10348, \"name\": \"test_348\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10349, \"name\": \"test_349\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}], \"totalElements\": 450, \"totalPages\": 9, \"number\": 6, \"size\": 50}"
+          }
+        ]
+      },
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\": [{\"id\": 10350, \"name\": \"test_350\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10351, \"name\": \"test_351\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10352, \"name\": \"test_352\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10353, \"name\": \"test_353\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10354, \"name\": \"test_354\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10355, \"name\": \"test_355\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10356, \"name\": \"test_356\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10357, \"name\": \"test_357\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10358, \"name\": \"test_358\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10359, \"name\": \"test_359\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10360, \"name\": \"test_360\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10361, \"name\": \"test_361\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10362, \"name\": \"test_362\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10363, \"name\": \"test_363\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10364, \"name\": \"test_364\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10365, \"name\": \"test_365\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10366, \"name\": \"test_366\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10367, \"name\": \"test_367\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10368, \"name\": \"test_368\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10369, \"name\": \"test_369\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10370, \"name\": \"test_370\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10371, \"name\": \"test_371\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10372, \"name\": \"test_372\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10373, \"name\": \"test_373\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10374, \"name\": \"test_374\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10375, \"name\": \"test_375\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10376, \"name\": \"test_376\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10377, \"name\": \"test_377\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10378, \"name\": \"test_378\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10379, \"name\": \"test_379\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10380, \"name\": \"test_380\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10381, \"name\": \"test_381\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10382, \"name\": \"test_382\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10383, \"name\": \"test_383\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10384, \"name\": \"test_384\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10385, \"name\": \"test_385\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10386, \"name\": \"test_386\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10387, \"name\": \"test_387\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10388, \"name\": \"test_388\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10389, \"name\": \"test_389\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10390, \"name\": \"test_390\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10391, \"name\": \"test_391\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10392, \"name\": \"test_392\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10393, \"name\": \"test_393\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10394, \"name\": \"test_394\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10395, \"name\": \"test_395\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10396, \"name\": \"test_396\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10397, \"name\": \"test_397\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10398, \"name\": \"test_398\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10399, \"name\": \"test_399\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}], \"totalElements\": 450, \"totalPages\": 9, \"number\": 7, \"size\": 50}"
+          }
+        ]
+      },
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\": [{\"id\": 10400, \"name\": \"test_400\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10401, \"name\": \"test_401\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10402, \"name\": \"test_402\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10403, \"name\": \"test_403\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10404, \"name\": \"test_404\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10405, \"name\": \"test_405\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10406, \"name\": \"test_406\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10407, \"name\": \"test_407\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10408, \"name\": \"test_408\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10409, \"name\": \"test_409\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10410, \"name\": \"test_410\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10411, \"name\": \"test_411\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10412, \"name\": \"test_412\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10413, \"name\": \"test_413\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10414, \"name\": \"test_414\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10415, \"name\": \"test_415\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10416, \"name\": \"test_416\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10417, \"name\": \"test_417\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10418, \"name\": \"test_418\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10419, \"name\": \"test_419\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10420, \"name\": \"test_420\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10421, \"name\": \"test_421\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10422, \"name\": \"test_422\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10423, \"name\": \"test_423\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10424, \"name\": \"test_424\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10425, \"name\": \"test_425\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10426, \"name\": \"test_426\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10427, \"name\": \"test_427\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10428, \"name\": \"test_428\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10429, \"name\": \"test_429\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10430, \"name\": \"test_430\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10431, \"name\": \"test_431\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10432, \"name\": \"test_432\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10433, \"name\": \"test_433\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10434, \"name\": \"test_434\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10435, \"name\": \"test_435\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10436, \"name\": \"test_436\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10437, \"name\": \"test_437\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10438, \"name\": \"test_438\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10439, \"name\": \"test_439\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10440, \"name\": \"test_440\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10441, \"name\": \"test_441\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10442, \"name\": \"test_442\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10443, \"name\": \"test_443\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10444, \"name\": \"test_444\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10445, \"name\": \"test_445\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10446, \"name\": \"test_446\", \"status\": \"broken\", \"message\": \"assert 350 == 420\", \"trace\": \"assert 350 == 420\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10447, \"name\": \"test_447\", \"status\": \"broken\", \"message\": \"id 550e8400-e29b-41d4-a716-446655440000\", \"trace\": \"id 550e8400-e29b-41d4-a716-446655440000\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10448, \"name\": \"test_448\", \"status\": \"broken\", \"message\": \"HTTP 401 on /auth\", \"trace\": \"HTTP 401 on /auth\\nTRACE_ONLY_IN_CHILD\"}, {\"id\": 10449, \"name\": \"test_449\", \"status\": \"broken\", \"message\": \"HTTP 500 on /contracts/8123/\", \"trace\": \"HTTP 500 on /contracts/8123/\\nTRACE_ONLY_IN_CHILD\"}], \"totalElements\": 450, \"totalPages\": 9, \"number\": 8, \"size\": 50}"
+          }
+        ]
+      }
+    ],
+    "redmine_request": [
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"issue\": {\"id\": 123, \"subject\": \"Synthetic\", \"description\": \"Fixture\", \"journals\": [], \"attachments\": []}}"
+          }
+        ]
+      }
+    ]
+  },
+  "cases": {
+    "pages": [
+      {
+        "content": [
+          {
+            "id": 10000,
+            "name": "test_0",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10001,
+            "name": "test_1",
+            "status": "failed",
+            "message": "singleton unexpected condition",
+            "trace": "singleton unexpected condition\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10002,
+            "name": "test_2",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10003,
+            "name": "test_3",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10004,
+            "name": "test_4",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10005,
+            "name": "test_5",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10006,
+            "name": "test_6",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10007,
+            "name": "test_7",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10008,
+            "name": "test_8",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10009,
+            "name": "test_9",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10010,
+            "name": "test_10",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10011,
+            "name": "test_11",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10012,
+            "name": "test_12",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10013,
+            "name": "test_13",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10014,
+            "name": "test_14",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10015,
+            "name": "test_15",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10016,
+            "name": "test_16",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10017,
+            "name": "test_17",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10018,
+            "name": "test_18",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10019,
+            "name": "test_19",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10020,
+            "name": "test_20",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10021,
+            "name": "test_21",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10022,
+            "name": "test_22",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10023,
+            "name": "test_23",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10024,
+            "name": "test_24",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10025,
+            "name": "test_25",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10026,
+            "name": "test_26",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10027,
+            "name": "test_27",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10028,
+            "name": "test_28",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10029,
+            "name": "test_29",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10030,
+            "name": "test_30",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10031,
+            "name": "test_31",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10032,
+            "name": "test_32",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10033,
+            "name": "test_33",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10034,
+            "name": "test_34",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10035,
+            "name": "test_35",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10036,
+            "name": "test_36",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10037,
+            "name": "test_37",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10038,
+            "name": "test_38",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10039,
+            "name": "test_39",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10040,
+            "name": "test_40",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10041,
+            "name": "test_41",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10042,
+            "name": "test_42",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10043,
+            "name": "test_43",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10044,
+            "name": "test_44",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10045,
+            "name": "test_45",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10046,
+            "name": "test_46",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10047,
+            "name": "test_47",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10048,
+            "name": "test_48",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10049,
+            "name": "test_49",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          }
+        ],
+        "totalElements": 450,
+        "totalPages": 9,
+        "number": 0,
+        "size": 50
+      },
+      {
+        "content": [
+          {
+            "id": 10050,
+            "name": "test_50",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10051,
+            "name": "test_51",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10052,
+            "name": "test_52",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10053,
+            "name": "test_53",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10054,
+            "name": "test_54",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10055,
+            "name": "test_55",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10056,
+            "name": "test_56",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10057,
+            "name": "test_57",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10058,
+            "name": "test_58",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10059,
+            "name": "test_59",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10060,
+            "name": "test_60",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10061,
+            "name": "test_61",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10062,
+            "name": "test_62",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10063,
+            "name": "test_63",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10064,
+            "name": "test_64",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10065,
+            "name": "test_65",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10066,
+            "name": "test_66",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10067,
+            "name": "test_67",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10068,
+            "name": "test_68",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10069,
+            "name": "test_69",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10070,
+            "name": "test_70",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10071,
+            "name": "test_71",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10072,
+            "name": "test_72",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10073,
+            "name": "test_73",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10074,
+            "name": "test_74",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10075,
+            "name": "test_75",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10076,
+            "name": "test_76",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10077,
+            "name": "test_77",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10078,
+            "name": "test_78",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10079,
+            "name": "test_79",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10080,
+            "name": "test_80",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10081,
+            "name": "test_81",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10082,
+            "name": "test_82",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10083,
+            "name": "test_83",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10084,
+            "name": "test_84",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10085,
+            "name": "test_85",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10086,
+            "name": "test_86",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10087,
+            "name": "test_87",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10088,
+            "name": "test_88",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10089,
+            "name": "test_89",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10090,
+            "name": "test_90",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10091,
+            "name": "test_91",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10092,
+            "name": "test_92",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10093,
+            "name": "test_93",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10094,
+            "name": "test_94",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10095,
+            "name": "test_95",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10096,
+            "name": "test_96",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10097,
+            "name": "test_97",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10098,
+            "name": "test_98",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10099,
+            "name": "test_99",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          }
+        ],
+        "totalElements": 450,
+        "totalPages": 9,
+        "number": 1,
+        "size": 50
+      },
+      {
+        "content": [
+          {
+            "id": 10100,
+            "name": "test_100",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10101,
+            "name": "test_101",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10102,
+            "name": "test_102",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10103,
+            "name": "test_103",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10104,
+            "name": "test_104",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10105,
+            "name": "test_105",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10106,
+            "name": "test_106",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10107,
+            "name": "test_107",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10108,
+            "name": "test_108",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10109,
+            "name": "test_109",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10110,
+            "name": "test_110",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10111,
+            "name": "test_111",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10112,
+            "name": "test_112",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10113,
+            "name": "test_113",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10114,
+            "name": "test_114",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10115,
+            "name": "test_115",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10116,
+            "name": "test_116",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10117,
+            "name": "test_117",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10118,
+            "name": "test_118",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10119,
+            "name": "test_119",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10120,
+            "name": "test_120",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10121,
+            "name": "test_121",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10122,
+            "name": "test_122",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10123,
+            "name": "test_123",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10124,
+            "name": "test_124",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10125,
+            "name": "test_125",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10126,
+            "name": "test_126",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10127,
+            "name": "test_127",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10128,
+            "name": "test_128",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10129,
+            "name": "test_129",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10130,
+            "name": "test_130",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10131,
+            "name": "test_131",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10132,
+            "name": "test_132",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10133,
+            "name": "test_133",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10134,
+            "name": "test_134",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10135,
+            "name": "test_135",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10136,
+            "name": "test_136",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10137,
+            "name": "test_137",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10138,
+            "name": "test_138",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10139,
+            "name": "test_139",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10140,
+            "name": "test_140",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10141,
+            "name": "test_141",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10142,
+            "name": "test_142",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10143,
+            "name": "test_143",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10144,
+            "name": "test_144",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10145,
+            "name": "test_145",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10146,
+            "name": "test_146",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10147,
+            "name": "test_147",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10148,
+            "name": "test_148",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10149,
+            "name": "test_149",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          }
+        ],
+        "totalElements": 450,
+        "totalPages": 9,
+        "number": 2,
+        "size": 50
+      },
+      {
+        "content": [
+          {
+            "id": 10150,
+            "name": "test_150",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10151,
+            "name": "test_151",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10152,
+            "name": "test_152",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10153,
+            "name": "test_153",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10154,
+            "name": "test_154",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10155,
+            "name": "test_155",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10156,
+            "name": "test_156",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10157,
+            "name": "test_157",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10158,
+            "name": "test_158",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10159,
+            "name": "test_159",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10160,
+            "name": "test_160",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10161,
+            "name": "test_161",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10162,
+            "name": "test_162",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10163,
+            "name": "test_163",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10164,
+            "name": "test_164",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10165,
+            "name": "test_165",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10166,
+            "name": "test_166",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10167,
+            "name": "test_167",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10168,
+            "name": "test_168",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10169,
+            "name": "test_169",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10170,
+            "name": "test_170",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10171,
+            "name": "test_171",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10172,
+            "name": "test_172",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10173,
+            "name": "test_173",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10174,
+            "name": "test_174",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10175,
+            "name": "test_175",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10176,
+            "name": "test_176",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10177,
+            "name": "test_177",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10178,
+            "name": "test_178",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10179,
+            "name": "test_179",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10180,
+            "name": "test_180",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10181,
+            "name": "test_181",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10182,
+            "name": "test_182",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10183,
+            "name": "test_183",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10184,
+            "name": "test_184",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10185,
+            "name": "test_185",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10186,
+            "name": "test_186",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10187,
+            "name": "test_187",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10188,
+            "name": "test_188",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10189,
+            "name": "test_189",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10190,
+            "name": "test_190",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10191,
+            "name": "test_191",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10192,
+            "name": "test_192",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10193,
+            "name": "test_193",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10194,
+            "name": "test_194",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10195,
+            "name": "test_195",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10196,
+            "name": "test_196",
+            "status": "failed",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10197,
+            "name": "test_197",
+            "status": "failed",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10198,
+            "name": "test_198",
+            "status": "failed",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10199,
+            "name": "test_199",
+            "status": "failed",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          }
+        ],
+        "totalElements": 450,
+        "totalPages": 9,
+        "number": 3,
+        "size": 50
+      },
+      {
+        "content": [
+          {
+            "id": 10200,
+            "name": "test_200",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10201,
+            "name": "test_201",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10202,
+            "name": "test_202",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10203,
+            "name": "test_203",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10204,
+            "name": "test_204",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10205,
+            "name": "test_205",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10206,
+            "name": "test_206",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10207,
+            "name": "test_207",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10208,
+            "name": "test_208",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10209,
+            "name": "test_209",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10210,
+            "name": "test_210",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10211,
+            "name": "test_211",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10212,
+            "name": "test_212",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10213,
+            "name": "test_213",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10214,
+            "name": "test_214",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10215,
+            "name": "test_215",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10216,
+            "name": "test_216",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10217,
+            "name": "test_217",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10218,
+            "name": "test_218",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10219,
+            "name": "test_219",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10220,
+            "name": "test_220",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10221,
+            "name": "test_221",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10222,
+            "name": "test_222",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10223,
+            "name": "test_223",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10224,
+            "name": "test_224",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10225,
+            "name": "test_225",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10226,
+            "name": "test_226",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10227,
+            "name": "test_227",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10228,
+            "name": "test_228",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10229,
+            "name": "test_229",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10230,
+            "name": "test_230",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10231,
+            "name": "test_231",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10232,
+            "name": "test_232",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10233,
+            "name": "test_233",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10234,
+            "name": "test_234",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10235,
+            "name": "test_235",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10236,
+            "name": "test_236",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10237,
+            "name": "test_237",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10238,
+            "name": "test_238",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10239,
+            "name": "test_239",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10240,
+            "name": "test_240",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10241,
+            "name": "test_241",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10242,
+            "name": "test_242",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10243,
+            "name": "test_243",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10244,
+            "name": "test_244",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10245,
+            "name": "test_245",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10246,
+            "name": "test_246",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10247,
+            "name": "test_247",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10248,
+            "name": "test_248",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10249,
+            "name": "test_249",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          }
+        ],
+        "totalElements": 450,
+        "totalPages": 9,
+        "number": 4,
+        "size": 50
+      },
+      {
+        "content": [
+          {
+            "id": 10250,
+            "name": "test_250",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10251,
+            "name": "test_251",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10252,
+            "name": "test_252",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10253,
+            "name": "test_253",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10254,
+            "name": "test_254",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10255,
+            "name": "test_255",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10256,
+            "name": "test_256",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10257,
+            "name": "test_257",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10258,
+            "name": "test_258",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10259,
+            "name": "test_259",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10260,
+            "name": "test_260",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10261,
+            "name": "test_261",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10262,
+            "name": "test_262",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10263,
+            "name": "test_263",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10264,
+            "name": "test_264",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10265,
+            "name": "test_265",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10266,
+            "name": "test_266",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10267,
+            "name": "test_267",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10268,
+            "name": "test_268",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10269,
+            "name": "test_269",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10270,
+            "name": "test_270",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10271,
+            "name": "test_271",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10272,
+            "name": "test_272",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10273,
+            "name": "test_273",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10274,
+            "name": "test_274",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10275,
+            "name": "test_275",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10276,
+            "name": "test_276",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10277,
+            "name": "test_277",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10278,
+            "name": "test_278",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10279,
+            "name": "test_279",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10280,
+            "name": "test_280",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10281,
+            "name": "test_281",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10282,
+            "name": "test_282",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10283,
+            "name": "test_283",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10284,
+            "name": "test_284",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10285,
+            "name": "test_285",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10286,
+            "name": "test_286",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10287,
+            "name": "test_287",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10288,
+            "name": "test_288",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10289,
+            "name": "test_289",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10290,
+            "name": "test_290",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10291,
+            "name": "test_291",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10292,
+            "name": "test_292",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10293,
+            "name": "test_293",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10294,
+            "name": "test_294",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10295,
+            "name": "test_295",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10296,
+            "name": "test_296",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10297,
+            "name": "test_297",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10298,
+            "name": "test_298",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10299,
+            "name": "test_299",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          }
+        ],
+        "totalElements": 450,
+        "totalPages": 9,
+        "number": 5,
+        "size": 50
+      },
+      {
+        "content": [
+          {
+            "id": 10300,
+            "name": "test_300",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10301,
+            "name": "test_301",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10302,
+            "name": "test_302",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10303,
+            "name": "test_303",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10304,
+            "name": "test_304",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10305,
+            "name": "test_305",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10306,
+            "name": "test_306",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10307,
+            "name": "test_307",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10308,
+            "name": "test_308",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10309,
+            "name": "test_309",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10310,
+            "name": "test_310",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10311,
+            "name": "test_311",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10312,
+            "name": "test_312",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10313,
+            "name": "test_313",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10314,
+            "name": "test_314",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10315,
+            "name": "test_315",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10316,
+            "name": "test_316",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10317,
+            "name": "test_317",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10318,
+            "name": "test_318",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10319,
+            "name": "test_319",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10320,
+            "name": "test_320",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10321,
+            "name": "test_321",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10322,
+            "name": "test_322",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10323,
+            "name": "test_323",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10324,
+            "name": "test_324",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10325,
+            "name": "test_325",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10326,
+            "name": "test_326",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10327,
+            "name": "test_327",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10328,
+            "name": "test_328",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10329,
+            "name": "test_329",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10330,
+            "name": "test_330",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10331,
+            "name": "test_331",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10332,
+            "name": "test_332",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10333,
+            "name": "test_333",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10334,
+            "name": "test_334",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10335,
+            "name": "test_335",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10336,
+            "name": "test_336",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10337,
+            "name": "test_337",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10338,
+            "name": "test_338",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10339,
+            "name": "test_339",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10340,
+            "name": "test_340",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10341,
+            "name": "test_341",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10342,
+            "name": "test_342",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10343,
+            "name": "test_343",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10344,
+            "name": "test_344",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10345,
+            "name": "test_345",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10346,
+            "name": "test_346",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10347,
+            "name": "test_347",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10348,
+            "name": "test_348",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10349,
+            "name": "test_349",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          }
+        ],
+        "totalElements": 450,
+        "totalPages": 9,
+        "number": 6,
+        "size": 50
+      },
+      {
+        "content": [
+          {
+            "id": 10350,
+            "name": "test_350",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10351,
+            "name": "test_351",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10352,
+            "name": "test_352",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10353,
+            "name": "test_353",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10354,
+            "name": "test_354",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10355,
+            "name": "test_355",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10356,
+            "name": "test_356",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10357,
+            "name": "test_357",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10358,
+            "name": "test_358",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10359,
+            "name": "test_359",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10360,
+            "name": "test_360",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10361,
+            "name": "test_361",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10362,
+            "name": "test_362",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10363,
+            "name": "test_363",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10364,
+            "name": "test_364",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10365,
+            "name": "test_365",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10366,
+            "name": "test_366",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10367,
+            "name": "test_367",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10368,
+            "name": "test_368",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10369,
+            "name": "test_369",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10370,
+            "name": "test_370",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10371,
+            "name": "test_371",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10372,
+            "name": "test_372",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10373,
+            "name": "test_373",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10374,
+            "name": "test_374",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10375,
+            "name": "test_375",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10376,
+            "name": "test_376",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10377,
+            "name": "test_377",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10378,
+            "name": "test_378",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10379,
+            "name": "test_379",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10380,
+            "name": "test_380",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10381,
+            "name": "test_381",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10382,
+            "name": "test_382",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10383,
+            "name": "test_383",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10384,
+            "name": "test_384",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10385,
+            "name": "test_385",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10386,
+            "name": "test_386",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10387,
+            "name": "test_387",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10388,
+            "name": "test_388",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10389,
+            "name": "test_389",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10390,
+            "name": "test_390",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10391,
+            "name": "test_391",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10392,
+            "name": "test_392",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10393,
+            "name": "test_393",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10394,
+            "name": "test_394",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10395,
+            "name": "test_395",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10396,
+            "name": "test_396",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10397,
+            "name": "test_397",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10398,
+            "name": "test_398",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10399,
+            "name": "test_399",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          }
+        ],
+        "totalElements": 450,
+        "totalPages": 9,
+        "number": 7,
+        "size": 50
+      },
+      {
+        "content": [
+          {
+            "id": 10400,
+            "name": "test_400",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10401,
+            "name": "test_401",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10402,
+            "name": "test_402",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10403,
+            "name": "test_403",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10404,
+            "name": "test_404",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10405,
+            "name": "test_405",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10406,
+            "name": "test_406",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10407,
+            "name": "test_407",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10408,
+            "name": "test_408",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10409,
+            "name": "test_409",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10410,
+            "name": "test_410",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10411,
+            "name": "test_411",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10412,
+            "name": "test_412",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10413,
+            "name": "test_413",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10414,
+            "name": "test_414",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10415,
+            "name": "test_415",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10416,
+            "name": "test_416",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10417,
+            "name": "test_417",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10418,
+            "name": "test_418",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10419,
+            "name": "test_419",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10420,
+            "name": "test_420",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10421,
+            "name": "test_421",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10422,
+            "name": "test_422",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10423,
+            "name": "test_423",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10424,
+            "name": "test_424",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10425,
+            "name": "test_425",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10426,
+            "name": "test_426",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10427,
+            "name": "test_427",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10428,
+            "name": "test_428",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10429,
+            "name": "test_429",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10430,
+            "name": "test_430",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10431,
+            "name": "test_431",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10432,
+            "name": "test_432",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10433,
+            "name": "test_433",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10434,
+            "name": "test_434",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10435,
+            "name": "test_435",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10436,
+            "name": "test_436",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10437,
+            "name": "test_437",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10438,
+            "name": "test_438",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10439,
+            "name": "test_439",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10440,
+            "name": "test_440",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10441,
+            "name": "test_441",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10442,
+            "name": "test_442",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10443,
+            "name": "test_443",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10444,
+            "name": "test_444",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10445,
+            "name": "test_445",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10446,
+            "name": "test_446",
+            "status": "broken",
+            "message": "assert 350 == 420",
+            "trace": "assert 350 == 420\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10447,
+            "name": "test_447",
+            "status": "broken",
+            "message": "id 550e8400-e29b-41d4-a716-446655440000",
+            "trace": "id 550e8400-e29b-41d4-a716-446655440000\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10448,
+            "name": "test_448",
+            "status": "broken",
+            "message": "HTTP 401 on /auth",
+            "trace": "HTTP 401 on /auth\nTRACE_ONLY_IN_CHILD"
+          },
+          {
+            "id": 10449,
+            "name": "test_449",
+            "status": "broken",
+            "message": "HTTP 500 on /contracts/8123/",
+            "trace": "HTTP 500 on /contracts/8123/\nTRACE_ONLY_IN_CHILD"
+          }
+        ],
+        "totalElements": 450,
+        "totalPages": 9,
+        "number": 8,
+        "size": 50
+      }
+    ],
+    "zero": {
+      "failed": 0,
+      "broken": 0
+    },
+    "normalization": [
+      {
+        "input": "HTTP 401",
+        "signature": "HTTP 401"
+      },
+      {
+        "input": "HTTP 500",
+        "signature": "HTTP 500"
+      },
+      {
+        "input": "assert 350 == 420",
+        "signature": "assert <N> == <N>"
+      },
+      {
+        "input": "id 550e8400-e29b-41d4-a716-446655440000",
+        "signature": "id <UUID>"
+      }
+    ],
+    "injections": {
+      "page_2_error": {
+        "page": 2,
+        "response": {
+          "isError": true,
+          "content": [
+            {
+              "type": "text",
+              "text": "synthetic failure"
+            }
+          ]
+        }
+      },
+      "page_3_truncated": {
+        "page": 3,
+        "content_count": 23,
+        "totalPages": 9
+      },
+      "drill_malformed": "### incomplete\nПричина: unknown",
+      "drill_timeout": "timeout",
+      "all_empty": {
+        "content": [],
+        "totalPages": 9
+      },
+      "zero": {
+        "failed": 0,
+        "broken": 0
+      }
+    },
+    "many_groups": [
+      {
+        "id": 20000,
+        "status": "failed",
+        "message": "failure category A",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20001,
+        "status": "failed",
+        "message": "failure category B",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20002,
+        "status": "failed",
+        "message": "failure category C",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20003,
+        "status": "failed",
+        "message": "failure category D",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20004,
+        "status": "failed",
+        "message": "failure category E",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20005,
+        "status": "failed",
+        "message": "failure category F",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20006,
+        "status": "failed",
+        "message": "failure category G",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20007,
+        "status": "failed",
+        "message": "failure category H",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20008,
+        "status": "failed",
+        "message": "failure category I",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20009,
+        "status": "failed",
+        "message": "failure category J",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20010,
+        "status": "failed",
+        "message": "failure category K",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20011,
+        "status": "failed",
+        "message": "failure category L",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20012,
+        "status": "failed",
+        "message": "failure category M",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20013,
+        "status": "failed",
+        "message": "failure category A",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20014,
+        "status": "failed",
+        "message": "failure category B",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20015,
+        "status": "failed",
+        "message": "failure category C",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20016,
+        "status": "failed",
+        "message": "failure category D",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20017,
+        "status": "failed",
+        "message": "failure category E",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20018,
+        "status": "failed",
+        "message": "failure category F",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20019,
+        "status": "failed",
+        "message": "failure category G",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20020,
+        "status": "failed",
+        "message": "failure category H",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20021,
+        "status": "failed",
+        "message": "failure category I",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20022,
+        "status": "failed",
+        "message": "failure category J",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20023,
+        "status": "failed",
+        "message": "failure category K",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20024,
+        "status": "failed",
+        "message": "failure category L",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      },
+      {
+        "id": 20025,
+        "status": "failed",
+        "message": "failure category M",
+        "trace": "TRACE_ONLY_IN_CHILD"
+      }
+    ]
+  }
+}

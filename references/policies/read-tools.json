@@ -1,0 +1,14 @@
+{
+  "testops": [],
+  "kaiten": [
+    "kaiten_get_card",
+    "kaiten_get_document",
+    "kaiten_list_comments",
+    "kaiten_list_documents"
+  ],
+  "context7": [
+    "query-docs",
+    "resolve-library-id"
+  ],
+  "jam": []
+}
